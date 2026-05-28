@@ -30,25 +30,25 @@ export default function MushroomsSection() {
   );
 
   return (
-    <section className="bg-[#f5f5f5] py-16 px-4">
+    <section className="bg-[#f5f5f5] py-16 px-2">
       <div className="mx-auto max-w-375 px-3.75">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold text-[#1a1a1a] mb-2">
+          <h2 className="text-4xl font-semibold text-[#242424] mb-2 nav-poppins">
             Our Mushrooms
           </h2>
-          <p className="text-gray-600 text-base">
+          <p className="text-[#525252] text-lg nav-lato ">
             Jump into the world of Mushrooms
           </p>
         </div>
 
-        <div className="flex justify-center gap-10 mb-12 flex-wrap">
+        <div className="flex justify-center gap-10 mb-4 flex-wrap">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative pb-2 text-[15px] font-bold uppercase tracking-wide transition-colors duration-300
-                after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[#003465] after:transition-all after:duration-300
+              className={`relative pb-1 text-[15px] font-bold uppercase tracking-wide transition-colors duration-300 cursor-pointer
+                after:absolute after:bottom-0 after:left-0 after:h-px after:bg-[#003465] after:transition-all after:duration-300
                 ${
                   activeTab === tab.id
                     ? "text-[#003465] after:w-full"
