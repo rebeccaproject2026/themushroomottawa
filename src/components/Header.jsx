@@ -1,9 +1,12 @@
+import { Heart, Search } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { useState, useEffect } from "react";
 import logoSrc from "../assets/mainlogo.png";
+import CartDrawer from "./CartDrawer";
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,6 +109,7 @@ export default function Header() {
 
               <button
                 type="button"
+                onClick={() => setCartOpen(true)}
                 className="relative inline-flex cursor-pointer h-10  items-center justify-center rounded-full text-white transition"
                 aria-label="Cart"
               >
@@ -119,6 +123,7 @@ export default function Header() {
           </div>
         </div>
       </header>
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </>
   );
 }

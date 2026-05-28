@@ -15,8 +15,8 @@ export default function ProductCard({ product }) {
 
   return (
     <div
-      className={`bg-[#f8fafc] rounded-xl transition-all duration-300 group relative ${
-        isHovered ? "z-30 shadow-[0_4px_20px_rgba(0,0,0,0.1)]" : "z-10 shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
+      className={`bg-white rounded-xl transition-all duration-300 group relative border border-gray-100 ${
+        isHovered ? "z-30 shadow-[0_4px_20px_rgba(0,0,0,0.12)]" : "z-10 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
@@ -24,12 +24,23 @@ export default function ProductCard({ product }) {
 
       <div className="p-4 flex flex-col gap-3">
       {/* Image Container */}
-      <div className="relative bg-[#f8fafc] flex items-center justify-center rounded-lg overflow-hidden">
+      <div className="relative bg-white flex items-center justify-center rounded-lg overflow-hidden h-52">
         <img
           src={product.image}
           alt={product.name}
-          className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+          className={`h-full w-auto object-contain transition-all duration-900 cursor-pointer absolute ${
+            isHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
+          }`}
         />
+        {product.hoverImage && (
+          <img
+            src={product.hoverImage}
+            alt={product.name}
+            className={`h-full w-auto object-contain transition-all duration-900 cursor-pointer absolute ${
+              isHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
+            }`}
+          />
+        )}
         
         {/* Hover Icons */}
         <div className={`absolute top-4 right-4 flex flex-col gap-5 transition-all duration-300 py-2 px-3 rounded-br-lg rounded-tr-lg shadow-[10px_10px_20px_rgba(0,0,0,0.1)] ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}>
@@ -86,7 +97,7 @@ export default function ProductCard({ product }) {
 
       {/* Description that expands downwards */}
       <div
-        className={`absolute left-0 right-0 top-full bg-white px-5 rounded-b-lg transition-all duration-300 overflow-hidden ${
+        className={`absolute left-0 right-0 top-full bg-white px-5 rounded-b-xl transition-all duration-300 overflow-hidden border border-t-0 border-gray-100 ${
           isHovered ? "opacity-100 shadow-[0_15px_20px_rgba(0,0,0,0.1)]" : "opacity-0"
         }`}
         style={{
