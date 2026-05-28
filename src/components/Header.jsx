@@ -3,10 +3,12 @@ import { Icon } from "@iconify/react";
 import { useState, useEffect } from "react";
 import logoSrc from "../assets/mainlogo.png";
 import CartDrawer from "./CartDrawer";
+import LoginDrawer from "./LoginDrawer";
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,7 +85,7 @@ export default function Header() {
 
             <div className="flex gap-4.5 flex-wrap items-center justify-end text-[13px] font-semibold uppercase flex-1">
               
-                <a href="#" className="transition duration-300 hover:text-slate-400 pr-1.5">
+                <a href="#" onClick={(e) => { e.preventDefault(); setLoginOpen(true); }} className="transition duration-300 hover:text-slate-400 pr-1.5">
                   Login / Register
                 </a>
               
@@ -124,6 +126,7 @@ export default function Header() {
         </div>
       </header>
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <LoginDrawer isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
     </>
   );
 }
