@@ -40,9 +40,12 @@ export default function CategorySection() {
           {categories.map((cat) => (
             <div
               key={cat.id}
-              className="relative rounded-2xl overflow-hidden cursor-pointer  bg-cover bg-center h-150"
-              style={{ backgroundImage: `url(${cat.image})` }}
+              className="group relative rounded-2xl overflow-hidden cursor-pointer h-150"
             >
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110"
+                style={{ backgroundImage: `url(${cat.image})` }}
+              />
               
 
               {/* Title + Count */}
