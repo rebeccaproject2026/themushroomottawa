@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search, Heart, MoreHorizontal, X } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { Tooltip } from "react-tooltip";
@@ -11,7 +12,9 @@ export default function ProductCard({ product }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [cartOverlay, setCartOverlay] = useState(false);
   const [quantity, setQuantity] = useState("");
+  const [isImageHovered, setIsImageHovered] = useState(false);
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   const showHoverIcons = isHovered && !cartOverlay;
 
@@ -44,20 +47,24 @@ export default function ProductCard({ product }) {
 
       <div className="p-4 flex flex-col gap-3">
       {/* Image Container */}
-      <div className="relative bg-white flex items-center justify-center rounded-lg overflow-hidden h-52">
+      <div className="relative bg-white flex items-center justify-center rounded-lg overflow-hidden h-52"
+        onMouseEnter={() => setIsImageHovered(true)}
+        onMouseLeave={() => setIsImageHovered(false)}
+        onClick={() => navigate(`/product/${product.id}`)}
+      >
         <img
           src={product.image}
           alt={product.name}
-          className={`h-full w-auto object-contain transition-all duration-900 cursor-pointer absolute ${
-            isHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
+          className={`h-full w-auto object-contain transition-all duration-700 cursor-pointer absolute ${
+            isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
           }`}
         />
         {product.hoverImage && (
           <img
             src={product.hoverImage}
             alt={product.name}
-            className={`h-full w-auto object-contain transition-all duration-900 cursor-pointer absolute ${
-              isHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
+            className={`h-full w-auto object-contain transition-all duration-700 cursor-pointer absolute ${
+              isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
             }`}
           />
         )}
