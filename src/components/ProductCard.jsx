@@ -1,21 +1,41 @@
 import { useState } from "react";
-import { Search, Heart, MoreHorizontal } from "lucide-react";
+import { Search, Heart, MoreHorizontal, X } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import { useCart } from "../context/CartContext";
+import toast from "react-hot-toast";
 
 export default function ProductCard({ product }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [cartOverlay, setCartOverlay] = useState(false);
+  const [quantity, setQuantity] = useState("");
+  const { addToCart } = useCart();
+
+  const showHoverIcons = isHovered && !cartOverlay;
+
+  const handleAddToCart = () => {
+    if (!quantity) {
+      toast.error("Please select an option first.", {
+        style: { borderRadius: "6px", background: "#1a1a1a", color: "#fff" },
+        iconTheme: { primary: "#ff4444", secondary: "#fff" },
+      });
+      return;
+    }
+    addToCart(product, quantity);
+    setCartOverlay(false);
+    setQuantity("");
+  };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    setIsExpanded(false); // Reset expanded state on mouse leave
+    setIsExpanded(false);
   };
 
   return (
     <div
-      className={`bg-white rounded-xl transition-all duration-300 group relative border border-gray-100 ${
+      className={`bg-[#f8fafc] rounded-xl transition-all duration-300 group relative border border-gray-100 ${
         isHovered ? "z-30 shadow-[0_4px_20px_rgba(0,0,0,0.12)]" : "z-10 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -41,9 +61,43 @@ export default function ProductCard({ product }) {
             }`}
           />
         )}
+
+        {/* Cart Overlay - slides up from bottom */}
+        <div
+          className={`absolute inset-0 bg-white/85 flex flex-col justify-center gap-3 transition-all duration-300 ease-in-out ${
+            cartOverlay ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+          }`}
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); setCartOverlay(false); }}
+            className="absolute top-0 right-1 flex items-center gap-1 text-sm font-semibold text-gray-900 hover:text-gray-400 transition cursor-pointer"
+          >
+            <X className="w-4.5 h-4.5" /> Close
+          </button>
+          <p className="text-base font-semibold text-gray-800 text-center">Quantity:</p>
+          <div className="relative mx-auto w-[84%]">
+            <select
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              className="w-full border-2 border-gray-300/80 px-4 py-2.5 text-sm text-gray-500/70 font-medium focus:outline-none cursor-pointer bg-white appearance-none pr-9"
+            >
+              <option value="">Choose an option</option>
+              <option value="14g">14g</option>
+              <option value="28g">28g</option>
+              <option value="7g">7g</option>
+            </select>
+            <Icon
+              icon="mdi:chevron-down"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+            />
+          </div>
+          <button onClick={handleAddToCart} className="w-full absolute bottom-0 bg-[#003465] text-white font-semibold nav-lato uppercase text-[13px] py-2.5 rounded-b-xl hover:bg-[#012140] transition cursor-pointer">
+            Add to Cart
+          </button>
+        </div>
         
         {/* Hover Icons */}
-        <div className={`absolute top-4 right-4 flex flex-col gap-5 transition-all duration-300 py-2 px-3 rounded-br-lg rounded-tr-lg shadow-[10px_10px_20px_rgba(0,0,0,0.1)] ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}>
+        <div className={`absolute top-4 right-4 flex flex-col gap-5 transition-all duration-300 py-2 px-3 rounded-br-lg rounded-tr-lg shadow-[10px_10px_20px_rgba(0,0,0,0.1)] ${showHoverIcons ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}>
           <button
             data-tooltip-id={`quickview-${product.id}`}
             data-tooltip-content="Quick view"
@@ -82,13 +136,18 @@ export default function ProductCard({ product }) {
         </p>
 
         {/* Select Options Button */}
-        <div className="relative p-5 w-full overflow-hidden  group/btn cursor-pointer">
+        <div
+          onClick={() => {
+            if (!cartOverlay) { setCartOverlay(true); setIsHovered(false); }
+          }}
+          className={`relative p-5 w-full overflow-hidden group/btn cursor-pointer ${cartOverlay ? "pointer-events-none" : ""}`}
+        >
           {/* Select Options - slides out to top */}
-          <div className="absolute inset-0 bg-[#003465] flex items-center justify-center transition-transform duration-300 ease-in-out group-hover/btn:-translate-y-full">
+          <div className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-in-out group-hover/btn:-translate-y-full ${cartOverlay ? "bg-gray-400" : "bg-[#003465]"}`}>
             <span className="text-white font-semibold uppercase text-[13px] tracking-wider nav-lato">Select Options</span>
           </div>
           {/* Cart Icon - slides in from bottom */}
-          <div className="absolute inset-0 bg-[#003465] flex items-center justify-center transition-transform duration-300 ease-in-out translate-y-full group-hover/btn:translate-y-0">
+          <div className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-in-out translate-y-full group-hover/btn:translate-y-0 ${cartOverlay ? "bg-gray-400" : "bg-[#003465]"}`}>
             <Icon icon="la:shopping-cart" className="text-white h-7 w-7" />
           </div>
         </div>

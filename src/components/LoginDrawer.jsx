@@ -18,7 +18,7 @@ export default function LoginDrawer({ isOpen, onClose }) {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[340px] bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-85 bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -89,18 +89,18 @@ export default function LoginDrawer({ isOpen, onClose }) {
           </div>
 
           {/* Divider */}
-          <div className="border-t border-gray-200 my-2" />
+          <div className="border-t border-gray-200 " />
 
           {/* No account */}
           <div className="flex flex-col items-center gap-3">
-            <Icon icon="mdi:account-circle-outline" className="w-14 h-14 text-gray-300" />
+            <Icon icon="uiw:user" className="w-15 h-15 text-gray-300/30" />
             <p className="text-sm text-[#242424] nav-lato font-semibold">No account yet?</p>
-            <button className="text-[13px] nav-lato font-semibold uppercase tracking-wide border-b-2 border-gray-800 text-gray-800 hover:text-gray-500 hover:border-gray-500 transition cursor-pointer pb-0.5">
+            <button className="text-[13px] nav-lato font-semibold uppercase  border-b-2 border-gray-800 text-gray-800 hover:text-gray-500 hover:border-gray-500 transition cursor-pointer ">
               Create an Account
             </button>
           </div>
 
-          <div className="border-t border-gray-200 my-2" />
+          <div className="border-t border-gray-200" />
         </div>
       </div>
     </>

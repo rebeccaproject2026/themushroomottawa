@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import logoSrc from "../assets/mainlogo.png";
 import CartDrawer from "./CartDrawer";
 import LoginDrawer from "./LoginDrawer";
+import { useCart } from "../context/CartContext";
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const { totalItems, cartOpen, setCartOpen } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,7 +118,7 @@ export default function Header() {
               >
                 <Icon icon="la:shopping-bag" className="h-6 w-6" />
                 <span className="absolute -right-1.5 top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#92d5ef] text-[10px] font-bold text-[#0f4d7a]">
-                  0
+                  {totalItems}
                 </span>
               </button>
               
