@@ -15,7 +15,8 @@ export default function ProductCard({ product }) {
   const [quantity, setQuantity] = useState("");
   const [isImageHovered, setIsImageHovered] = useState(false);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, toggleWishlist, isWishlisted } = useCart();
+  const wishlisted = isWishlisted(product.id);
   const navigate = useNavigate();
 
   const showHoverIcons = isHovered && !cartOverlay;
@@ -130,11 +131,22 @@ export default function ProductCard({ product }) {
               />
               <button
                 data-tooltip-id={`wishlist-${product.id}`}
-                data-tooltip-content="Add to wishlist"
+                data-tooltip-content={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 data-tooltip-place="left"
-                className="rounded-full transition-colors cursor-pointer"
+                onClick={(e) => { e.stopPropagation(); toggleWishlist(product); }}
+                className="rounded-full transition-colors cursor-pointer relative"
               >
-                <Heart className="h-5.5 w-5.5 text-gray-900 hover:text-gray-500" strokeWidth={2} />
+                <Heart
+                  className="h-5.5 w-5.5 transition-colors text-gray-900 hover:text-gray-500"
+                  strokeWidth={2}
+                />
+                {wishlisted && (
+                  <span className="absolute -top-1 -right-1 bg-[#003465] rounded-full w-4 h-4 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                )}
               </button>
               <Tooltip
                 id={`wishlist-${product.id}`}

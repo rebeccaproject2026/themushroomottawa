@@ -13,7 +13,8 @@ export default function RelatedProductCard({ product }) {
   const [cartOverlay, setCartOverlay] = useState(false);
   const [quantity, setQuantity] = useState("");
   const [quickViewOpen, setQuickViewOpen] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, toggleWishlist, isWishlisted } = useCart();
+  const wishlisted = isWishlisted(product.id);
   const navigate = useNavigate();
 
   const handleAddToCart = (e) => {
@@ -127,11 +128,22 @@ export default function RelatedProductCard({ product }) {
 
         <button
           data-tooltip-id={`rp-wish-${product.id}`}
-          data-tooltip-content="Add to wishlist"
+          data-tooltip-content={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           data-tooltip-place="left"
-          className="text-gray-700 hover:text-[#003465] transition cursor-pointer"
+          onClick={(e) => { e.stopPropagation(); toggleWishlist(product); }}
+          className="text-gray-700 hover:text-[#003465] transition cursor-pointer relative"
         >
-          <Icon icon="prime:heart" className="w-6.5 h-6.5" />
+          <Icon
+            icon="prime:heart"
+            className="w-6.5 h-6.5"
+          />
+          {wishlisted && (
+            <span className="absolute -top-1 -right-1 bg-[#003465] rounded-full w-4 h-4 flex items-center justify-center">
+              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+          )}
         </button>
         <Tooltip id={`rp-wish-${product.id}`} style={{ backgroundColor: "#1a1a1a", color: "#fff", fontSize: "13px", borderRadius: "4px" }} />
       </div>

@@ -1,6 +1,6 @@
-import { Heart, Search } from "lucide-react";
-import { Icon } from "@iconify/react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import logoSrc from "../assets/mainlogo.png";
 import CartDrawer from "./CartDrawer";
 import LoginDrawer from "./LoginDrawer";
@@ -9,7 +9,8 @@ import { useCart } from "../context/CartContext";
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-  const { totalItems, cartOpen, setCartOpen } = useCart();
+  const { totalItems, cartOpen, setCartOpen, wishlist } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,11 +78,18 @@ export default function Header() {
             </nav>
 
             <div className="flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
-              <img
-                src={logoSrc}
-                alt="The Mushroom"
-                className="h-9.5 w-auto object-contain"
-              />
+              <button
+                type="button"
+                onClick={() => navigate('/')}
+                className="cursor-pointer focus:outline-none"
+                aria-label="Go to home page"
+              >
+                <img
+                  src={logoSrc}
+                  alt="The Mushroom"
+                  className="h-9.5 w-auto object-contain"
+                />
+              </button>
             </div>
 
             <div className="flex gap-4.5 flex-wrap items-center justify-end text-[13px] font-semibold uppercase flex-1">
@@ -101,12 +109,13 @@ export default function Header() {
 
               <button
                 type="button"
+                onClick={() => navigate("/wishlist")}
                 className="relative inline-flex cursor-pointer h-10  items-center justify-center rounded-full text-white transition"
                 aria-label="Favorites"
               >
                 <Icon icon="line-md:heart" className="h-6 w-6 " />
                 <span className="absolute -right-2 top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#92d5ef] text-[10px] font-bold text-[#0f4d7a]">
-                  0
+                  {wishlist.length}
                 </span>
               </button>
 
