@@ -87,7 +87,7 @@ export default function ProductDetail() {
   return (
     <>
       <Header />
-      <div className="bg-white ">
+      <div className="bg-white overflow-hidden">
         <div className="mx-auto px-6 py-6">
           {/* Main Content */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

@@ -24,7 +24,7 @@ import mmh1 from "../assets/mmh1.webp";
 
 export const mushroomProducts = [
   // Magic Mushrooms
-  { id: 9,  name: "African Transkei",      category: "Magic Mushrooms", price: 45, maxPrice: 150, image: mm1, hoverImage: mmh1, description: "African Transkei in Ottawa: A potent South African strain known for its energetic, visual, and euphoric effects — great for social settings and creative exploration." },
+  { id: 9,  name: "African Transkei",      category: "Magic Mushrooms", price: 45, maxPrice: 150, image: mm1, hoverImage: mmh1, description: "African Transkei in Ottawa: Discover this legendary South African Psilocybe cubensis — known for rainbow-like visuals, tactile euphoria, and a deep connection to nature in your journeys." },
   { id: 10, name: "Albino Choda",           category: "Magic Mushrooms", price: 50, maxPrice: 170, image: mm2, hoverImage: mmh1, description: "Albino Choda in Ottawa: A rare albino hybrid delivering powerful visuals, deep euphoria, and a strong body high — for experienced users." },
   { id: 11, name: "Albino Hillbilly",       category: "Magic Mushrooms", price: 50, maxPrice: 170, image: mm3, hoverImage: mmh1, description: "Albino Hillbilly in Ottawa: A unique albino variant of the Hillbilly strain — smooth, uplifting effects with gentle visuals and warm euphoria." },
   { id: 12, name: "Albino Penis Envy",      category: "Magic Mushrooms", price: 55, maxPrice: 190, image: mm4, hoverImage: mmh1, description: "Albino Penis Envy in Ottawa: One of the most potent strains available — intense visuals, deep introspection, and powerful euphoria for experienced users." },
