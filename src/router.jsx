@@ -4,6 +4,7 @@ import NotFound from './pages/NotFound'
 import ProductDetail from './pages/ProductDetail'
 import Wishlist from './pages/Wishlist'
 import Contact from './pages/Contact'
+import About from './pages/About'
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
   {
     path: '/contact',
     element: <Contact />
+  },
+  {
+    path: '/about',
+    element: <About />
   },
   {
     path: '*',

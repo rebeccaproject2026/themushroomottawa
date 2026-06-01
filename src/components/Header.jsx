@@ -38,7 +38,7 @@ export default function Header() {
               Ottawa Local Delivery &amp; Canada Wide Shipping
             </p>
             <nav className="nav-lato flex flex-wrap gap-0.5 justify-center items-center text-xs uppercase font-normal">
-              <a href="#" className="transition hover:text-[#7A7A7A]">
+              <a href="/about" className="transition hover:text-[#7A7A7A]">
                 About Us
               </a>
               <span className="border-l border-[#777777] h-4 mx-2 opacity-50"></span>

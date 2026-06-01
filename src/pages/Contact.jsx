@@ -1,61 +1,36 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
+import FaqSection from "../components/FaqSection";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-import { Plus } from "lucide-react";
 
-const faqs = [
+const contactFaqs = [
   {
     q: "How quickly do you respond to emails?",
     a: "Our customer service team is typically tending to the farm during the day, but we aim to respond to all inquiries within 24 to 48 hours during regular business days (Monday-Friday).",
   },
-  { q: "Can I change or cancel my delivery order?", a: "Please contact us as soon as possible. If your order hasn't been dispatched yet, we'll do our best to accommodate changes or cancellations." },
-  { q: "What should I do if my grow kit isn't pinning?", a: "Ensure the kit is kept in a humid environment with indirect light and fresh air exchange. If issues persist, reach out and we'll walk you through troubleshooting steps." },
-  { q: "I received the wrong item. What do I do?", a: "We're sorry about that! Please contact us with your order number and a photo of what you received and we'll make it right as quickly as possible." },
-  { q: "Do you offer wholesale pricing for restaurants?", a: "Yes, we do offer wholesale pricing for qualifying businesses. Please reach out via the contact form with details about your business and requirements." },
-  { q: "Can I come to the farm to buy mushrooms in person?", a: "We operate primarily online, but local pickup may be available. Contact us to arrange a time and we'll do our best to accommodate you." },
+  {
+    q: "Can I change or cancel my delivery order?",
+    a: "Please contact us as soon as possible. If your order hasn't been dispatched yet, we'll do our best to accommodate changes or cancellations.",
+  },
+  {
+    q: "What should I do if my grow kit isn't pinning?",
+    a: "Ensure the kit is kept in a humid environment with indirect light and fresh air exchange. If issues persist, reach out and we'll walk you through troubleshooting steps.",
+  },
+  {
+    q: "I received the wrong item. What do I do?",
+    a: "We're sorry about that! Please contact us with your order number and a photo of what you received and we'll make it right as quickly as possible.",
+  },
+  {
+    q: "Do you offer wholesale pricing for restaurants?",
+    a: "Yes, we do offer wholesale pricing for qualifying businesses. Please reach out via the contact form with details about your business and requirements.",
+  },
+  {
+    q: "Can I come to the farm to buy mushrooms in person?",
+    a: "We operate primarily online, but local pickup may be available. Contact us to arrange a time and we'll do our best to accommodate you.",
+  },
 ];
-
-function FaqSection() {
-  const [open, setOpen] = useState(0);
-  return (
-    <section className="bg-[#f5f5f5] py-12 px-6">
-      <div className="flex flex-col gap-4 mx-auto">
-        <h2 className="text-[35px] font-semibold text-black nav-poppins text-center">Before you reach out...</h2>
-        <p className="text-lg text-[#4B4B4B] nav-poppins text-center">You might find the answer you're looking for right here.</p>
-        <div className="flex flex-col gap-3">
-          {faqs.map((faq, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={i} className="bg-white border border-gray-100 shadow">
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between px-5 py-4 text-left cursor-pointer"
-                >
-                  <span className={`text-xl font-semibold nav-lato ${isOpen ? "text-[#003465]" : "text-[#242424]"}`}>
-                    {faq.q}
-                  </span>
-                  {isOpen
-                    ? <Plus className="w-6 h-6 text-gray-400 shrink-0 rotate-45" />
-                    : <Plus className="w-6 h-6 text-gray-400 shrink-0" />
-                  }
-                </button>
-                <div
-                  className={`overflow-hidden transition-all duration-600 ease-in-out ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
-                >
-                  <div className="px-5 pb-5">
-                    <p className="text-lg text-[#777777] nav-lato leading-relaxed">{faq.a}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", message: "" });
@@ -200,8 +175,11 @@ export default function Contact() {
 
         </section>
 
-        {/* FAQ Section */}
-        <FaqSection />
+          {/* FAQ Section */}
+        <FaqSection
+          faqs={contactFaqs}
+          subtitle="You might find the answer you're looking for right here."
+        />
 
       </main>
 
