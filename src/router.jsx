@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/ProductDetail'
 import Wishlist from './pages/Wishlist'
+import Contact from './pages/Contact'
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
   {
     path: '/wishlist',
     element: <Wishlist />
+  },
+  {
+    path: '/contact',
+    element: <Contact />
   },
   {
     path: '*',

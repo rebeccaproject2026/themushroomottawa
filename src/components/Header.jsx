@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { X } from "lucide-react";
 import { Icon } from "@iconify/react";
 import logoSrc from "../assets/mainlogo.png";
 import CartDrawer from "./CartDrawer";
 import LoginDrawer from "./LoginDrawer";
+import SearchModal from "./SearchModal";
 import { useCart } from "../context/CartContext";
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { totalItems, cartOpen, setCartOpen, wishlist } = useCart();
   const navigate = useNavigate();
 
@@ -47,14 +50,14 @@ export default function Header() {
                 News
               </a>
               <span className="border-l border-[#777777] h-4 mx-2 opacity-50"></span>
-              <a href="#" className="transition hover:text-[#7A7A7A]">
+              <a href="/contact" className="transition hover:text-[#7A7A7A]">
                 Contact Us
               </a>
             </nav>
           </div>
         </div>
 
-        <div className={`bg-[#003465] text-white nav-lato transition-all duration-500 ease-in-out ${isSticky ? "fixed top-0 left-0 right-0 z-50 shadow-lg" : ""}`}>
+        <div data-sticky-nav className={`bg-[#003465] text-white nav-lato transition-all duration-500 ease-in-out ${isSticky ? "fixed top-0 left-0 right-0 z-50 shadow-lg" : ""}`}>
           <div className={`mx-auto max-w-375 px-3.75 flex items-center justify-between ${isSticky ? "shadow-lg py-3" : "py-4"}`}>
             <nav className="flex flex-wrap items-center justify-start gap-5 text-[13px] font-semibold uppercase flex-1">
               <a
@@ -101,10 +104,11 @@ export default function Header() {
               
               <button
                 type="button"
-                className="relative inline-flex cursor-pointer items-center justify-center rounded-full  text-white transition"
+                onClick={() => setSearchOpen((o) => !o)}
+                className="relative inline-flex cursor-pointer items-center justify-center rounded-full text-white transition"
                 aria-label="Search"
               >
-                <Icon icon="tdesign:search" className="h-5.5 w-5.5" />
+                {searchOpen ? <X className="h-5.5 w-5.5" /> : <Icon icon="tdesign:search" className="h-5.5 w-5.5" />}
               </button>
 
               <button
@@ -137,6 +141,7 @@ export default function Header() {
       </header>
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
       <LoginDrawer isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} isSticky={isSticky} />
     </>
   );
 }
