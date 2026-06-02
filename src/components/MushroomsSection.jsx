@@ -53,7 +53,7 @@ export default function MushroomsSection() {
       : "opacity-100 translate-y-0 transition-all duration-300 ease-out";
 
   return (
-    <section className="bg-[#f5f5f5] py-10 md:py-16 px-4 md:px-2">
+    <section className="bg-[#f5f5f5] py-10 md:py-16 px-0 md:px-2">
       <div className="mx-auto max-w-375 px-3.75">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
