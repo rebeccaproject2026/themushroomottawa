@@ -63,7 +63,21 @@ const reviews = [
   },
 ];
 
-const ITEMS_PER_PAGE = 4;
+function useItemsPerPage() {
+  const getCount = () => {
+    if (typeof window === "undefined") return 4;
+    if (window.innerWidth < 640) return 1;
+    if (window.innerWidth < 1024) return 2;
+    return 4;
+  };
+  const [count, setCount] = useState(getCount);
+  useEffect(() => {
+    const handler = () => setCount(getCount());
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  return count;
+}
 
 function ReviewCard({ review }) {
   const [expanded, setExpanded] = useState(false);
@@ -122,7 +136,8 @@ function ReviewCard({ review }) {
 export default function ReviewsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const timerRef = useRef(null);
-  const maxIndex = reviews.length - ITEMS_PER_PAGE;
+  const itemsPerPage = useItemsPerPage();
+  const maxIndex = reviews.length - itemsPerPage;
 
   const startTimer = () => {
     clearInterval(timerRef.current);
@@ -132,9 +147,11 @@ export default function ReviewsSection() {
   };
 
   useEffect(() => {
+    // Reset index if it's now out of bounds after resize
+    setCurrentIndex((prev) => Math.min(prev, Math.max(0, maxIndex)));
     startTimer();
     return () => clearInterval(timerRef.current);
-  }, []);
+  }, [itemsPerPage]);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
@@ -162,19 +179,20 @@ export default function ReviewsSection() {
 
           {/* Sliding Track */}
           <div className="overflow-hidden">
-          <div
-            className="flex items-stretch transition-transform duration-500 ease-in-out pt-10"
-            style={{ transform: `translateX(-${currentIndex * (100 / ITEMS_PER_PAGE)}%)` }}
-          >
-            {reviews.map((review) => (
-              <div
-                key={review.id}
-                className="w-1/4 shrink-0 px-2 flex flex-col"
-              >
-                <ReviewCard review={review} />
-              </div>
-            ))}
-          </div>
+            <div
+              className="flex items-stretch transition-transform duration-500 ease-in-out pt-10"
+              style={{ transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)` }}
+            >
+              {reviews.map((review) => (
+                <div
+                  key={review.id}
+                  className="shrink-0 px-2 flex flex-col"
+                  style={{ width: `${100 / itemsPerPage}%` }}
+                >
+                  <ReviewCard review={review} />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Right Arrow */}
@@ -186,6 +204,16 @@ export default function ReviewsSection() {
           </button>
         </div>
 
+        {/* Dot indicators on mobile */}
+        <div className="flex justify-center gap-1.5 mt-6 lg:hidden">
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setCurrentIndex(i); startTimer(); }}
+              className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${i === currentIndex ? "bg-[#003465] w-4" : "bg-gray-300 w-1.5"}`}
+            />
+          ))}
+        </div>
 
       </div>
     </section>

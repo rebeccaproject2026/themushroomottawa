@@ -1,68 +1,247 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-import CtaBanner from "../components/CtaBanner";
+import { Icon } from "@iconify/react";
+import aboutImage from "../assets/aboutimg.webp";
+import FaqSection from "../components/FaqSection";
 
 export default function About() {
+  const featureCards = [
+    {
+      title: "Hyper-Local & Fresh",
+      description:
+        "Grown locally and harvested daily. By choosing an Ottawa-based store, your mushrooms spend less time in transit and arrive at peak freshness.",
+    },
+    {
+      title: "Seamless Online Shopping",
+      description:
+        "Our online mushroom store is designed for convenience. Browse our wide selection, place your order securely, and enjoy fast delivery across the Ottawa region.",
+    },
+    {
+      title: "Sustainable Practices",
+      description:
+        "We utilize sustainable substrates and eco-friendly packaging. We believe in taking care of the earth that provides us with these incredible fungi.",
+    },
+  ];
+
+  const highlightItems = [
+    {
+      title: "Hyper-Local & Fresh",
+      description:
+        "Grown locally and harvested daily. By choosing an Ottawa-based store, your mushrooms spend less time in transit and arrive at peak freshness.",
+    },
+    {
+      title: "Medicinal Fungi & Tinctures",
+      description:
+        "Harness the functional benefits of Cordyceps, Turkey Tail, and Chaga. Sourced and prepared for daily wellness.",
+    },
+    {
+      title: "Grow-At-Home Kits",
+      description:
+        "Experience the magic of mycology yourself. Our user-friendly mushroom grow kits are perfect for families, schools, and apartment dwellers in Ottawa.",
+    },
+  ];
+
+  const aboutFaqs = [
+    {
+      q: "What makes The Mushroom Ottawa different?",
+      a: "We focus on locally grown, premium mushrooms that are harvested fresh and delivered with minimal transit time for maximum flavor and potency.",
+    },
+    {
+      q: "How do you maintain mushroom quality?",
+      a: "Our crops are grown in a controlled environment, lab-tested for purity, and packed carefully so you receive consistent, high-quality mushrooms every time.",
+    },
+    {
+      q: "Is your packaging eco-friendly?",
+      a: "Yes. We use recyclable and compostable packaging whenever possible to reduce waste and support sustainable mushroom farming.",
+    },
+    {
+      q: "Can I order from outside Ottawa?",
+      a: "We currently prioritize local delivery across Ottawa but we also offer shipping options for select products outside the area. Check the product pages for availability.",
+    },
+    {
+      q: "Do you provide recipe or wellness guidance?",
+      a: "Absolutely. We love helping customers with recipe ideas, mushroom pairings, and wellness usage tips to make the most of every order.",
+    },
+  ];
+
   return (
     <>
       <Header />
 
-      <main>
-        {/* Hero */}
-        <section className="bg-[#f5f5f5] py-16 flex flex-col items-center text-center px-4">
-          <span className="bg-[#92d5ef] text-[#003465] text-xs font-bold uppercase tracking-widest nav-lato px-4 py-1.5 rounded-full mb-4">
-            Our Story
+      <main className="">
+        {/* Hero section */}
+        <section className="bg-[#f5f5f5] py-12 flex flex-col items-center text-center px-4">
+          <span className="bg-[#92d5ef] text-[#003465] text-[13px] font-semibold uppercase nav-poppins px-4 py-1 rounded-full">
+            Rooted in the Capital
           </span>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 nav-poppins mb-4 max-w-2xl">
-            Ottawa's Trusted Source for Premium Mushrooms
+          <h1 className="text-[35px] font-semibold text-black nav-poppins my-2">
+            About The Mushroom Ottawa
           </h1>
-          <p className="text-sm text-gray-500 nav-lato max-w-xl leading-relaxed">
-            The Mushroom Ottawa was founded with a simple mission — to bring the highest quality mushrooms to the people of Ottawa and beyond. From gourmet culinary varieties to wellness-focused functional mushrooms, we grow and source with care.
+          <p className="text-lg text-[#4B4B4B] nav-poppins max-w-172.5 ">
+            Your premier{" "}
+            <span className="font-semibold">
+              online mushroom store in Ottawa, Canada.
+            </span>{" "}
+            We are dedicated to bringing the finest gourmet and functional fungi
+            directly to your doorstep.
           </p>
         </section>
 
-        {/* Mission + Values */}
-        <section className="max-w-375 mx-auto px-3.75 py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: "🌱",
-              title: "Locally Grown",
-              desc: "We cultivate our mushrooms right here in Ottawa, ensuring freshness and supporting the local economy.",
-            },
-            {
-              icon: "🔬",
-              title: "Lab Tested",
-              desc: "Every batch is tested for purity and potency so you always know exactly what you're getting.",
-            },
-            {
-              icon: "🚚",
-              title: "Fast Delivery",
-              desc: "Same-day local delivery in Ottawa and fast Canada-wide shipping so your order arrives fresh.",
-            },
-          ].map((item) => (
-            <div key={item.title} className="flex flex-col items-center text-center gap-3 bg-white p-8 shadow-sm rounded-xl">
-              <span className="text-4xl">{item.icon}</span>
-              <h3 className="text-base font-bold text-gray-800 nav-poppins">{item.title}</h3>
-              <p className="text-sm text-gray-500 nav-lato leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </section>
+        <section className="py-12 px-6.5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="relative">
+              <div>
+                <img
+                  src={aboutImage}
+                  alt="aboutimage"
+                  className="rounded-2xl"
+                />
+              </div>
 
-        {/* Story block */}
-        <section className="bg-[#f5f5f5] py-16 px-4">
-          <div className="max-w-3xl mx-auto flex flex-col gap-5 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 nav-poppins">Why The Mushroom Ottawa?</h2>
-            <p className="text-sm text-gray-500 nav-lato leading-relaxed">
-              We started as a small team of mushroom enthusiasts who believed that access to quality fungi shouldn't be complicated. Today we serve hundreds of customers across Canada — from home cooks and wellness seekers to restaurants and researchers.
-            </p>
-            <p className="text-sm text-gray-500 nav-lato leading-relaxed">
-              Our commitment to transparency, quality, and community is at the heart of everything we do. We're proud to be Ottawa's go-to mushroom destination.
-            </p>
+              <div className="flex items-center gap-2 bg-[#FFFFFFAD] rounded-md absolute right-4 bottom-6 px-4 py-2">
+                <Icon
+                  icon="clarity:flask-solid"
+                  className="w-15 h-15 text-white bg-[#003465] p-3 z-10  rounded-full"
+                />
+                <div className="flex flex-col">
+                  <h3 className="text-[22px] nav-poppins font-semibold">
+                    100%
+                  </h3>
+                  <p className="text-sm text-[#353535] font-semibold uppercase nav-lato">
+                    Lab Tested Purity
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="pt-14.5 flex flex-col gap-1">
+                <span className="bg-[#92d5ef] text-[#003465] w-fit text-[13px] font-semibold uppercase nav-poppins px-4 py-1.25 rounded-full">
+                  Our Story
+                </span>
+                <h2 className="text-[35px] nav-poppins font-semibold mb-1">
+                  Sprouting in the Heart of Canada
+                </h2>
+                <p className="text-[17px] nav-poppins leading-[1.8em] text-[#4B4B4B] mb-3">
+                  What started as a passionate hobby in a small Ottawa basement
+                  has blossomed into{" "}
+                  <span className="font-semibold">The Mushroom Ottawa</span>,
+                  the region’s most trusted online destination for all things
+                  fungi. We realized that finding fresh, high-quality, and
+                  exotic mushrooms in local grocery stores was often a challenge
+                  for Ottawans.
+                </p>
+
+                <p className="text-[17px] nav-poppins leading-[1.8em] text-[#4B4B4B] mb-2.5">
+                  We decided to change that. By combining sustainable urban
+                  agriculture practices with a seamless e-commerce experience,
+                  we built an{" "}
+                  <span className="italic">
+                    {" "}
+                    online mushroom store in Ottawa, Canada{" "}
+                  </span>{" "}
+                  that bridges the gap between the farm and your kitchen table.
+                </p>
+
+                <p className="text-[17px] nav-poppins leading-[1.8em] text-[#4B4B4B]">
+                  Whether you are a local chef looking for flawless Lion’s Mane,
+                  a wellness enthusiast seeking Reishi extracts, or a curious
+                  foodie, we are here to provide nature’s finest.
+                </p>
+              </div>
+
+              <button className="flex items-center gap-2 text-white bg-[#003465] font-bold text-lg nav-lato px-11 py-2.5 hover:bg-[#012140] transition rounded-sm">
+                Explore Products
+                <Icon icon="mdi:arrow-right" className="w-6 h-6 stroke-2!" />
+              </button>
+            </div>
           </div>
         </section>
 
-        <CtaBanner />
+        <section className="px-6.5">
+          <div className="flex flex-col justify-center items-center gap-1.5 pb-5">
+            <h2 className="text-[35px] nav-poppins font-semibold ">
+              Why Choose The Mushroom Ottawa?
+            </h2>
+            <p className="text-lg nav-poppins text-[#4B4B4B] max-w-xl text-center">
+              As a locally rooted Canadian business, we prioritize quality,
+              sustainability, and our community above all else.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-3 gap-5 ">
+            {featureCards.map((card) => (
+              <div
+                key={card.title}
+                className="p-8.75 bg-[#777777]/9 flex flex-col items-center gap-6 rounded-xl"
+              >
+                <div>
+                  <Icon
+                    icon="fa:thumbs-down"
+                    className="w-18 h-18 text-[#003465] bg-[#92D5EF] p-4 z-10 rounded-full rotate-x-180"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5 justify-center items-center">
+                  <h3 className="text-[25px] nav-poppins font-semibold text-[#242424]">
+                    {card.title}
+                  </h3>
+                  <p className="text-lg text-[#696969] font-medium nav-lato text-center">
+                    {card.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center items-center mt-4 pb-14">
+          <button className="flex justify-center items-center gap-2 text-white bg-[#003465] font-bold text-lg nav-lato px-11 py-2.5 hover:bg-[#012140] transition rounded-sm">
+            Shop Now
+            <Icon icon="mdi:arrow-right" className="w-6 h-6 stroke-2!" />
+          </button>
+          </div>
+        </section>
+
+        <section className="bg-[#f3f3f3] py-12.5 px-6.5">
+          <div className="flex flex-col justify-center items-center gap-1.5">
+            <h2 className="text-[35px] nav-poppins font-semibold">
+              Explore the Mycelial Network
+            </h2>
+            <p className="text-lg text-[#4B4B4B] nav-poppins max-w-2xl text-center"> 
+              As a leading supplier of fungi in Canada, <span className="font-semibold"> The Mushroom Ottawa </span> curates a diverse catalog. We specialize in:
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            {highlightItems.map((item) => (
+              <div
+                key={item.title}
+                className="flex items-start gap-4 bg-white border border-[#777777]/30 py-5.5 px-6 rounded-lg shadow hover:shadow-lg transition duration-300"
+              >
+                <div className="flex items-center justify-center mt-1">
+                  <Icon icon="el:ok" className="w-6 h-6 text-white bg-[#5c8a5c] p-1 rounded-full" />
+                </div>
+                <div>
+                  <h3 className="text-[25px] text-[#242424] nav-poppins font-semibold">
+                    {item.title}
+                  </h3>
+                  <p className="text-lg nav-lato text-[#696969]">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center items-center">
+            <button className="flex justify-center items-center gap-2 text-white bg-[#003465] font-bold text-lg nav-lato px-11 py-2.5 hover:bg-[#012140] transition rounded-sm mt-6">
+              Explore Our Mushrooms
+              <Icon icon="mdi:arrow-right" className="w-6 h-6 stroke-2!" />
+            </button>
+          </div>
+        </section>  
+
+        <FaqSection faqs={aboutFaqs} title="Frequently Asked About Us"  />
       </main>
 
       <Footer />

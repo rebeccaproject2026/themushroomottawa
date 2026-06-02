@@ -4,6 +4,10 @@
 }
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xs: 480px;
+}
+
 .header-font {
   font-family: Arial, Helvetica, sans-serif;
 }

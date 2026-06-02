@@ -6,12 +6,11 @@ export default function FaqSection({
   title = "Before you reach out...",
   subtitle,
   defaultOpenIndex = 0,
-  sectionClass = "bg-[#f5f5f5]",
 }) {
   const [open, setOpen] = useState(defaultOpenIndex);
 
   return (
-    <section className={`${sectionClass} py-12 px-6`}>
+    <section className="bg-[#f5f5f5] py-12 px-6">
       <div className="flex flex-col gap-4 mx-auto">
         <h2 className="text-[35px] font-semibold text-black nav-poppins text-center">{title}</h2>
         {subtitle ? (
