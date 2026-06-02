@@ -36,11 +36,11 @@ export default function CategorySection() {
         </h2>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
           {categories.map((cat) => (
             <div
               key={cat.id}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer h-87.5 sm:h-112.5 lg:h-150"
+              className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-4/5 lg:aspect-auto lg:h-150"
             >
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110"
@@ -50,10 +50,10 @@ export default function CategorySection() {
 
               {/* Title + Count */}
               <div className="relative flex items-center z-10 px-5 py-5 lg:px-7 lg:py-6">
-                <h3 className="text-[#333333] font-semibold nav-poppins text-2xl sm:text-3xl lg:text-[35px] uppercase ">
+                <h3 className="text-[#333333] font-semibold nav-poppins text-2xl md:text-xl lg:text-[35px] uppercase leading-tight">
                   {cat.title}
                 </h3>
-                <span className="ml-2 flex items-center justify-center bg-white text-[#333] text-[10px] lg:text-xs font-semibold rounded-full px-2 py-0.5 lg:py-0 shadow-[#0000001f] shadow-lg">
+                <span className="ml-2 flex items-center justify-center bg-white text-[#333] text-[10px] lg:text-xs font-semibold rounded-full px-2 py-0.5 lg:py-0 shadow-[#0000001f] shadow-lg shrink-0">
                   {cat.count}
                 </span>
               </div>

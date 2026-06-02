@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { mushroomProducts } from "../data/mushrooms";
 import RelatedProductCard from "./RelatedProductCard";
@@ -9,7 +9,18 @@ export default function RelatedProducts({ currentProduct }) {
   const [sliding, setSliding] = useState(false);
   const [slideDir, setSlideDir] = useState("left");
   const [displayPage, setDisplayPage] = useState(0);
-  const perPage = 4;
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isTouch = windowWidth < 1024;
+  let perPage = 4;
+  if (windowWidth < 480) perPage = 1;
+  else if (windowWidth < 768) perPage = 2;
 
   const related = mushroomProducts.filter(
     (p) => p.category === currentProduct.category && p.id !== currentProduct.id
@@ -52,16 +63,16 @@ export default function RelatedProducts({ currentProduct }) {
             disabled={page === 0}
             className="absolute left-0 top-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300 cursor-pointer"
             style={{
-              transform: isHovered && page > 0 ? "translateY(-50%) translateX(0)" : "translateY(-50%) translateX(-2rem)",
-              opacity: isHovered && page > 0 ? 1 : 0,
-              pointerEvents: isHovered && page > 0 ? "auto" : "none"
+              transform: (isTouch || isHovered) && page > 0 ? "translateY(-50%) translateX(0)" : "translateY(-50%) translateX(-2rem)",
+              opacity: (isTouch || isHovered) && page > 0 ? 1 : 0,
+              pointerEvents: (isTouch || isHovered) && page > 0 ? "auto" : "none"
             }}
           >
             <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
 
           {/* Grid */}
-          <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 ${gridClass}`}>
+          <div className={`grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 ${gridClass}`}>
             {visible.map((product) => (
               <RelatedProductCard key={product.id} product={product} />
             ))}
@@ -73,9 +84,9 @@ export default function RelatedProducts({ currentProduct }) {
             disabled={page >= totalPages - 1}
             className="absolute right-0 top-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300 cursor-pointer"
             style={{
-              transform: isHovered && page < totalPages - 1 ? "translateY(-50%) translateX(0)" : "translateY(-50%) translateX(2rem)",
-              opacity: isHovered && page < totalPages - 1 ? 1 : 0,
-              pointerEvents: isHovered && page < totalPages - 1 ? "auto" : "none"
+              transform: (isTouch || isHovered) && page < totalPages - 1 ? "translateY(-50%) translateX(0)" : "translateY(-50%) translateX(2rem)",
+              opacity: (isTouch || isHovered) && page < totalPages - 1 ? 1 : 0,
+              pointerEvents: (isTouch || isHovered) && page < totalPages - 1 ? "auto" : "none"
             }}
           >
             <ChevronRight className="w-5 h-5 text-gray-600" />
@@ -89,9 +100,8 @@ export default function RelatedProducts({ currentProduct }) {
               <button
                 key={i}
                 onClick={() => changePage(i)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  page === i ? "bg-[#333333]" : "bg-gray-300 hover:bg-gray-400"
-                }`}
+                className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${page === i ? "bg-[#333333]" : "bg-gray-300 hover:bg-gray-400"
+                  }`}
               />
             ))}
           </div>

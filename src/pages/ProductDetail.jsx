@@ -88,27 +88,27 @@ export default function ProductDetail() {
     <>
       <Header />
       <div className="bg-white overflow-hidden">
-        <div className="mx-auto px-6 py-6">
+        <div className="mx-auto px-4 lg:px-6 py-6">
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {/* Left - Images */}
-            <div className="flex gap-6">
+            <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-6">
               {/* Thumbnails */}
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-row lg:flex-col gap-2 lg:gap-1 overflow-x-auto justify-start">
                 {images.map((img, i) => (
                   <button
                     key={i}
                     onClick={() => changeImage(i)}
-                    className={`aspect-square overflow-hidden flex items-center justify-center transition cursor-pointer ${activeImg === i ? "opacity-50" : "opacity-100 hover:opacity-75 "}`}
+                    className={`aspect-square overflow-hidden shrink-0 flex items-center justify-center transition cursor-pointer ${activeImg === i ? "opacity-50" : "opacity-100 hover:opacity-75 "}`}
                   >
-                    <img src={img} alt="" className="w-28 h-28 object-cover" />
+                    <img src={img} alt="" className="w-24 h-24 lg:w-28 lg:h-28 object-cover" />
                   </button>
                 ))}
               </div>
 
               {/* Main Image */}
               <div
-                className="relative flex justify-center overflow-hidden group cursor-zoom-in"
+                className="relative flex justify-center overflow-hidden group cursor-zoom-in w-full"
                 style={{ maxHeight: "420px" }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -142,7 +142,7 @@ export default function ProductDetail() {
                 />
 
                 {/* Click to enlarge button */}
-                <div className="absolute bottom-4 left-4">
+                <div className="absolute bottom-2 left-2 lg:bottom-4 lg:left-4">
                   <button
                     onClick={() => {
                       setLightboxImg(displayImg);
@@ -160,17 +160,17 @@ export default function ProductDetail() {
                 {images.length > 1 && (
                   <button
                     onClick={handlePrevImg}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 transition-all duration-300 cursor-pointer opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 transition-all duration-300 cursor-pointer opacity-100 lg:opacity-0 translate-x-0 lg:-translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
                   >
-                    <ChevronLeft className="w-10 h-10 text-gray-600" />
+                    <ChevronLeft className="w-8 h-8 lg:w-10 lg:h-10 text-gray-600" />
                   </button>
                 )}
                 {images.length > 1 && (
                   <button
                     onClick={handleNextImg}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 transition-all duration-300 cursor-pointer opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 transition-all duration-300 cursor-pointer opacity-100 lg:opacity-0 translate-x-0 lg:translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
                   >
-                    <ChevronRight className="w-10 h-10 text-gray-400" />
+                    <ChevronRight className="w-8 h-8 lg:w-10 lg:h-10 text-gray-400" />
                   </button>
                 )}
               </div>
@@ -180,20 +180,20 @@ export default function ProductDetail() {
             <div className="flex flex-col gap-4">
               {/* Breadcrumb + Nav */}
               <div className="flex items-center justify-between">
-                <nav className="flex items-center gap-2 text-sm text-[#767676] nav-lato">
+                <nav className="flex items-center gap-1 sm:gap-2 text-[13px] sm:text-sm text-[#767676] nav-lato">
                   <Link to="/" className="hover:text-gray-800 transition">
                     Home
                   </Link>
                   <span>/</span>
-                  <span className="hover:text-gray-800 transition cursor-pointer">
+                  <span className="hover:text-gray-800 transition cursor-pointer font-semibold lg:font-normal text-[#262626] lg:text-[#767676]">
                     {product.category}
                   </span>
-                  <span>/</span>
-                  <span className="font-semibold text-[#262626]">
+                  <span className="hidden lg:inline">/</span>
+                  <span className="hidden lg:inline font-semibold text-[#262626]">
                     {product.name}
                   </span>
                 </nav>
-                <div className="flex items-baseline justify-center gap-2">
+                <div className="flex items-baseline justify-end gap-2">
                   <div className="relative group/prev">
                     <button
                       onClick={() => navigate(`/product/${prevProduct.id}`)}
@@ -255,11 +255,11 @@ export default function ProductDetail() {
                   </div>
                 </div>
               </div>
-              <h1 className="text-[34px] font-semibold text-[#333333] nav-poppins">
+              <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#333333] nav-poppins leading-tight">
                 {product.name}
               </h1>
 
-              <p className="text-[22px] nav-lato font-semibold text-[#003465]">
+              <p className="text-xl lg:text-[22px] nav-lato font-semibold text-[#003465]">
                 ${product.price.toFixed(2)}
                 {product.maxPrice ? ` – $${product.maxPrice.toFixed(2)}` : ""}
               </p>
@@ -278,11 +278,11 @@ export default function ProductDetail() {
               </div>
 
               {/* Quantity select */}
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
                 <span className="text-sm font-semibold nav-lato text-[#242424]">
                   Quantity:
                 </span>
-                <div className="relative flex-1 max-w-64">
+                <div className="relative w-full lg:flex-1 max-w-80 lg:max-w-64">
                   <select
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}

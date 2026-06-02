@@ -25,7 +25,7 @@ export default function Banner() {
             </div>
 
 
-            <img src={cardBg} alt="20% OFF" className="w-46 sm:w-[45%] lg:w-[70%] h-auto sm:h-full object-contain absolute bottom-0 sm:bottom-auto right-0 sm:-right-8 lg:-right-16 sm:top-1" />
+            <img src={cardBg} alt="20% OFF" className="w-50 sm:w-[45%] lg:w-[70%] h-auto sm:h-full object-contain absolute bottom-0 sm:bottom-auto right-0 sm:-right-8 lg:-right-16 sm:top-1" />
 
           </div>
 

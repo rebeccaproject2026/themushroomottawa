@@ -30,14 +30,14 @@ function AreaGrid({ areas }) {
   );
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 lg:space-y-4">
       {grid.map((row, ri) => (
-        <div key={ri} className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-x-4 gap-y-1">
+        <div key={ri} className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-x-2 lg:gap-x-4 gap-y-2 lg:gap-y-1">
           {row.map((area) => (
             <a
               key={area}
               href="#"
-              className={`text-base nav-lato transition-colors duration-200 text-white hover:text-yellow-300 leading-4`}
+              className={`text-sm lg:text-base nav-lato transition-colors duration-200 text-white hover:text-yellow-300 leading-tight lg:leading-4`}
             >
               {area}
             </a>
@@ -53,8 +53,8 @@ export default function Footer() {
     <footer className="bg-[#003465] text-white">
       {/* Ottawa Section */}
       <div className="bg-[#00417e]">
-      <div className="mx-auto max-w-375 px-3.75 pt-7.5 pb-8">
-        <h3 className="text-[#92E5FF] font-semibold text-[22px] mb-2 nav-poppins">
+      <div className="mx-auto max-w-375 px-4 lg:px-3.75 pt-6 lg:pt-7.5 pb-8">
+        <h3 className="text-[#92E5FF] font-semibold text-xl lg:text-[22px] mb-3 lg:mb-2 nav-poppins">
           Delivery in Your Area (Ottawa)
         </h3>
         <AreaGrid areas={ottawaAreas} />
@@ -62,8 +62,8 @@ export default function Footer() {
       </div>
 
       {/* Quebec Section */}
-      <div className="mx-auto max-w-375 px-3.75 pt-9.5 bg-[#003465]">
-        <h3 className="text-[#92E5FF] font-semibold text-[22px] mb-2 nav-poppins">
+      <div className="mx-auto max-w-375 px-4 lg:px-3.75 pt-8 lg:pt-9.5 bg-[#003465]">
+        <h3 className="text-[#92E5FF] font-semibold text-xl lg:text-[22px] mb-3 lg:mb-2 nav-poppins">
           Delivery in Your Area (Quebec)
         </h3>
         <AreaGrid areas={quebecAreas} />
@@ -71,39 +71,44 @@ export default function Footer() {
       </div>
 
       {/* Contact Information */}
-      <div className="mx-auto max-w-375 p-3.75 pb-12 flex flex-col gap-2.5">
-        <h3 className="text-[#92E5FF] font-semibold text-[22px]  nav-poppins">Contact Information</h3>
-        <div className="flex flex-wrap items-center gap-6">
-          <a href="tel:3439998830" className="flex items-center gap-2 text-white hover:text-yellow-300 transition font-semibold text-xl nav-lato">
-            <Icon icon="mdi:phone" className="w-6 h-6" />
-            (343) 999-4830
+      <div className="mx-auto max-w-375 px-4 lg:px-3.75 py-8 lg:pt-3.75 lg:pb-12 flex flex-col gap-4 lg:gap-2.5">
+        <h3 className="text-[#92E5FF] font-semibold text-xl lg:text-[22px] nav-poppins">Contact Information</h3>
+        <div className="flex flex-col lg:flex-row lg:flex-wrap items-start lg:items-center gap-4 lg:gap-6 w-full">
+          <a href="tel:3439998830" className="flex items-center gap-3 lg:gap-2 text-white hover:text-yellow-300 transition font-semibold text-base sm:text-lg lg:text-xl nav-lato">
+            <Icon icon="mdi:phone" className="w-5 h-5 lg:w-6 lg:h-6 shrink-0" />
+            <span>(343) 999-4830</span>
           </a>
-          <a href="mailto:info@themushroomottawa.ca" className="flex items-center gap-2 text-white hover:text-yellow-300 transition font-semibold text-xl nav-lato">
-            <Icon icon="mdi:email-outline" className="w-5 h-5" />
-            info@themushroomottawa.ca
+          <a href="mailto:info@themushroomottawa.ca" className="flex items-center gap-3 lg:gap-2 text-white hover:text-yellow-300 transition font-semibold text-base sm:text-lg lg:text-xl nav-lato">
+            <Icon icon="mdi:email-outline" className="w-5 h-5 lg:w-5 lg:h-5 shrink-0" />
+            <span className="break-all">info@themushroomottawa.ca</span>
           </a>
-          <a href="#" className="flex items-center gap-2 text-white hover:text-yellow-300 transition font-semibold text-xl nav-lato">
-            <Icon icon="mdi:map-marker-outline" className="w-5 h-5" />
-            779 Somerset St W, Ottawa, ON K1R 6R3
+          <a href="#" className="flex items-center gap-3 lg:gap-2 text-white hover:text-yellow-300 transition font-semibold text-base sm:text-lg lg:text-xl nav-lato">
+            <Icon icon="mdi:map-marker-outline" className="w-5 h-5 lg:w-5 lg:h-5 shrink-0" />
+            <span>779 Somerset St W, Ottawa, ON K1R 6R3</span>
           </a>
-          <div className="ml-auto flex items-center gap-2">
-            <a href="#" className="p-2 rounded-md transition border hover:text-yellow-300 group hover:scale-110 duration-300">
-              <Icon icon="mdi:instagram" className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110 group-hover:text-yellow-300" />
+          <div className="mt-4 lg:mt-0 lg:ml-auto flex items-center gap-3 lg:gap-2 w-full lg:w-auto justify-center lg:justify-end">
+            <a href="#" className="p-2 lg:p-2 rounded-md transition border hover:text-yellow-300 group hover:scale-110 duration-300">
+              <Icon icon="mdi:instagram" className="w-5 h-5 lg:w-5 lg:h-5 text-white transition-transform duration-300 group-hover:scale-110 group-hover:text-yellow-300" />
             </a>
-            <a href="#" className=" p-2 rounded-md transition border hover:text-yellow-300 group hover:scale-110 duration-300">
-              <Icon icon="mdi:reddit" className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110 group-hover:text-yellow-300" />
+            <a href="#" className="p-2 lg:p-2 rounded-md transition border hover:text-yellow-300 group hover:scale-110 duration-300">
+              <Icon icon="mdi:reddit" className="w-5 h-5 lg:w-5 lg:h-5 text-white transition-transform duration-300 group-hover:scale-110 group-hover:text-yellow-300" />
             </a>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="mx-auto py-3 text-center text-[15px] nav-poppins text-[#E2E2E2x] bg-[#00274b]">
-        © The Mushroom Ottawa. All rights reserved. Powered By{" "}
-        <span className="font-semibold ">Shroom Express.</span>{" "}
-        <a href="#" className="underline hover:text-white text-white font-semibold transition">Privacy Policy</a>{" "}
-        |{" "}
-        <a href="#" className="underline hover:text-white text-white font-semibold transition">Return Policy</a>
+      <div className="mx-auto px-4 py-4 lg:py-3 text-center text-xs sm:text-sm lg:text-[15px] leading-relaxed lg:leading-normal nav-poppins text-[#E2E2E2] bg-[#00274b]">
+        <div className="mb-1 lg:mb-0 lg:inline">
+          © The Mushroom Ottawa. All rights reserved. Powered By{" "}
+          <span className="font-semibold ">Shroom Express.</span>
+        </div>
+        <div className="inline-block mt-1 lg:mt-0 lg:inline">
+          <span className="hidden lg:inline">{" "}</span>
+          <a href="#" className="underline hover:text-white text-white font-semibold transition">Privacy Policy</a>
+          <span className="mx-2 lg:mx-1">|</span>
+          <a href="#" className="underline hover:text-white text-white font-semibold transition">Return Policy</a>
+        </div>
       </div>
     </footer>
   );

@@ -39,32 +39,29 @@ export default function RelatedProductCard({ product }) {
     >
       {/* Image */}
       <div
-        className="relative aspect-square bg-white flex items-center justify-center h-87.5 overflow-hidden p-4"
+        className="relative w-full h-70 xs:h-auto xs:aspect-square lg:aspect-auto bg-white flex items-center justify-center lg:h-87.5 overflow-hidden p-4"
         onMouseEnter={() => setIsImageHovered(true)}
         onMouseLeave={() => setIsImageHovered(false)}
       >
         <img
           src={product.image}
           alt={product.name}
-          className={`h-full w-auto object-cover transition-all duration-700 absolute ${
-            isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
-          }`}
+          className={`h-full w-auto object-cover transition-all duration-700 absolute ${isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
+            }`}
         />
         {product.hoverImage && (
           <img
             src={product.hoverImage}
             alt={product.name}
-            className={`h-full w-auto object-cover transition-all duration-700 absolute ${
-              isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
-            }`}
+            className={`h-full w-auto object-cover transition-all duration-700 absolute ${isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
+              }`}
           />
         )}
 
         {/* Cart overlay */}
         <div
-          className={`absolute inset-0 bg-white/85 backdrop-blur-[2px] flex flex-col justify-center items-center gap-3 transition-all duration-300 ease-in-out z-30 ${
-            cartOverlay ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-          }`}
+          className={`absolute inset-0 bg-white/85 backdrop-blur-[2px] flex flex-col justify-center items-center gap-3 transition-all duration-300 ease-in-out z-30 ${cartOverlay ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+            }`}
           onClick={(e) => e.stopPropagation()}
         >
           <button
@@ -98,9 +95,12 @@ export default function RelatedProductCard({ product }) {
 
       {/* Action panel */}
       <div
-        className={`absolute top-4 right-3 flex flex-col items-center gap-5 shadow-[4px_4px_12px_rgba(0,0,0,0.035)] border-r border-b border-gray-100 px-2.5 py-3 transition-all duration-300 ease-out z-20 ${
-          isCardHovered && !cartOverlay ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
-        }`}
+        className={`absolute top-4 right-2 lg:right-3 rounded-2xl lg:rounded-none flex flex-col items-center gap-3 lg:gap-5 shadow-[4px_4px_12px_rgba(0,0,0,0.035)] border-r border-b border-gray-100 px-1.5 lg:px-2.5 py-2 lg:py-3 transition-all duration-300 ease-out z-20 ${cartOverlay
+          ? "opacity-0 translate-x-full"
+          : isCardHovered
+            ? "opacity-100 translate-x-0"
+            : "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-full"
+          }`}
         style={{ top: "16px" }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -120,7 +120,7 @@ export default function RelatedProductCard({ product }) {
           data-tooltip-content="Quick view"
           data-tooltip-place="left"
           onClick={(e) => { e.stopPropagation(); setQuickViewOpen(true); }}
-          className="text-gray-700 hover:text-[#003465] transition cursor-pointer"
+          className="text-gray-700 hover:text-[#003465] transition cursor-pointer lg:block hidden"
         >
           <Search className="w-5 h-5" />
         </button>

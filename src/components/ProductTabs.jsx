@@ -16,10 +16,24 @@ export default function ProductTabs({ product }) {
   const [hoverRating, setHoverRating] = useState(0);
   const [saveInfo, setSaveInfo] = useState(false);
 
+  const toggleTab = (id) => {
+    setActiveTab(activeTab === id ? "" : id);
+  };
+
+  const getMobileLabel = (id) => {
+    switch (id) {
+      case "description": return "Description";
+      case "additional": return "Additional information";
+      case "reviews": return "Reviews (0)";
+      case "shipping": return "Shipping & Delivery";
+      default: return "";
+    }
+  };
+
   return (
-    <div className="max-w-375 mx-auto px-4">
-      {/* Tab Headers */}
-      <div className="flex items-center justify-center gap-7">
+    <div className="max-w-375 mx-auto px-4 lg:px-6">
+      {/* Tab Headers (Desktop) */}
+      <div className="hidden lg:flex items-center justify-center gap-7 pt-4">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -39,33 +53,67 @@ export default function ProductTabs({ product }) {
         ))}
       </div>
 
-      {/* Tab Content */}
-      <div className="py-8">
+      {/* Tab Content / Accordion */}
+      <div className="py-2 lg:py-8">
 
         {/* Description */}
-        {activeTab === "description" && (
-          <div className="text-sm text-[#777777] leading-relaxed nav-lato space-y-4 ">
-            <p>
-              <span className="font-semibold">{product.name}:</span> – {product.description} This strain features eye-catching caps and white stems. It's known for a balanced psychedelic journey, delivering vivid rainbow-colored visuals, geometric shapes, and spiritual clarity. Whether you're microdosing or seeking a deeper experience, {product.name} provides a smooth yet profound trip. Great for beginners and experienced explorers alike.            
-              Enhance your next journey with {product.name} from The Mushroom Ottawa today. {product.name} mushrooms are widely recognized in the psychedelic community for their unique traits and consistent effects. Growers and psychonauts alike appreciate their distinct appearance, lineage, and the carefully balanced experience they deliver.
-              Users often describe the onset as gradual, with waves of euphoria and heightened sensory perception setting in during the first hour. Depending on dosage, the journey may include vivid visual patterns, increased appreciation of sound and touch, and an expansion of thought that encourages deep introspection.
-              Many choose {product.name} for creative inspiration, problem-solving, or as a tool for meditation, while others simply enjoy the sense of connection and laughter shared with friends in safe settings. In terms of potency, {product.name} is known to provide a strong experience, so new explorers are encouraged to start with lower doses, typically around one gram, before working their way up.
-              Storage should be in a cool, dry, and air tight container to preserve potency and freshness over time. Microdosing enthusiasts also appreciate {product.name}, as very small amounts can provide subtle mood enhancement, improved focus, and reduced anxiety without hallucinogenic effects. Whether enjoyed recreationally, spiritually, or for personal growth, {product.name} continues to stand out as a premium choice for those seeking a safe, lab-tested, and high quality psychedelic experience.
-           </p>
+        <div className="border-b border-gray-200 lg:border-none">
+          <button 
+            className="lg:hidden w-full flex items-center justify-between py-4 text-left font-semibold nav-poppins transition-colors cursor-pointer"
+            onClick={() => toggleTab('description')}
+          >
+            <span className={`text-[15px] ${activeTab === 'description' ? 'text-[#003465]' : 'text-[#242424]'}`}>{getMobileLabel('description')}</span>
+            <Icon icon={activeTab === 'description' ? "mdi:chevron-up" : "mdi:chevron-down"} className={`w-5 h-5 ${activeTab === 'description' ? 'text-gray-300' : 'text-gray-300'}`} />
+          </button>
+          
+          <div className={`transition-all duration-300 overflow-hidden ${activeTab === 'description' ? 'max-h-none opacity-100 pb-6 pt-2 lg:p-0' : 'max-h-0 opacity-0 lg:hidden'}`}>
+            {activeTab === "description" && (
+              <div className="text-sm text-[#777777] leading-relaxed nav-lato space-y-4">
+                <p>
+                  <span className="font-semibold">{product.name}:</span> – {product.description} This strain features eye-catching caps and white stems. It's known for a balanced psychedelic journey, delivering vivid rainbow-colored visuals, geometric shapes, and spiritual clarity. Whether you're microdosing or seeking a deeper experience, {product.name} provides a smooth yet profound trip. Great for beginners and experienced explorers alike.            
+                  Enhance your next journey with {product.name} from The Mushroom Ottawa today. {product.name} mushrooms are widely recognized in the psychedelic community for their unique traits and consistent effects. Growers and psychonauts alike appreciate their distinct appearance, lineage, and the carefully balanced experience they deliver.
+                  Users often describe the onset as gradual, with waves of euphoria and heightened sensory perception setting in during the first hour. Depending on dosage, the journey may include vivid visual patterns, increased appreciation of sound and touch, and an expansion of thought that encourages deep introspection.
+                  Many choose {product.name} for creative inspiration, problem-solving, or as a tool for meditation, while others simply enjoy the sense of connection and laughter shared with friends in safe settings. In terms of potency, {product.name} is known to provide a strong experience, so new explorers are encouraged to start with lower doses, typically around one gram, before working their way up.
+                  Storage should be in a cool, dry, and air tight container to preserve potency and freshness over time. Microdosing enthusiasts also appreciate {product.name}, as very small amounts can provide subtle mood enhancement, improved focus, and reduced anxiety without hallucinogenic effects. Whether enjoyed recreationally, spiritually, or for personal growth, {product.name} continues to stand out as a premium choice for those seeking a safe, lab-tested, and high quality psychedelic experience.
+                </p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
         {/* Additional Information */}
-        {activeTab === "additional" && (
-            <div className="w-full text-sm flex justify-between max-w-2xl mx-auto nav-lato py-2 px-4">
-                  <h4 className="font-semibold text-[#242424] bg-gray-50 w-40">Quantity</h4>
-                  <p   className="text-[#777777]">14g, 28g, 3.5g, 7g</p>
-            </div>
-        )}
+        <div className="border-b border-gray-200 lg:border-none">
+          <button 
+            className="lg:hidden w-full flex items-center justify-between py-4 text-left font-semibold nav-poppins transition-colors cursor-pointer"
+            onClick={() => toggleTab('additional')}
+          >
+            <span className={`text-[15px] ${activeTab === 'additional' ? 'text-[#003465]' : 'text-[#242424]'}`}>{getMobileLabel('additional')}</span>
+            <Icon icon={activeTab === 'additional' ? "mdi:chevron-up" : "mdi:chevron-down"} className={`w-5 h-5 ${activeTab === 'additional' ? 'text-gray-300' : 'text-gray-300'}`} />
+          </button>
+
+          <div className={`transition-all duration-300 overflow-hidden ${activeTab === 'additional' ? 'max-h-none opacity-100 pb-6 pt-2 lg:p-0' : 'max-h-0 opacity-0 lg:hidden'}`}>
+            {activeTab === "additional" && (
+              <div className="w-full text-sm flex justify-between max-w-2xl mx-auto nav-lato py-2 px-4 border border-gray-100">
+                <h4 className="font-semibold text-[#242424] bg-gray-50 w-40 p-2">Quantity</h4>
+                <p className="text-[#777777] p-2">14g, 28g, 3.5g, 7g</p>
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Reviews */}
-        {activeTab === "reviews" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="border-b border-gray-200 lg:border-none">
+          <button 
+            className="lg:hidden w-full flex items-center justify-between py-4 text-left font-semibold nav-poppins transition-colors cursor-pointer"
+            onClick={() => toggleTab('reviews')}
+          >
+            <span className={`text-[15px] ${activeTab === 'reviews' ? 'text-[#003465]' : 'text-[#242424]'}`}>{getMobileLabel('reviews')}</span>
+            <Icon icon={activeTab === 'reviews' ? "mdi:chevron-up" : "mdi:chevron-down"} className={`w-5 h-5 ${activeTab === 'reviews' ? 'text-gray-300' : 'text-gray-300'}`} />
+          </button>
+
+          <div className={`transition-all duration-300 overflow-hidden ${activeTab === 'reviews' ? 'max-h-none opacity-100 pb-6 pt-2 lg:p-0' : 'max-h-0 opacity-0 lg:hidden'}`}>
+            {activeTab === "reviews" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Left */}
             <div>
               <h3 className="text-sm font-semibold text-[#242424] mb-5 nav-poppins">Reviews</h3>
@@ -131,13 +179,25 @@ export default function ProductTabs({ product }) {
                   Submit
                 </button>
               </div>
-            </div>
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
         {/* Shipping & Delivery */}
-        {activeTab === "shipping" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="border-b border-gray-200 lg:border-none">
+          <button 
+            className="lg:hidden w-full flex items-center justify-between py-4 text-left font-semibold nav-poppins transition-colors cursor-pointer"
+            onClick={() => toggleTab('shipping')}
+          >
+            <span className={`text-[15px] ${activeTab === 'shipping' ? 'text-[#003465]' : 'text-[#242424]'}`}>{getMobileLabel('shipping')}</span>
+            <Icon icon={activeTab === 'shipping' ? "mdi:chevron-up" : "mdi:chevron-down"} className={`w-5 h-5 ${activeTab === 'shipping' ? 'text-gray-300' : 'text-gray-300'}`} />
+          </button>
+
+          <div className={`transition-all duration-300 overflow-hidden ${activeTab === 'shipping' ? 'max-h-none opacity-100 pb-6 pt-2 lg:p-0' : 'max-h-0 opacity-0 lg:hidden'}`}>
+            {activeTab === "shipping" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Images */}
             <div className="grid grid-cols-2 gap-3">
               <img src={prodDetl} alt="Delivery" className="object-cover w-full " />
@@ -162,8 +222,10 @@ export default function ProductTabs({ product }) {
                 For our dried mushroom products, medicinal tinctures, and grow-at-home kits, we also offer Canada-wide shipping via Canada Post. Tracking information will be automatically provided via email as soon as your package leaves our Ottawa facility. Note that fresh mushroom orders placed outside our local delivery zone will be automatically refunded to prevent spoilage.
               </p>
             </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
       </div>
     </div>
