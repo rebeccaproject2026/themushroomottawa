@@ -9,18 +9,19 @@ export default function RelatedProducts({ currentProduct }) {
   const [sliding, setSliding] = useState(false);
   const [slideDir, setSlideDir] = useState("left");
   const [displayPage, setDisplayPage] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isTouch, setIsTouch] = useState(window.innerWidth < 1024);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTouch(window.innerWidth < 1024);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isTouch = windowWidth < 1024;
-  let perPage = 4;
-  if (windowWidth < 480) perPage = 1;
-  else if (windowWidth < 768) perPage = 2;
+  const perPage = isMobile ? 2 : 4;
 
   const related = mushroomProducts.filter(
     (p) => p.category === currentProduct.category && p.id !== currentProduct.id

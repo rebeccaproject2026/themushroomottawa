@@ -10,11 +10,11 @@ export default function FaqSection({
   const [open, setOpen] = useState(defaultOpenIndex);
 
   return (
-    <section className="bg-[#f5f5f5] py-12 px-6">
+    <section className="bg-[#f5f5f5] py-12 px-4 lg:px-6">
       <div className="flex flex-col gap-4 mx-auto">
-        <h2 className="text-[35px] font-semibold text-black nav-poppins text-center">{title}</h2>
+        <h2 className="text-[25px] lg:text-[35px] font-semibold text-black nav-poppins text-center">{title}</h2>
         {subtitle ? (
-          <p className="text-lg text-[#4B4B4B] nav-poppins text-center">{subtitle}</p>
+          <p className="text-base lg:text-lg text-[#4B4B4B] nav-poppins text-center">{subtitle}</p>
         ) : null}
         <div className="flex flex-col gap-3">
           {faqs.map((faq, i) => {
@@ -23,9 +23,9 @@ export default function FaqSection({
               <div key={i} className="bg-white border border-gray-100 shadow">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between px-5 py-4 text-left cursor-pointer"
+                  className="w-full flex items-center justify-between px-3 md:px-5 py-4 text-left cursor-pointer"
                 >
-                  <span className={`text-xl font-semibold nav-lato ${isOpen ? "text-[#003465]" : "text-[#242424]"}`}>
+                  <span className={`text-lg sm:text-xl font-semibold nav-lato ${isOpen ? "text-[#003465]" : "text-[#242424]"}`}>
                     {faq.q}
                   </span>
                   {isOpen ? (
@@ -35,8 +35,8 @@ export default function FaqSection({
                   )}
                 </button>
                 <div className={`overflow-hidden transition-all duration-600 ease-in-out ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                  <div className="px-5 pb-5">
-                    <p className="text-lg text-[#777777] nav-lato leading-relaxed">{faq.a}</p>
+                  <div className="px-3 md:px-5 pb-5">
+                    <p className="text-base sm:text-lg text-[#777777] nav-lato leading-relaxed">{faq.a}</p>
                   </div>
                 </div>
               </div>
