@@ -10,7 +10,7 @@ export default function FaqSection({
   const [open, setOpen] = useState(defaultOpenIndex);
 
   return (
-    <section className="bg-[#f5f5f5] py-12 px-4 lg:px-6">
+    <section className="bg-[#f5f5f5] py-8 md:py-12 px-4 lg:px-6">
       <div className="flex flex-col gap-4 mx-auto">
         <h2 className="text-[25px] lg:text-[35px] font-semibold text-black nav-poppins text-center">{title}</h2>
         {subtitle ? (
