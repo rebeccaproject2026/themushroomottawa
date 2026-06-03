@@ -35,7 +35,7 @@ export default function Header() {
     { label: "MICRODOSING", href: "#" },
     { label: "ABOUT US", href: "/about" },
     { label: "FAQS", href: "/faqs" },
-    { label: "NEWS", href: "#" },
+    { label: "NEWS", href: "/news" },
     { label: "CONTACT US", href: "/contact" },
   ];
 
@@ -57,7 +57,7 @@ export default function Header() {
               <span className="border-l border-[#777777] h-4 mx-2 opacity-50"></span>
               <a href="/faqs" className="transition hover:text-[#7A7A7A]">FAQs</a>
               <span className="border-l border-[#777777] h-4 mx-2 opacity-50"></span>
-              <a href="#" className="transition hover:text-[#7A7A7A]">News</a>
+              <a href="/news" className="transition hover:text-[#7A7A7A]">News</a>
               <span className="border-l border-[#777777] h-4 mx-2 opacity-50"></span>
               <a href="/contact" className="transition hover:text-[#7A7A7A]">Contact Us</a>
             </nav>
