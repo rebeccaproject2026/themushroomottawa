@@ -34,7 +34,7 @@ export default function Header() {
     { label: "MUSHROOM EDIBLES", href: "#" },
     { label: "MICRODOSING", href: "#" },
     { label: "ABOUT US", href: "/about" },
-    { label: "FAQS", href: "#" },
+    { label: "FAQS", href: "/faqs" },
     { label: "NEWS", href: "#" },
     { label: "CONTACT US", href: "/contact" },
   ];
@@ -55,7 +55,7 @@ export default function Header() {
             <nav className="nav-lato flex flex-wrap gap-0.5 justify-center items-center text-xs uppercase font-normal">
               <a href="/about" className="transition hover:text-[#7A7A7A]">About Us</a>
               <span className="border-l border-[#777777] h-4 mx-2 opacity-50"></span>
-              <a href="#" className="transition hover:text-[#7A7A7A]">FAQs</a>
+              <a href="/faqs" className="transition hover:text-[#7A7A7A]">FAQs</a>
               <span className="border-l border-[#777777] h-4 mx-2 opacity-50"></span>
               <a href="#" className="transition hover:text-[#7A7A7A]">News</a>
               <span className="border-l border-[#777777] h-4 mx-2 opacity-50"></span>

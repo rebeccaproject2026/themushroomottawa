@@ -4,6 +4,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import { Icon } from "@iconify/react";
 import aboutImage from "../assets/aboutimg.webp";
 import FaqSection from "../components/FaqSection";
+import CtaBanner from "../components/CtaBanner";
 
 export default function About() {
   const featureCards = [
@@ -74,14 +75,14 @@ export default function About() {
 
       <main className="">
         {/* Hero section */}
-        <section className="bg-[#f5f5f5] py-12 flex flex-col items-center text-center px-4">
+        <section className="bg-[#f5f5f5] py-12 flex flex-col items-center text-center px-4 sm:px-6">
           <span className="bg-[#92d5ef] text-[#003465] text-[13px] font-semibold uppercase nav-poppins px-4 py-1 rounded-full">
             Rooted in the Capital
           </span>
           <h1 className="text-[25px] md:text-[30px] lg:text-[35px] font-semibold text-black nav-poppins my-2">
             About The Mushroom Ottawa
           </h1>
-          <p className="text-[15px] sm:text-base lg:text-lg text-[#4B4B4B] nav-poppins max-w-180 lg:max-w-172.5 ">
+          <p className="text-[15px] sm:text-base lg:text-lg text-[#4B4B4B] nav-poppins max-w-full sm:max-w-2xl lg:max-w-172.5 mx-auto leading-relaxed">
             Your premier{" "}
             <span className="font-semibold">
               online mushroom store in Ottawa, Canada.
@@ -91,7 +92,7 @@ export default function About() {
           </p>
         </section>
 
-        <section className="py-12 px-4 lg:px-6.5">
+        <section className="py-12 px-4 sm:px-6 lg:px-6.5">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             <div className="relative">
               <div>
@@ -161,7 +162,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="px-4 lg:px-6.5">
+        <section className="px-4 sm:px-6 lg:px-6.5">
           <div className="flex flex-col justify-center items-center gap-1.5 pb-5">
             <h2 className="text-[25px] lg:text-[35px] nav-poppins font-semibold ">
               Why Choose The Mushroom Ottawa?
@@ -204,7 +205,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="bg-[#f3f3f3] py-12.5 px-4 lg:px-6.5">
+        <section className="bg-[#f3f3f3] py-12.5 px-4 sm:px-6 lg:px-6.5">
           <div className="flex flex-col justify-center items-center gap-1.5">
             <h2 className="text-[25px] md:text-[35px] nav-poppins font-semibold">
               Explore the Mycelial Network
@@ -244,6 +245,8 @@ export default function About() {
         </section>  
 
         <FaqSection faqs={aboutFaqs} title="Frequently Asked About Us"  />
+
+        <CtaBanner />
       </main>
 
       <Footer />
