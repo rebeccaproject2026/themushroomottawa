@@ -30,7 +30,7 @@ export default function Header() {
 
   const mobileNavItems = [
     { label: "ALL", href: "/" },
-    { label: "MAGIC MUSHROOMS", href: "#" },
+    { label: "MAGIC MUSHROOMS", href: "/magic-mushrooms" },
     { label: "MUSHROOM EDIBLES", href: "#" },
     { label: "MICRODOSING", href: "#" },
     { label: "ABOUT US", href: "/about" },
@@ -79,7 +79,7 @@ export default function Header() {
           {/* ── DESKTOP (lg+) ── */}
           <div className={`hidden lg:flex mx-auto max-w-375 px-3.75 items-center justify-between ${isSticky ? "py-3" : "py-4"}`}>
             <nav className="flex flex-wrap items-center justify-start gap-5 text-[13px] font-semibold uppercase flex-1">
-              <a href="#" className="transition duration-300 hover:text-slate-400">Magic Mushrooms</a>
+              <a href="/magic-mushrooms" className="transition duration-300 hover:text-slate-400">Magic Mushrooms</a>
               <a href="#" className="transition duration-300 hover:text-slate-400">Microdosing</a>
               <a href="#" className="transition duration-300 hover:text-slate-400">Mushroom Edibles</a>
             </nav>

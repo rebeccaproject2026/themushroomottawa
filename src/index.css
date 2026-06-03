@@ -33,3 +33,32 @@
 html, body {
   overflow-x: hidden;
 }
+
+.custom-range-slider::-webkit-slider-thumb {
+  pointer-events: auto;
+  appearance: none;
+  width: 4px;
+  height: 14px;
+  background: #003465;
+  cursor: pointer;
+}
+.custom-range-slider::-moz-range-thumb {
+  pointer-events: auto;
+  width: 4px;
+  height: 14px;
+  background: #003465;
+  cursor: pointer;
+  border: none;
+}
+
+@media (min-width: 1024px) {
+  .magic-sidebar {
+    width: 25% !important;
+    flex: 0 0 25% !important;
+    max-width: 350px !important;
+  }
+  .magic-main {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+  }
+}
