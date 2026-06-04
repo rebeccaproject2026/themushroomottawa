@@ -58,6 +58,14 @@ export default function RelatedProductCard({ product }) {
           />
         )}
 
+        {/* Sold Out Badge */}
+        {product.outOfStock && (
+          <div className="absolute top-3 left-3 z-40 bg-white w-[50px] h-[50px] rounded-full flex flex-col items-center justify-center shadow-md">
+            <span className="text-[#003465] font-bold text-[11px] leading-tight nav-lato">SOLD</span>
+            <span className="text-[#003465] font-bold text-[11px] leading-tight nav-lato">OUT</span>
+          </div>
+        )}
+
         {/* Cart overlay */}
         <div
           className={`absolute inset-0 bg-white/85 backdrop-blur-[2px] flex flex-col justify-center items-center gap-3 transition-all duration-300 ease-in-out z-30 ${cartOverlay ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { X, Menu } from "lucide-react";
 import { Icon } from "@iconify/react";
 import logoSrc from "../assets/mainlogo.png";
@@ -15,6 +15,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { totalItems, cartOpen, setCartOpen, wishlist } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 50);
@@ -31,7 +32,7 @@ export default function Header() {
   const mobileNavItems = [
     { label: "ALL", href: "/" },
     { label: "MAGIC MUSHROOMS", href: "/magic-mushrooms" },
-    { label: "MUSHROOM EDIBLES", href: "#" },
+    { label: "MUSHROOM EDIBLES", href: "/mushroom-edibles" },
     { label: "MICRODOSING", href: "/microdosing" },
     { label: "ABOUT US", href: "/about" },
     { label: "FAQS", href: "/faqs" },
@@ -78,9 +79,9 @@ export default function Header() {
           {/* ── DESKTOP (lg+) ── */}
           <div className={`hidden lg:flex mx-auto max-w-375 px-3.75 items-center justify-between ${isSticky ? "py-3" : "py-4"}`}>
             <nav className="flex flex-wrap items-center justify-start gap-5 text-[13px] font-semibold uppercase flex-1">
-              <a href="/magic-mushrooms" className="transition duration-300 hover:text-slate-400">Magic Mushrooms</a>
-              <a href="/microdosing" className="transition duration-300 hover:text-slate-400">Microdosing</a>
-              <a href="#" className="transition duration-300 hover:text-slate-400">Mushroom Edibles</a>
+              <a href="/magic-mushrooms" className={`transition duration-300 hover:text-slate-400 ${location.pathname === '/magic-mushrooms' ? 'opacity-50' : ''}`}>Magic Mushrooms</a>
+              <a href="/microdosing" className={`transition duration-300 hover:text-slate-400 ${location.pathname === '/microdosing' ? 'opacity-50' : ''}`}>Microdosing</a>
+              <a href="/mushroom-edibles" className={`transition duration-300 hover:text-slate-400 ${location.pathname === '/mushroom-edibles' ? 'opacity-50' : ''}`}>Mushroom Edibles</a>
             </nav>
 
             <div className="flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
@@ -155,7 +156,7 @@ export default function Header() {
               key={i}
               href={item.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="px-6 py-4 text-sm font-semibold text-gray-800 nav-lato uppercase tracking-wide border-b border-gray-100 hover:bg-gray-50 transition"
+              className={`px-6 py-4 text-sm font-semibold text-gray-800 nav-lato uppercase tracking-wide border-b border-gray-100 hover:bg-gray-50 transition ${location.pathname === item.href ? 'opacity-50' : ''}`}
             >
               {item.label}
             </a>

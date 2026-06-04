@@ -5,9 +5,9 @@ import Footer from "../components/Footer";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
 
-export default function MagicMushrooms() {
-  const DEFAULT_MIN = 40;
-  const DEFAULT_MAX = 270;
+export default function MushroomEdibles() {
+  const DEFAULT_MIN = 10;
+  const DEFAULT_MAX = 80;
   const [minPrice, setMinPrice] = useState(DEFAULT_MIN);
   const [maxPrice, setMaxPrice] = useState(DEFAULT_MAX);
   const [appliedMinPrice, setAppliedMinPrice] = useState(DEFAULT_MIN);
@@ -16,7 +16,7 @@ export default function MagicMushrooms() {
   const [isMaxActive, setIsMaxActive] = useState(false);
   const [onSale, setOnSale] = useState(false);
   const [inStock, setInStock] = useState(false);
-  const [gridCols, setGridCols] = useState(3);
+  const [gridCols, setGridCols] = useState(4);
   const [itemsPerPage, setItemsPerPage] = useState(18);
   const [displayedCount, setDisplayedCount] = useState(18);
   const [mobileSortOpen, setMobileSortOpen] = useState(false);
@@ -53,9 +53,9 @@ export default function MagicMushrooms() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [itemsPerPage]);
 
-  // Filter products for Magic Mushrooms category
-  let magicMushrooms = mushroomProducts.filter((product) => {
-    if (product.category !== "Magic Mushrooms") return false;
+  // Filter products for Mushroom Edibles category
+  let ediblesProducts = mushroomProducts.filter((product) => {
+    if (product.category !== "Psilocybin Edibles") return false;
 
     if (product.price < appliedMinPrice || product.price > appliedMaxPrice) return false;
     if (onSale && !product.onSale) return false;
@@ -66,20 +66,20 @@ export default function MagicMushrooms() {
 
   // Apply sorting
   if (sortOption === "Sort by price: low to high") {
-    magicMushrooms.sort((a, b) => a.price - b.price);
+    ediblesProducts.sort((a, b) => a.price - b.price);
   } else if (sortOption === "Sort by price: high to low") {
-    magicMushrooms.sort((a, b) => b.price - a.price);
+    ediblesProducts.sort((a, b) => b.price - a.price);
   } else if (sortOption === "Sort by latest") {
-    magicMushrooms.sort((a, b) => b.id - a.id);
+    ediblesProducts.sort((a, b) => b.id - a.id);
   } else if (sortOption === "Sort by popularity" || sortOption === "Sort by average rating") {
-    magicMushrooms.sort((a, b) => a.name.localeCompare(b.name));
+    ediblesProducts.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   // Top Rated Products (mock based on the image)
-  const topRated = magicMushrooms.slice(1, 4);
+  const topRated = mushroomProducts.filter(p => p.category === "Magic Mushrooms").slice(1, 3);
 
   // Apply items per page limit
-  const displayedProducts = magicMushrooms.slice(0, displayedCount);
+  const displayedProducts = ediblesProducts.slice(0, displayedCount);
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
@@ -101,7 +101,7 @@ export default function MagicMushrooms() {
                   {/* Selected Range */}
                   <div
                     className="absolute top-1/2 -translate-y-1/2 h-0.5 bg-[#003465]"
-                    style={{ left: `${((minPrice - 40) / 230) * 100}%`, right: `${100 - ((maxPrice - 40) / 230) * 100}%` }}
+                    style={{ left: `${((minPrice - 10) / 70) * 100}%`, right: `${100 - ((maxPrice - 10) / 70) * 100}%` }}
                   ></div>
 
                   {/* Min Input */}
@@ -129,7 +129,7 @@ export default function MagicMushrooms() {
                   </span>
                   <button
                     onClick={() => { setAppliedMinPrice(minPrice); setAppliedMaxPrice(maxPrice); setIsMinActive(true); setIsMaxActive(true); }}
-                    className="bg-[#f7f7f7] hover:bg-[#e0e0e0] text-[#333333] cursor-pointer text-xs nav-lato font-bold py-1.25 px-3.5 uppercase transition-colors"
+                    className="bg-[#f7f7f7] hover:bg-[#e0e0e0] text-[#333333] cursor-pointer text-xs nav-lato font-bold rounded py-2 px-3.5 uppercase transition-colors"
                   >
                     Filter
                   </button>
@@ -196,10 +196,10 @@ export default function MagicMushrooms() {
             {/* Header Area */}
             <div>
               <h1 className="text-[28px] font-semibold text-[#242424] nav-poppins mb-5 leading-[1.4]">
-                Magic Mushrooms
+                Mushroom Edibles
               </h1>
-              <p className="text-[#616161] text-lg nav-poppins font-semibold leading-[1.4]">
-                Looking to explore premium magic mushrooms in Ottawa? Our curated collection features high-quality, carefully sourced psilocybin mushrooms selected for consistency, potency, and overall experience. Whether you're new to shrooms or an experienced user, you'll find a variety of strains suited for different preferences, from creative and uplifting experiences to deeper, more introspective journeys.
+              <p className="text-[#616161] text-lg nav-lato leading-[1.6]">
+                Mushroom edibles offer a convenient and flavorful way to experience psilocybin without the earthy taste of dried mushrooms. Our edibles category features precisely dosed chocolates, gummies, and infused treats designed for consistency and ease of use. For many users, edibles provide a smoother and more controlled experience compared to traditional dried mushrooms.
               </p>
             </div>
 
@@ -210,11 +210,11 @@ export default function MagicMushrooms() {
                 <div className="flex items-center gap-2">
                   <a href="/" className="hover:text-[#333333] transition-colors">Home</a>
                   <span>/</span>
-                  <span className="text-[#333333] font-semibold">Magic Mushrooms</span>
+                  <span className="text-[#333333] font-semibold">Mushroom Edibles</span>
                 </div>
                 {/* Showing results - Mobile Only */}
                 <div className="lg:hidden text-[#777777]">
-                  Showing 1–{displayedProducts.length} of {magicMushrooms.length} results
+                  Showing 1–{displayedProducts.length} of {ediblesProducts.length} results
                 </div>
               </div>
 

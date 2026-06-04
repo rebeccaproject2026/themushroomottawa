@@ -6,10 +6,14 @@ import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
 
 export default function Microdosing() {
-  const [minPrice, setMinPrice] = useState(40);
-  const [maxPrice, setMaxPrice] = useState(270);
-  const [appliedMinPrice, setAppliedMinPrice] = useState(40);
-  const [appliedMaxPrice, setAppliedMaxPrice] = useState(270);
+  const DEFAULT_MIN = 40;
+  const DEFAULT_MAX = 270;
+  const [minPrice, setMinPrice] = useState(DEFAULT_MIN);
+  const [maxPrice, setMaxPrice] = useState(DEFAULT_MAX);
+  const [appliedMinPrice, setAppliedMinPrice] = useState(DEFAULT_MIN);
+  const [appliedMaxPrice, setAppliedMaxPrice] = useState(DEFAULT_MAX);
+  const [isMinActive, setIsMinActive] = useState(false);
+  const [isMaxActive, setIsMaxActive] = useState(false);
   const [onSale, setOnSale] = useState(false);
   const [inStock, setInStock] = useState(false);
   const [gridCols, setGridCols] = useState(3);
@@ -17,6 +21,19 @@ export default function Microdosing() {
   const [displayedCount, setDisplayedCount] = useState(18);
   const [mobileSortOpen, setMobileSortOpen] = useState(false);
   const [sortOption, setSortOption] = useState("Default sorting");
+
+  const hasAnyFilter = isMinActive || isMaxActive || onSale || inStock;
+
+  const clearAllFilters = () => {
+    setMinPrice(DEFAULT_MIN);
+    setMaxPrice(DEFAULT_MAX);
+    setAppliedMinPrice(DEFAULT_MIN);
+    setAppliedMaxPrice(DEFAULT_MAX);
+    setIsMinActive(false);
+    setIsMaxActive(false);
+    setOnSale(false);
+    setInStock(false);
+  };
 
   useEffect(() => {
     setDisplayedCount(itemsPerPage);
@@ -39,11 +56,11 @@ export default function Microdosing() {
   // Filter products for Microdosing category
   let microdosingProducts = mushroomProducts.filter((product) => {
     if (product.category !== "Microdosing") return false;
-    
+
     if (product.price < appliedMinPrice || product.price > appliedMaxPrice) return false;
     if (onSale && !product.onSale) return false;
     if (inStock && product.outOfStock) return false;
-    
+
     return true;
   });
 
@@ -59,7 +76,7 @@ export default function Microdosing() {
   }
 
   // Top Rated Products (mock based on the image)
-  const topRated = mushroomProducts.filter(p => p.category === "Magic Mushrooms").slice(1, 3); 
+  const topRated = mushroomProducts.filter(p => p.category === "Magic Mushrooms").slice(1, 3);
 
   // Apply items per page limit
   const displayedProducts = microdosingProducts.slice(0, displayedCount);
@@ -90,8 +107,8 @@ export default function Microdosing() {
                   {/* Min Input */}
                   <input
                     type="range"
-                    min="40"
-                    max="270"
+                    min={DEFAULT_MIN}
+                    max={DEFAULT_MAX}
                     value={minPrice}
                     onChange={(e) => setMinPrice(Math.min(Number(e.target.value), maxPrice - 1))}
                     className="absolute top-1/2 -translate-y-1/2 w-full appearance-none bg-transparent pointer-events-none custom-range-slider outline-none"
@@ -99,8 +116,8 @@ export default function Microdosing() {
                   {/* Max Input */}
                   <input
                     type="range"
-                    min="40"
-                    max="270"
+                    min={DEFAULT_MIN}
+                    max={DEFAULT_MAX}
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(Math.max(Number(e.target.value), minPrice + 1))}
                     className="absolute top-1/2 -translate-y-1/2 w-full appearance-none bg-transparent pointer-events-none custom-range-slider outline-none"
@@ -110,8 +127,8 @@ export default function Microdosing() {
                   <span className="text-[#767676]">
                     Price: <span className="font-semibold text-[#242424]">${minPrice} — ${maxPrice}</span>
                   </span>
-                  <button 
-                    onClick={() => { setAppliedMinPrice(minPrice); setAppliedMaxPrice(maxPrice); }}
+                  <button
+                    onClick={() => { setAppliedMinPrice(minPrice); setAppliedMaxPrice(maxPrice); setIsMinActive(true); setIsMaxActive(true); }}
                     className="bg-[#f7f7f7] hover:bg-[#e0e0e0] text-[#333333] cursor-pointer text-xs nav-lato font-bold rounded py-2 px-3.5 uppercase transition-colors"
                   >
                     Filter
@@ -282,6 +299,36 @@ export default function Microdosing() {
                 </div>
               </div>
             </div>
+
+            {/* Active Filters */}
+            {hasAnyFilter && (
+              <div className="flex flex-wrap items-center gap-3 lg:gap-4 text-[13px] text-[#333333] nav-lato">
+                <button onClick={clearAllFilters} className="hover:text-[#003465] transition-colors flex items-center gap-1 font-semibold cursor-pointer">
+                  <Icon icon="ic:round-close" className="w-4 h-4" /> Clear filters
+                </button>
+                <div className="w-px h-4 bg-gray-300"></div>
+                {isMinActive && (
+                  <button onClick={() => { setIsMinActive(false); setAppliedMinPrice(DEFAULT_MIN); setMinPrice(DEFAULT_MIN); }} className="hover:text-[#003465] transition-colors flex items-center gap-1 font-medium cursor-pointer">
+                    <Icon icon="ic:round-close" className="w-4 h-4" /> Min ${appliedMinPrice.toFixed(2)}
+                  </button>
+                )}
+                {isMaxActive && (
+                  <button onClick={() => { setIsMaxActive(false); setAppliedMaxPrice(DEFAULT_MAX); setMaxPrice(DEFAULT_MAX); }} className="hover:text-[#003465] transition-colors flex items-center gap-1 font-medium cursor-pointer">
+                    <Icon icon="ic:round-close" className="w-4 h-4" /> Max ${appliedMaxPrice.toFixed(2)}
+                  </button>
+                )}
+                {onSale && (
+                  <button onClick={() => setOnSale(false)} className="hover:text-[#003465] transition-colors flex items-center gap-1 font-medium cursor-pointer">
+                    <Icon icon="ic:round-close" className="w-4 h-4" /> On sale
+                  </button>
+                )}
+                {inStock && (
+                  <button onClick={() => setInStock(false)} className="hover:text-[#003465] transition-colors flex items-center gap-1 font-medium cursor-pointer">
+                    <Icon icon="ic:round-close" className="w-4 h-4" /> In stock
+                  </button>
+                )}
+              </div>
+            )}
 
             {/* Product Grid */}
             <div key={gridCols} className={`grid grid-cols-2 md:grid-cols-4 gap-5 ${gridCols === 2 ? 'lg:grid-cols-2' :
