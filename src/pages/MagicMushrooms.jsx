@@ -21,6 +21,14 @@ export default function MagicMushrooms() {
   const [displayedCount, setDisplayedCount] = useState(18);
   const [mobileSortOpen, setMobileSortOpen] = useState(false);
   const [sortOption, setSortOption] = useState("Default sorting");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const searchResults = searchQuery.trim().length > 0 
+    ? mushroomProducts.filter(p => 
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        p.category.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
 
   const hasAnyFilter = isMinActive || isMaxActive || onSale || inStock;
 
@@ -331,20 +339,66 @@ export default function MagicMushrooms() {
             )}
 
             {/* Product Grid */}
-            <div key={gridCols} className={`grid grid-cols-2 md:grid-cols-4 gap-5 ${gridCols === 2 ? 'lg:grid-cols-2' :
-              gridCols === 3 ? 'lg:grid-cols-3' :
-                'lg:grid-cols-4'
-              }`}>
-              {displayedProducts.map((product, idx) => (
-                <div
-                  key={product.id}
-                  className="opacity-0 animate-[fadeInUp_0.4s_ease-out_forwards]"
-                  style={{ animationDelay: `${(idx % itemsPerPage) * 50}ms` }}
-                >
-                  <RelatedProductCard product={product} />
+            {displayedProducts.length === 0 ? (
+              <div className="flex flex-col gap-6 w-full py-4">
+                <div className="bg-[#dfb242] text-white px-5 py-4 flex items-center gap-3 nav-lato shadow-sm">
+                  <Icon icon="mdi:alert-circle-outline" className="w-6 h-6 shrink-0" />
+                  <span className="text-[15px] font-medium">No products were found matching your selection.</span>
                 </div>
-              ))}
-            </div>
+                <div className="relative w-full max-w-full">
+                  <input 
+                    type="text" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search for products" 
+                    className="w-full border border-[#e0e0e0] p-3.5 pr-10 outline-none text-[15px] nav-lato text-gray-700 focus:border-gray-400 transition-colors bg-white shadow-sm" 
+                  />
+                  {searchQuery ? (
+                    <button 
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                    >
+                      <Icon icon="ic:round-close" className="w-5 h-5" />
+                    </button>
+                  ) : (
+                    <button className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+                      <Icon icon="tdesign:search" className="w-5 h-5" />
+                    </button>
+                  )}
+                  
+                  {searchQuery.trim().length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 shadow-xl rounded-lg z-50 max-h-80 overflow-y-auto py-2">
+                      {searchResults.length > 0 ? searchResults.map(p => (
+                        <a key={p.id} href={`/product/${p.id}`} className="flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0">
+                          <img src={p.image} alt={p.name} className="w-12 h-12 object-contain" />
+                          <div className="flex flex-col">
+                            <span className="text-[14px] font-semibold text-gray-800 nav-poppins">{p.name}</span>
+                            <span className="text-[13px] font-semibold text-[#003465] nav-lato">${p.price.toFixed(2)}</span>
+                          </div>
+                        </a>
+                      )) : (
+                        <div className="px-4 py-6 text-center text-sm text-gray-500 nav-lato">No products found.</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div key={gridCols} className={`grid grid-cols-2 md:grid-cols-4 gap-5 ${gridCols === 2 ? 'lg:grid-cols-2' :
+                gridCols === 3 ? 'lg:grid-cols-3' :
+                  'lg:grid-cols-4'
+                }`}>
+                {displayedProducts.map((product, idx) => (
+                  <div
+                    key={product.id}
+                    className="opacity-0 animate-[fadeInUp_0.4s_ease-out_forwards]"
+                    style={{ animationDelay: `${(idx % itemsPerPage) * 50}ms` }}
+                  >
+                    <RelatedProductCard product={product} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </main>

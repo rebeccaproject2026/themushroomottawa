@@ -42,16 +42,15 @@ export default function ProductCard({ product }) {
   return (
     <>
       <div
-        className={`bg-[#f8fafc] rounded-xl transition-all duration-300 group relative border border-gray-100 ${
-          isHovered ? "z-30 shadow-[0_4px_20px_rgba(0,0,0,0.12)]" : "z-10 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
-        }`}
+        className={`bg-[#f8fafc] rounded-xl transition-all duration-300 group relative border border-gray-100 ${isHovered ? "z-30 shadow-[0_4px_20px_rgba(0,0,0,0.12)]" : "z-10 shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+          }`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
       >
         <div className="p-4 flex flex-col gap-3">
           {/* Image Container */}
           <div
-            className="relative bg-white flex items-center justify-center rounded-lg overflow-hidden h-52"
+            className="relative bg-white flex items-center justify-center rounded-lg overflow-hidden h-60"
             onMouseEnter={() => setIsImageHovered(true)}
             onMouseLeave={() => setIsImageHovered(false)}
             onClick={() => navigate(`/product/${product.id}`)}
@@ -59,25 +58,22 @@ export default function ProductCard({ product }) {
             <img
               src={product.image}
               alt={product.name}
-              className={`h-full w-auto object-contain transition-all duration-700 cursor-pointer absolute ${
-                isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
-              }`}
+              className={`h-full w-auto object-contain transition-all duration-700 cursor-pointer absolute ${isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
+                }`}
             />
             {product.hoverImage && (
               <img
                 src={product.hoverImage}
                 alt={product.name}
-                className={`h-full w-auto object-contain transition-all duration-700 cursor-pointer absolute ${
-                  isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
-                }`}
+                className={`h-full w-auto object-contain transition-all duration-700 cursor-pointer absolute ${isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
+                  }`}
               />
             )}
 
             {/* Cart Overlay */}
             <div
-              className={`absolute inset-0 bg-white/85 flex flex-col justify-center gap-3 transition-all duration-300 ease-in-out ${
-                cartOverlay ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-              }`}
+              className={`absolute inset-0 bg-white/85 flex flex-col justify-center gap-3 transition-all duration-300 ease-in-out ${cartOverlay ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                }`}
             >
               <button
                 onClick={(e) => { e.stopPropagation(); setCartOverlay(false); }}
@@ -112,9 +108,8 @@ export default function ProductCard({ product }) {
 
             {/* Hover Icons */}
             <div
-              className={`absolute top-4 right-4 flex flex-col gap-5 transition-all duration-300 py-2 px-3 rounded-br-lg rounded-tr-lg shadow-[10px_10px_20px_rgba(0,0,0,0.1)] ${
-                showHoverIcons ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
-              }`}
+              className={`absolute top-4 right-4 flex flex-col gap-5 transition-all duration-300 py-2 px-3 rounded-br-lg rounded-tr-lg shadow-[10px_10px_20px_rgba(0,0,0,0.1)] ${showHoverIcons ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+                }`}
             >
               <button
                 data-tooltip-id={`quickview-${product.id}`}
@@ -156,10 +151,10 @@ export default function ProductCard({ product }) {
           </div>
 
           {/* Content */}
-          <div className="relative z-20">
-            <h3 className="text-sm font-medium text-gray-800 mb-1 nav-poppins">{product.name}</h3>
-            <p className="text-sm text-[#A5A5A5] nav-lato mb-1">{product.category}</p>
-            <p className="text-sm font-medium text-[#003465] mb-2">
+          <div className="relative z-20 text-sm">
+            <h3 className="cursor-pointer font-medium text-gray-800 hover:text-gray-500 mb-1 nav-poppins">{product.name}</h3>
+            <p className="text-[#777777]/80 cursor-pointer hover:text-[#777777] nav-lato mb-1">{product.category}</p>
+            <p className="font-semibold cursor-pointer nav-lato text-[#003465] mb-2">
               ${product.price.toFixed(2)} {product.maxPrice && `- ${product.maxPrice.toFixed(2)}`}
             </p>
 
@@ -171,7 +166,7 @@ export default function ProductCard({ product }) {
               className={`relative p-5 w-full overflow-hidden group/btn cursor-pointer ${cartOverlay ? "pointer-events-none" : ""}`}
             >
               <div className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-in-out group-hover/btn:-translate-y-full ${cartOverlay ? "bg-gray-400" : "bg-[#003465]"}`}>
-                <span className="text-white font-semibold uppercase text-[13px] tracking-wider nav-lato">Select Options</span>
+                <span className="text-white font-semibold uppercase text-[13px] nav-lato">Select Options</span>
               </div>
               <div className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-in-out translate-y-full group-hover/btn:translate-y-0 ${cartOverlay ? "bg-gray-400" : "bg-[#003465]"}`}>
                 <Icon icon="la:shopping-cart" className="text-white h-7 w-7" />
@@ -182,9 +177,8 @@ export default function ProductCard({ product }) {
 
         {/* Description that expands downwards */}
         <div
-          className={`absolute left-0 right-0 top-full bg-white px-5 rounded-b-xl transition-all duration-300 overflow-hidden border border-t-0 border-gray-100 ${
-            isHovered ? "opacity-100 shadow-[0_15px_20px_rgba(0,0,0,0.1)]" : "opacity-0"
-          }`}
+          className={`absolute left-0 right-0 top-full bg-white px-5 rounded-b-xl transition-all duration-300 overflow-hidden border border-t-0 border-gray-100 ${isHovered ? "opacity-100 shadow-[0_15px_20px_rgba(0,0,0,0.1)]" : "opacity-0"
+            }`}
           style={{
             marginTop: isHovered ? "-10px" : "0",
             paddingTop: isHovered ? "10px" : "0",

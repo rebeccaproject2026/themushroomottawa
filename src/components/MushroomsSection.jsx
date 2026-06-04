@@ -49,15 +49,15 @@ export default function MushroomsSection() {
     animState === "exit"
       ? "opacity-0 translate-y-12 transition-all duration-300 ease-in"
       : animState === "enter"
-      ? "opacity-0 translate-y-12 transition-none"
-      : "opacity-100 translate-y-0 transition-all duration-300 ease-out";
+        ? "opacity-0 translate-y-12 transition-none"
+        : "opacity-100 translate-y-0 transition-all duration-300 ease-out";
 
   return (
     <section className="bg-[#f5f5f5] py-10 md:py-16 px-0 md:px-2">
       <div className="mx-auto max-w-375 px-3.75">
         {/* Header */}
-        <div className="text-center mb-6 md:mb-8">
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#242424] mb-2 nav-poppins">
+        <div className="text-center mb-6 md:mb-7">
+          <h2 className="text-3xl md:text-[35px] font-semibold text-[#242424] mb-1 nav-poppins">
             Our Mushrooms
           </h2>
           <p className="text-[#525252] text-base md:text-lg nav-lato ">
@@ -65,17 +65,16 @@ export default function MushroomsSection() {
           </p>
         </div>
 
-        <div className="flex justify-center gap-4 md:gap-10 mb-4 flex-wrap">
+        <div className="flex justify-center gap-4 md:gap-8 mb-4 flex-wrap">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
-              className={`relative pb-1 text-sm md:text-[15px] font-bold uppercase tracking-wide transition-colors duration-300 cursor-pointer
+              className={`relative nav-poppins text-sm md:text-base font-semibold uppercase transition-colors duration-300 cursor-pointer
                 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-[#003465] after:transition-all after:duration-300
-                ${
-                  activeTab === tab.id
-                    ? "text-[#003465] after:w-full"
-                    : "text-gray-500 hover:text-[#003465] after:w-0 hover:after:w-full"
+                ${activeTab === tab.id
+                  ? "text-[#003465] after:w-full"
+                  : "text-gray-500 hover:text-[#003465] after:w-0 hover:after:w-full"
                 }
               `}
             >
@@ -90,11 +89,10 @@ export default function MushroomsSection() {
           <button
             onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
             disabled={currentIndex === 0}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 translate-x-2 md:-translate-x-6 z-40 bg-white p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-100 md:opacity-0 ${
-              currentIndex === 0
-                ? "md:group-hover:opacity-50 opacity-50 cursor-not-allowed"
-                : "md:group-hover:opacity-100 hover:bg-gray-100 hover:scale-110"
-            }`}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 translate-x-2 md:-translate-x-6 z-40 bg-white p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-100 md:opacity-0 ${currentIndex === 0
+              ? "md:group-hover:opacity-50 opacity-50 cursor-not-allowed"
+              : "md:group-hover:opacity-100 hover:bg-gray-100 hover:scale-110"
+              }`}
           >
             <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-gray-700" />
           </button>
@@ -110,11 +108,10 @@ export default function MushroomsSection() {
           <button
             onClick={() => setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))}
             disabled={currentIndex >= maxIndex}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 -translate-x-2 md:translate-x-6 z-40 bg-white p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-100 md:opacity-0 ${
-              currentIndex >= maxIndex
-                ? "md:group-hover:opacity-50 opacity-50 cursor-not-allowed"
-                : "md:group-hover:opacity-100 hover:bg-gray-100 hover:scale-110"
-            }`}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 -translate-x-2 md:translate-x-6 z-40 bg-white p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-100 md:opacity-0 ${currentIndex >= maxIndex
+              ? "md:group-hover:opacity-50 opacity-50 cursor-not-allowed"
+              : "md:group-hover:opacity-100 hover:bg-gray-100 hover:scale-110"
+              }`}
           >
             <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-gray-700" />
           </button>

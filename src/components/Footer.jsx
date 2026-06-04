@@ -98,7 +98,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="mx-auto px-4 py-4 lg:py-3 text-center text-xs sm:text-sm lg:text-[15px] leading-relaxed lg:leading-normal nav-poppins text-[#E2E2E2] bg-[#00274b]">
+      <div className="mx-auto px-4 pt-4 pb-20 lg:py-3 text-center text-xs sm:text-sm lg:text-[15px] leading-relaxed lg:leading-normal nav-poppins text-[#E2E2E2] bg-[#00274b]">
         <div className="mb-1 lg:mb-0 lg:inline">
           © The Mushroom Ottawa. All rights reserved. Powered By{" "}
           <span className="font-semibold ">Shroom Express.</span>
