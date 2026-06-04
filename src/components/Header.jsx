@@ -32,7 +32,7 @@ export default function Header() {
     { label: "ALL", href: "/" },
     { label: "MAGIC MUSHROOMS", href: "/magic-mushrooms" },
     { label: "MUSHROOM EDIBLES", href: "#" },
-    { label: "MICRODOSING", href: "#" },
+    { label: "MICRODOSING", href: "/microdosing" },
     { label: "ABOUT US", href: "/about" },
     { label: "FAQS", href: "/faqs" },
     { label: "NEWS", href: "/news" },
@@ -79,7 +79,7 @@ export default function Header() {
           <div className={`hidden lg:flex mx-auto max-w-375 px-3.75 items-center justify-between ${isSticky ? "py-3" : "py-4"}`}>
             <nav className="flex flex-wrap items-center justify-start gap-5 text-[13px] font-semibold uppercase flex-1">
               <a href="/magic-mushrooms" className="transition duration-300 hover:text-slate-400">Magic Mushrooms</a>
-              <a href="#" className="transition duration-300 hover:text-slate-400">Microdosing</a>
+              <a href="/microdosing" className="transition duration-300 hover:text-slate-400">Microdosing</a>
               <a href="#" className="transition duration-300 hover:text-slate-400">Mushroom Edibles</a>
             </nav>
 

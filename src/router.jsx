@@ -8,6 +8,7 @@ import About from './pages/About'
 import Faqs from './pages/Faqs'
 import News from './pages/News'
 import MagicMushrooms from './pages/MagicMushrooms'
+import Microdosing from './pages/Microdosing'
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
   {
     path: '/magic-mushrooms',
     element: <MagicMushrooms />
+  },
+  {
+    path: '/microdosing',
+    element: <Microdosing />
   },
   {
     path: '*',

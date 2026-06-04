@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
 
-export default function MagicMushrooms() {
+export default function Microdosing() {
   const [minPrice, setMinPrice] = useState(40);
   const [maxPrice, setMaxPrice] = useState(270);
   const [appliedMinPrice, setAppliedMinPrice] = useState(40);
@@ -36,9 +36,9 @@ export default function MagicMushrooms() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [itemsPerPage]);
 
-  // Filter products for Magic Mushrooms category
-  let magicMushrooms = mushroomProducts.filter((product) => {
-    if (product.category !== "Magic Mushrooms") return false;
+  // Filter products for Microdosing category
+  let microdosingProducts = mushroomProducts.filter((product) => {
+    if (product.category !== "Microdosing") return false;
     
     if (product.price < appliedMinPrice || product.price > appliedMaxPrice) return false;
     if (onSale && !product.onSale) return false;
@@ -49,20 +49,20 @@ export default function MagicMushrooms() {
 
   // Apply sorting
   if (sortOption === "Sort by price: low to high") {
-    magicMushrooms.sort((a, b) => a.price - b.price);
+    microdosingProducts.sort((a, b) => a.price - b.price);
   } else if (sortOption === "Sort by price: high to low") {
-    magicMushrooms.sort((a, b) => b.price - a.price);
+    microdosingProducts.sort((a, b) => b.price - a.price);
   } else if (sortOption === "Sort by latest") {
-    magicMushrooms.sort((a, b) => b.id - a.id);
+    microdosingProducts.sort((a, b) => b.id - a.id);
   } else if (sortOption === "Sort by popularity" || sortOption === "Sort by average rating") {
-    magicMushrooms.sort((a, b) => a.name.localeCompare(b.name));
+    microdosingProducts.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   // Top Rated Products (mock based on the image)
-  const topRated = magicMushrooms.slice(1, 4);
+  const topRated = mushroomProducts.filter(p => p.category === "Magic Mushrooms").slice(1, 3); 
 
   // Apply items per page limit
-  const displayedProducts = magicMushrooms.slice(0, displayedCount);
+  const displayedProducts = microdosingProducts.slice(0, displayedCount);
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
@@ -112,7 +112,7 @@ export default function MagicMushrooms() {
                   </span>
                   <button 
                     onClick={() => { setAppliedMinPrice(minPrice); setAppliedMaxPrice(maxPrice); }}
-                    className="bg-[#f7f7f7] hover:bg-[#e0e0e0] text-[#333333] cursor-pointer text-xs nav-lato font-bold py-1.25 px-3.5 uppercase transition-colors"
+                    className="bg-[#f7f7f7] hover:bg-[#e0e0e0] text-[#333333] cursor-pointer text-xs nav-lato font-bold rounded py-2 px-3.5 uppercase transition-colors"
                   >
                     Filter
                   </button>
@@ -179,10 +179,10 @@ export default function MagicMushrooms() {
             {/* Header Area */}
             <div>
               <h1 className="text-[28px] font-semibold text-[#242424] nav-poppins mb-5 leading-[1.4]">
-                Magic Mushrooms
+                Microdosing
               </h1>
-              <p className="text-[#616161] text-lg nav-poppins font-semibold leading-[1.4]">
-                Looking to explore premium magic mushrooms in Ottawa? Our curated collection features high-quality, carefully sourced psilocybin mushrooms selected for consistency, potency, and overall experience. Whether you're new to shrooms or an experienced user, you'll find a variety of strains suited for different preferences, from creative and uplifting experiences to deeper, more introspective journeys.
+              <p className="text-[#616161] text-lg nav-lato leading-[1.6]">
+                Microdosing mushrooms involves taking very small, sub-perceptual amounts of psilocybin to support focus, creativity, and overall mental clarity without experiencing a full psychedelic trip. This approach has gained popularity among professionals, creatives, and individuals seeking a balanced and manageable way to incorporate psilocybin into their routine.
               </p>
             </div>
 
@@ -193,11 +193,11 @@ export default function MagicMushrooms() {
                 <div className="flex items-center gap-2">
                   <a href="/" className="hover:text-[#333333] transition-colors">Home</a>
                   <span>/</span>
-                  <span className="text-[#333333] font-semibold">Magic Mushrooms</span>
+                  <span className="text-[#333333] font-semibold">Microdosing</span>
                 </div>
                 {/* Showing results - Mobile Only */}
                 <div className="lg:hidden text-[#777777]">
-                  Showing 1–{displayedProducts.length} of {magicMushrooms.length} results
+                  Showing 1–{displayedProducts.length} of {microdosingProducts.length} results
                 </div>
               </div>
 
