@@ -39,21 +39,21 @@ export default function RelatedProductCard({ product }) {
     >
       {/* Image */}
       <div
-        className="relative w-full h-70 xs:h-auto xs:aspect-square lg:aspect-auto bg-white flex items-center justify-center lg:h-87.5 overflow-hidden p-4"
+        className="relative w-full aspect-square bg-white flex items-center justify-center overflow-hidden"
         onMouseEnter={() => setIsImageHovered(true)}
         onMouseLeave={() => setIsImageHovered(false)}
       >
         <img
           src={product.image}
           alt={product.name}
-          className={`h-full w-auto object-cover transition-all duration-700 absolute ${isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
+          className={`w-full h-full object-cover transition-all duration-700 absolute top-0 left-0 ${isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
             }`}
         />
         {product.hoverImage && (
           <img
             src={product.hoverImage}
             alt={product.name}
-            className={`h-full w-auto object-cover transition-all duration-700 absolute ${isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
+            className={`w-full h-full object-cover transition-all duration-700 absolute top-0 left-0 ${isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
               }`}
           />
         )}
@@ -111,7 +111,7 @@ export default function RelatedProductCard({ product }) {
           onClick={(e) => { e.stopPropagation(); setCartOverlay(true); setIsCardHovered(false); }}
           className="text-gray-700 hover:text-[#003465] transition cursor-pointer"
         >
-          <Icon icon="icons8:shopping-cart" className="w-7 h-7 transform scale-x-[-1]" />
+          <Icon icon="icons8:shopping-cart" className="lg:w-7 lg:h-7 w-6 h-6 transform scale-x-[-1]" />
         </button>
         <Tooltip id={`rp-cart-${product.id}`} style={{ backgroundColor: "#1a1a1a", color: "#fff", fontSize: "13px", borderRadius: "4px" }} />
 
@@ -135,7 +135,7 @@ export default function RelatedProductCard({ product }) {
         >
           <Icon
             icon="prime:heart"
-            className="w-6.5 h-6.5"
+            className="lg:w-6.5 lg:h-6.5 w-5.5 h-5.5"
           />
           {wishlisted && (
             <span className="absolute -top-1 -right-1 bg-[#003465] rounded-full w-4 h-4 flex items-center justify-center">

@@ -65,16 +65,15 @@ export default function Header() {
         </div>
 
         {/* Mobile top info bar */}
-        <div className={`bg-[#92d5ef] text-[#003465] text-center text-xs font-semibold nav-poppins py-1.5 px-4 lg:hidden transition-all duration-500 ${isSticky ? "hidden" : "block"}`}>
+        <div className={`bg-[#92d5ef] text-[#003465] text-center text-xs font-semibold nav-poppins py-3 px-4 lg:hidden transition-all duration-500 ${isSticky ? "hidden" : "block"}`}>
           Ottawa Local Delivery &amp; Canada Wide Shipping
         </div>
 
         {/* Main nav bar */}
         <div
           data-sticky-nav
-          className={`bg-[#003465] text-white nav-lato transition-all duration-500 ease-in-out ${
-            isSticky ? "fixed top-0 left-0 right-0 z-50 shadow-lg" : ""
-          }`}
+          className={`bg-[#003465] text-white nav-lato transition-all duration-500 ease-in-out ${isSticky ? "fixed top-0 left-0 right-0 z-50 shadow-lg" : ""
+            }`}
         >
           {/* ── DESKTOP (lg+) ── */}
           <div className={`hidden lg:flex mx-auto max-w-375 px-3.75 items-center justify-between ${isSticky ? "py-3" : "py-4"}`}>
@@ -113,15 +112,15 @@ export default function Header() {
           </div>
 
           {/* ── MOBILE (< lg) ── */}
-          <div className={`flex lg:hidden items-center justify-between px-4 ${isSticky ? "py-2.5" : "py-3"}`}>
+          <div className={`flex lg:hidden items-center justify-between px-3.5 ${isSticky ? "py-2.5" : "py-3.25"}`}>
             {/* Hamburger */}
             <button type="button" onClick={() => setMobileMenuOpen(true)} className="text-white cursor-pointer" aria-label="Open menu">
-              <Menu className="h-6 w-6" />
+              <Menu className="h-5.5 w-5.5" />
             </button>
 
             {/* Logo center */}
             <button type="button" onClick={() => navigate("/")} className="cursor-pointer focus:outline-none absolute left-1/2 -translate-x-1/2" aria-label="Home">
-              <img src={logoSrc} alt="The Mushroom" className="h-8 w-auto object-contain" />
+              <img src={logoSrc} alt="The Mushroom" className="h-7.5 w-auto object-contain" />
             </button>
 
             {/* Search right */}
@@ -165,28 +164,28 @@ export default function Header() {
       </div>
 
       {/* ── MOBILE BOTTOM TAB BAR ── */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 flex items-center justify-around py-2 lg:hidden">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 flex items-center justify-around py-1 lg:hidden">
         <button onClick={() => navigate("/")} className="flex flex-col items-center gap-0.5 text-gray-600 cursor-pointer">
-          <Icon icon="mdi:store-outline" className="w-6 h-6" />
-          <span className="text-[10px] nav-lato font-medium">Shop</span>
+          <Icon icon="streamline-plump:store-2" className="w-5.5 h-5.5" />
+          <span className="text-[11px] nav-lato font-semibold">Shop</span>
         </button>
         <button onClick={() => navigate("/wishlist")} className="flex flex-col items-center gap-0.5 text-gray-600 cursor-pointer relative">
-          <Icon icon="line-md:heart" className="w-6 h-6" />
-          <span className="absolute -top-0.5 right-3 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#003465] text-[9px] font-bold text-white">
+          <Icon icon="line-md:heart" className="w-6.5 h-6.5" />
+          <span className="absolute -top-0.5 right-0 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#92d5ef] text-[9px] font-bold text-[#242424]">
             {wishlist.length}
           </span>
-          <span className="text-[10px] nav-lato font-medium">Wishlist</span>
+          <span className="text-[11px] nav-lato font-semibold">Wishlist</span>
         </button>
         <button onClick={() => setLoginOpen(true)} className="flex flex-col items-center gap-0.5 text-gray-600 cursor-pointer">
-          <Icon icon="mdi:account-outline" className="w-6 h-6" />
-          <span className="text-[10px] nav-lato font-medium">My account</span>
+          <Icon icon="lucide:user-round" className="w-6 h-6" />
+          <span className="text-[11px] nav-lato font-semibold">My Account</span>
         </button>
         <button onClick={() => setCartOpen(true)} className="flex flex-col items-center gap-0.5 text-gray-600 cursor-pointer relative">
           <Icon icon="la:shopping-bag" className="w-6 h-6" />
-          <span className="absolute -top-0.5 right-3 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#003465] text-[9px] font-bold text-white">
+          <span className="absolute -top-0.5 -right-1.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#92d5ef] text-[9px] font-bold text-[#242424]">
             {totalItems}
           </span>
-          <span className="text-[10px] nav-lato font-medium">Cart</span>
+          <span className="text-[11px] nav-lato font-semibold">Cart</span>
         </button>
       </div>
 
