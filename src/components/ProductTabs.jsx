@@ -33,7 +33,7 @@ export default function ProductTabs({ product }) {
   return (
     <div className="max-w-375 mx-auto px-4 lg:px-6">
       {/* Tab Headers (Desktop) */}
-      <div className="hidden lg:flex items-center justify-center gap-7 pt-4">
+      <div className="hidden lg:flex items-center justify-center gap-7 ">
         {tabs.map((tab) => (
           <button
             key={tab.id}

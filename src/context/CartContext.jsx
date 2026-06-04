@@ -35,9 +35,13 @@ export function CartProvider({ children }) {
 
   const totalItems = cartItems.reduce((sum, i) => sum + i.qty, 0);
   const subtotal = cartItems.reduce((sum, i) => sum + i.product.price * i.qty, 0);
+  const updateQuantity = (key, newQty) => {
+    if (newQty < 1) return;
+    setCartItems((prev) => prev.map((i) => i.key === key ? { ...i, qty: newQty } : i));
+  };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, totalItems, subtotal, cartOpen, setCartOpen, wishlist, toggleWishlist, isWishlisted }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, totalItems, subtotal, cartOpen, setCartOpen, wishlist, toggleWishlist, isWishlisted }}>
       {children}
     </CartContext.Provider>
   );

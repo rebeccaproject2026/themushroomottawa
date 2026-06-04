@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 export default function CartDrawer({ isOpen, onClose }) {
   const { cartItems, removeFromCart, subtotal } = useCart();
@@ -126,9 +127,9 @@ export default function CartDrawer({ isOpen, onClose }) {
 
             {/* Buttons */}
             <div className="flex flex-col gap-3 px-4 pb-4"> 
-            <button className="w-full text-gray-700 text-[13px] nav-lato font-semibold uppercase bg-[#f7f7f7] transition cursor-pointer py-2.5 rounded-lg">
+            <Link to="/cart" onClick={onClose} className="w-full text-center text-gray-700 text-[13px] nav-lato font-semibold uppercase bg-[#f7f7f7] transition cursor-pointer py-2.5 rounded-lg">
               View Cart
-            </button>
+            </Link>
             <button className="w-full bg-[#003465] text-white text-[13px] nav-lato font-semibold uppercase py-3 hover:bg-[#004a8f] transition cursor-pointer">
               Checkout
             </button>

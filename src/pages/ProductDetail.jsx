@@ -25,7 +25,8 @@ export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = mushroomProducts.find((p) => p.id === parseInt(id));
-  const { addToCart } = useCart();
+  const { addToCart, subtotal, toggleWishlist, isWishlisted } = useCart();
+  const wishlisted = isWishlisted(product.id);
 
   const [quantity, setQuantity] = useState("");
   const [qty, setQty] = useState(1);
@@ -44,7 +45,7 @@ export default function ProductDetail() {
       ? [product.image, product.hoverImage]
       : [product.image];
 
-  const freeShippingRemaining = Math.max(150 - product.price, 0);
+  const freeShippingRemaining = Math.max(150 - (subtotal || 0), 0);
   const categoryProducts = mushroomProducts.filter(
     (p) => p.category === product.category,
   );
@@ -269,12 +270,24 @@ export default function ProductDetail() {
               </p>
 
               {/* Free shipping notice */}
-              <div className="border-dashed border-2 border-[#777777]/20 px-4 py-5 text-sm text-[#777777] nav-lato">
-                Add{" "}
-                <span className="font-semibold text-[#003465]">
-                  ${freeShippingRemaining.toFixed(2)}
-                </span>{" "}
-                to cart and get free shipping!
+              <div className="border-dashed border-2 border-[#777777]/20 px-4 py-5 text-sm text-[#777777] nav-lato flex flex-col gap-3">
+                <div>
+                  Add{" "}
+                  <span className="font-semibold text-[#003465]">
+                    ${freeShippingRemaining.toFixed(2)}
+                  </span>{" "}
+                  to cart and get free shipping!
+                </div>
+                {subtotal > 0 && (
+                  <div className="w-full h-2.5 bg-gray-200 overflow-hidden">
+                    <div
+                      className="h-full bg-[#003465] transition-all duration-500 progress-striped"
+                      style={{ 
+                        width: `${Math.min((subtotal / 150) * 100, 100)}%`,
+                      }}
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Quantity select */}
@@ -282,23 +295,54 @@ export default function ProductDetail() {
                 <span className="text-sm font-semibold nav-lato text-[#242424]">
                   Quantity:
                 </span>
-                <div className="relative w-full lg:flex-1 max-w-80 lg:max-w-64">
-                  <select
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    className="w-full border-2 border-[#777777]/20 px-3 py-2.5 text-sm text-gray-500 focus:outline-none cursor-pointer bg-white appearance-none"
-                  >
-                    <option value="">Choose an option</option>
-                    <option value="7g">7g</option>
-                    <option value="14g">14g</option>
-                    <option value="28g">28g</option>
-                  </select>
-                  <Icon
-                    icon="mdi:chevron-down"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
-                  />
+                <div className="flex items-center gap-4 w-full">
+                  <div className="relative w-full lg:flex-1 max-w-80 lg:max-w-64">
+                    <select
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
+                      className="w-full border-2 border-[#777777]/20 px-3 py-2.5 text-sm text-gray-500 focus:outline-none cursor-pointer bg-white appearance-none"
+                    >
+                      <option value="">Choose an option</option>
+                      {product.category === "Magic Mushrooms" ? (
+                        <>
+                          <option value="14g">14g</option>
+                          <option value="28g">28g</option>
+                          <option value="7g">7g</option>
+                        </>
+                      ) : product.category === "Microdosing" ? (
+                        <>
+                          <option value="100 MG / 30 Capsules">100 MG / 30 Capsules</option>
+                          <option value="150 MG / 30 Capsules">150 MG / 30 Capsules</option>
+                          <option value="200 MG / 30 Capsules">200 MG / 30 Capsules</option>
+                          <option value="500 MG / 15 Capsules">500 MG / 15 Capsules</option>
+                        </>
+                      ) : (
+                        <>
+                          <option value="1 Pack">1 Pack</option>
+                          <option value="2 Packs">2 Packs</option>
+                          <option value="3 Packs">3 Packs</option>
+                        </>
+                      )}
+                    </select>
+                    <Icon
+                      icon="mdi:chevron-down"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                    />
+                  </div>
+                  {quantity && (
+                    <button onClick={() => setQuantity("")} className="text-sm text-[#777777] hover:text-[#003465] transition flex items-center gap-1 nav-lato cursor-pointer shrink-0">
+                      <X className="w-3.5 h-3.5" /> Clear
+                    </button>
+                  )}
                 </div>
               </div>
+
+              {/* Variation Price */}
+              {quantity && (
+                <div className="text-lg nav-poppins font-semibold text-[#003465]">
+                  ${product.price.toFixed(2)}
+                </div>
+              )}
 
               {/* Qty + Add to Cart */}
               <div className="flex items-center gap-3 nav-lato">
@@ -328,9 +372,23 @@ export default function ProductDetail() {
               </div>
 
               {/* Add to wishlist */}
-              <button className="flex items-center gap-1.5 text-[15px] text-[333333] font-medium hover:text-gray-400 duration-600 transition cursor-pointer w-fit">
-                <Heart className="w-4 h-4" />
-                Add to wishlist
+              <button 
+                onClick={() => toggleWishlist(product)}
+                className={`flex items-center gap-1.5 text-[15px] font-medium transition duration-300 cursor-pointer w-fit ${
+                  wishlisted ? "text-[#003465] hover:text-[#004a8f]" : "text-[#333333] hover:text-gray-400"
+                }`}
+              >
+                {wishlisted ? (
+                  <div className="relative flex items-center justify-center">
+                    <Heart className="w-4 h-4 text-[#003465] stroke-[2.5]" />
+                    <div className="absolute -top-1.5 -right-1.5 bg-[#003465] rounded-full p-0.5 border-[1.5px] border-white flex items-center justify-center">
+                      <Icon icon="lucide:check" className="w-2 h-2 text-white stroke-4" />
+                    </div>
+                  </div>
+                ) : (
+                  <Heart className="w-4 h-4 text-[#333333] stroke-2" />
+                )}
+                {wishlisted ? "Remove from wishlist" : "Add to wishlist"}
               </button>
 
               <hr className="border-gray-200 py-0.5" />

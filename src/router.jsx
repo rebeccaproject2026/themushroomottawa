@@ -10,12 +10,17 @@ import News from './pages/News'
 import MagicMushrooms from './pages/MagicMushrooms'
 import Microdosing from './pages/Microdosing'
 import MushroomEdibles from './pages/MushroomEdibles'
+import Cart from './pages/Cart'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
     errorElement: <NotFound />
+  },
+  {
+    path: '/cart',
+    element: <Cart />
   },
   {
     path: '/product/:id',
