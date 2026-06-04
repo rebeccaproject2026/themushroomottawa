@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -22,6 +22,10 @@ export default function Microdosing() {
   const [mobileSortOpen, setMobileSortOpen] = useState(false);
   const [sortOption, setSortOption] = useState("Default sorting");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const loadingRef = useRef(false);
+  const displayedCountRef = useRef(displayedCount);
+  const totalProductsRef = useRef(0);
 
   const searchResults = searchQuery.trim().length > 0 
     ? mushroomProducts.filter(p => 
@@ -48,17 +52,33 @@ export default function Microdosing() {
   }, [itemsPerPage]);
 
   useEffect(() => {
+    displayedCountRef.current = displayedCount;
+  }, [displayedCount]);
+
+  useEffect(() => {
+    let timeoutId;
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 200
+        document.documentElement.offsetHeight - 800
       ) {
-        setDisplayedCount((prev) => prev + itemsPerPage);
+        if (displayedCountRef.current < totalProductsRef.current && !loadingRef.current) {
+          loadingRef.current = true;
+          setIsLoadingMore(true);
+          timeoutId = setTimeout(() => {
+            setDisplayedCount((prev) => prev + itemsPerPage);
+            setIsLoadingMore(false);
+            loadingRef.current = false;
+          }, 800);
+        }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeoutId);
+    };
   }, [itemsPerPage]);
 
   // Filter products for Microdosing category
@@ -87,6 +107,7 @@ export default function Microdosing() {
   const topRated = mushroomProducts.filter(p => p.category === "Magic Mushrooms").slice(1, 3);
 
   // Apply items per page limit
+  totalProductsRef.current = microdosingProducts.length;
   const displayedProducts = microdosingProducts.slice(0, displayedCount);
 
   return (
@@ -397,6 +418,13 @@ export default function Microdosing() {
                     <RelatedProductCard product={product} />
                   </div>
                 ))}
+              </div>
+            )}
+            
+            {/* Loader */}
+            {isLoadingMore && (
+              <div className="flex justify-center py-6 w-full">
+                <Icon icon="eos-icons:loading" className="w-10 h-10 text-[#003465]" />
               </div>
             )}
           </div>

@@ -11,12 +11,17 @@ import MagicMushrooms from './pages/MagicMushrooms'
 import Microdosing from './pages/Microdosing'
 import MushroomEdibles from './pages/MushroomEdibles'
 import Cart from './pages/Cart'
+import Shop from './pages/Shop'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
     errorElement: <NotFound />
+  },
+  {
+    path: '/shop',
+    element: <Shop />
   },
   {
     path: '/cart',

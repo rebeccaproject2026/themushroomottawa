@@ -166,7 +166,7 @@ export default function Header() {
 
       {/* ── MOBILE BOTTOM TAB BAR ── */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 flex items-center justify-around py-1 lg:hidden">
-        <button onClick={() => navigate("/")} className="flex flex-col items-center gap-0.5 text-gray-600 cursor-pointer">
+        <button onClick={() => navigate("/shop")} className="flex flex-col items-center gap-0.5 text-gray-600 cursor-pointer">
           <Icon icon="streamline-plump:store-2" className="w-5.5 h-5.5" />
           <span className="text-[11px] nav-lato font-semibold">Shop</span>
         </button>
