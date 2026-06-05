@@ -6,7 +6,7 @@ import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
 
 export default function Shop() {
-  const DEFAULT_MIN = 40;
+  const DEFAULT_MIN = 10;
   const DEFAULT_MAX = 270;
   const [minPrice, setMinPrice] = useState(DEFAULT_MIN);
   const [maxPrice, setMaxPrice] = useState(DEFAULT_MAX);
@@ -17,8 +17,8 @@ export default function Shop() {
   const [onSale, setOnSale] = useState(false);
   const [inStock, setInStock] = useState(false);
   const [gridCols, setGridCols] = useState(4);
-  const [itemsPerPage, setItemsPerPage] = useState(18);
-  const [displayedCount, setDisplayedCount] = useState(18);
+  const [itemsPerPage, setItemsPerPage] = useState(9);
+  const [displayedCount, setDisplayedCount] = useState(9);
   const [mobileSortOpen, setMobileSortOpen] = useState(false);
   const [sortOption, setSortOption] = useState("Default sorting");
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,12 +26,13 @@ export default function Shop() {
   const loadingRef = useRef(false);
   const displayedCountRef = useRef(displayedCount);
   const totalProductsRef = useRef(0);
+  const loadMoreRef = useRef(null);
 
-  const searchResults = searchQuery.trim().length > 0 
-    ? mushroomProducts.filter(p => 
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        p.category.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+  const searchResults = searchQuery.trim().length > 0
+    ? mushroomProducts.filter(p =>
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.category.toLowerCase().includes(searchQuery.toLowerCase())
+    )
     : [];
 
   const hasAnyFilter = isMinActive || isMaxActive || onSale || inStock;
@@ -56,28 +57,29 @@ export default function Shop() {
   }, [displayedCount]);
 
   useEffect(() => {
-    let timeoutId;
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 800
-      ) {
-        if (displayedCountRef.current < totalProductsRef.current && !loadingRef.current) {
-          loadingRef.current = true;
-          setIsLoadingMore(true);
-          timeoutId = setTimeout(() => {
-            setDisplayedCount((prev) => prev + itemsPerPage);
-            setIsLoadingMore(false);
-            loadingRef.current = false;
-          }, 800);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (displayedCountRef.current < totalProductsRef.current && !loadingRef.current) {
+            loadingRef.current = true;
+            setIsLoadingMore(true);
+            setTimeout(() => {
+              setDisplayedCount((prev) => prev + itemsPerPage);
+              setIsLoadingMore(false);
+              loadingRef.current = false;
+            }, 400);
+          }
         }
-      }
-    };
+      },
+      { rootMargin: "100px", threshold: 0.1 }
+    );
 
-    window.addEventListener("scroll", handleScroll);
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeoutId);
+      observer.disconnect();
     };
   }, [itemsPerPage]);
 
@@ -91,7 +93,10 @@ export default function Shop() {
   });
 
   // Apply sorting
-  if (sortOption === "Sort by price: low to high") {
+  if (sortOption === "Default sorting") {
+    // Pseudo-random but consistent sort based on ID to mix categories
+    shopProducts.sort((a, b) => ((a.id * 137) % 100) - ((b.id * 137) % 100));
+  } else if (sortOption === "Sort by price: low to high") {
     shopProducts.sort((a, b) => a.price - b.price);
   } else if (sortOption === "Sort by price: high to low") {
     shopProducts.sort((a, b) => b.price - a.price);
@@ -128,7 +133,7 @@ export default function Shop() {
                   {/* Selected Range */}
                   <div
                     className="absolute top-1/2 -translate-y-1/2 h-0.5 bg-[#003465]"
-                    style={{ left: `${((minPrice - 40) / 230) * 100}%`, right: `${100 - ((maxPrice - 40) / 230) * 100}%` }}
+                    style={{ left: `${((minPrice - 10) / 260) * 100}%`, right: `${100 - ((maxPrice - 10) / 260) * 100}%` }}
                   ></div>
 
                   {/* Min Input */}
@@ -355,15 +360,15 @@ export default function Shop() {
                   <span className="text-[15px] font-medium">No products were found matching your selection.</span>
                 </div>
                 <div className="relative w-full max-w-full">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search for products" 
-                    className="w-full border border-[#e0e0e0] p-3.5 pr-10 outline-none text-[15px] nav-lato text-gray-700 focus:border-gray-400 transition-colors bg-white shadow-sm" 
+                    placeholder="Search for products"
+                    className="w-full border border-[#e0e0e0] p-3.5 pr-10 outline-none text-[15px] nav-lato text-gray-700 focus:border-gray-400 transition-colors bg-white shadow-sm"
                   />
                   {searchQuery ? (
-                    <button 
+                    <button
                       onClick={() => setSearchQuery("")}
                       className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
                     >
@@ -374,7 +379,7 @@ export default function Shop() {
                       <Icon icon="tdesign:search" className="w-5 h-5" />
                     </button>
                   )}
-                  
+
                   {searchQuery.trim().length > 0 && (
                     <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 shadow-xl rounded-lg z-50 max-h-80 overflow-y-auto py-2">
                       {searchResults.length > 0 ? searchResults.map(p => (
@@ -408,11 +413,15 @@ export default function Shop() {
                 ))}
               </div>
             )}
-            
-            {/* Loader */}
-            {isLoadingMore && (
-              <div className="flex justify-center py-6 w-full">
-                <Icon icon="eos-icons:loading" className="w-10 h-10 text-[#003465]" />
+
+            {/* Infinite Scroll Sentinel & Loader */}
+            {displayedProducts.length > 0 && displayedCount < shopProducts.length && (
+              <div ref={loadMoreRef} className="flex justify-center py-6 w-full">
+                {isLoadingMore ? (
+                  <Icon icon="eos-icons:loading" className="w-10 h-10 text-[#003465]" />
+                ) : (
+                  <div className="h-10 w-full" />
+                )}
               </div>
             )}
           </div>

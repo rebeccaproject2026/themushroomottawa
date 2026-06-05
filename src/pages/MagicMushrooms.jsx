@@ -17,8 +17,8 @@ export default function MagicMushrooms() {
   const [onSale, setOnSale] = useState(false);
   const [inStock, setInStock] = useState(false);
   const [gridCols, setGridCols] = useState(3);
-  const [itemsPerPage, setItemsPerPage] = useState(18);
-  const [displayedCount, setDisplayedCount] = useState(18);
+  const [itemsPerPage, setItemsPerPage] = useState(9);
+  const [displayedCount, setDisplayedCount] = useState(9);
   const [mobileSortOpen, setMobileSortOpen] = useState(false);
   const [sortOption, setSortOption] = useState("Default sorting");
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,6 +26,7 @@ export default function MagicMushrooms() {
   const loadingRef = useRef(false);
   const displayedCountRef = useRef(displayedCount);
   const totalProductsRef = useRef(0);
+  const loadMoreRef = useRef(null);
 
   const searchResults = searchQuery.trim().length > 0 
     ? mushroomProducts.filter(p => 
@@ -56,28 +57,29 @@ export default function MagicMushrooms() {
   }, [displayedCount]);
 
   useEffect(() => {
-    let timeoutId;
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 800
-      ) {
-        if (displayedCountRef.current < totalProductsRef.current && !loadingRef.current) {
-          loadingRef.current = true;
-          setIsLoadingMore(true);
-          timeoutId = setTimeout(() => {
-            setDisplayedCount((prev) => prev + itemsPerPage);
-            setIsLoadingMore(false);
-            loadingRef.current = false;
-          }, 800);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (displayedCountRef.current < totalProductsRef.current && !loadingRef.current) {
+            loadingRef.current = true;
+            setIsLoadingMore(true);
+            setTimeout(() => {
+              setDisplayedCount((prev) => prev + itemsPerPage);
+              setIsLoadingMore(false);
+              loadingRef.current = false;
+            }, 400);
+          }
         }
-      }
-    };
+      },
+      { rootMargin: "100px", threshold: 0.1 }
+    );
 
-    window.addEventListener("scroll", handleScroll);
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeoutId);
+      observer.disconnect();
     };
   }, [itemsPerPage]);
 
@@ -421,10 +423,14 @@ export default function MagicMushrooms() {
               </div>
             )}
             
-            {/* Loader */}
-            {isLoadingMore && (
-              <div className="flex justify-center py-6 w-full">
-                <Icon icon="eos-icons:loading" className="w-10 h-10 text-[#003465]" />
+            {/* Infinite Scroll Sentinel & Loader */}
+            {displayedProducts.length > 0 && displayedCount < magicMushrooms.length && (
+              <div ref={loadMoreRef} className="flex justify-center py-6 w-full">
+                {isLoadingMore ? (
+                  <Icon icon="eos-icons:loading" className="w-10 h-10 text-[#003465]" />
+                ) : (
+                  <div className="h-10 w-full" />
+                )}
               </div>
             )}
           </div>
