@@ -3,16 +3,11 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import NewsCard from '../components/NewsCard';
 
-import newsCard1 from '../assets/news_card1.webp';
-import newsCard2 from '../assets/news_card2.webp';
-import newsCard3 from '../assets/news_card3.webp';
-import newsCard4 from '../assets/news_card4.jpg';
-import newsCard5 from '../assets/news_card5.webp';
-import newsCard6 from '../assets/news_card6.jpg';
-import newsCard7 from '../assets/news_card7.jpeg';
-import newsCard8 from '../assets/news_card8.jpg';
+import { useNavigate } from 'react-router-dom';
+import { newsArticles } from '../data/newsData';
 
 export default function News() {
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -34,101 +29,20 @@ export default function News() {
         <section className="bg-white px-4 md:px-6.25 py-8">
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <NewsCard
-                day="06"
-                month="May"
-                category="Magic Mushroom"
-                title="Why Ottawa and Gatineau Are Becoming Canada’s Most Relaxed and Balanced Cities for Wellness, Lifestyle, and Magic Mushroom Culture"
-                author="TMR_Admin"
-                comments="0"
-                excerpt="Discover why Ottawa and Gatineau residents are embracing wellness, balance, microdosing, and fast magic mushroom delivery more than other Canadian cities."
-                image={newsCard1}
-                onReadMore={() => null}
-              />
-
-              <NewsCard
-                day="20"
-                month="Apr"
-                category="Magic Mushroom"
-                title="420 History, Meaning, and Ottawa Culture Explained"
-                author="TMR_Admin"
-                comments="0"
-                excerpt="What is 4/20, how it started, and why Ottawa celebrates it with deeper meaning and culture."
-                image={newsCard2}
-                onReadMore={() => null}
-              />
-
-              <NewsCard
-                day="11"
-                month="Mar"
-                category="Magic Mushroom"
-                title="Ottawa News, The Mush Room Leading Fast Magic Mushroom Delivery Across Ottawa Communities"
-                author="TMR_Admin"
-                comments="1"
-                excerpt="A trusted Ottawa community brand for magic mushrooms with fast delivery and a reputation for quality and care."
-                image={newsCard3}
-                onReadMore={() => null}
-              />
-
-              <NewsCard
-                day="01"
-                month="Apr"
-                category="Edibles"
-                title="A Taste of Magic: Ottawa’s Growing Mushroom Edibles Scene"
-                author="TMR_Admin"
-                comments="2"
-                excerpt="Explore the latest edible creations and discover how mushroom-based treats are shaping Ottawa’s wellness and lifestyle culture."
-                image={newsCard4}
-                onReadMore={() => null}
-              />
-
-              <NewsCard
-                day="01"
-                month="Apr"
-                category="Community"
-                title="Local Events Spotlight: Mushroom Wellness Meetups in Ottawa"
-                author="TMR_Admin"
-                comments="0"
-                excerpt="Stay connected with the local community through wellness meetups, education sessions, and mushroom culture events in Ottawa."
-                image={newsCard5}
-                onReadMore={() => null}
-              />
-
-              <NewsCard
-                day="01"
-                month="Apr"
-                category="Community"
-                title="Meet the Team Behind Ottawa’s Favorite Fungi Delivery Service"
-                author="TMR_Admin"
-                comments="3"
-                excerpt="Get to know the growers, curators, and delivery team working behind the scenes to keep your mushroom experience exceptional."
-                image={newsCard6}
-                onReadMore={() => null}
-              />
-
-              <NewsCard
-                day="31"
-                month="Mar"
-                category="Magic Mushroom"
-                title="The Profound Connection between Magic Mushrooms, Nature, and the World"
-                author="TMR_Admin"
-                comments="0"
-                excerpt="Introduction: In recent years, the study of magic mushrooms and their potential therapeutic benefits has gained significant attention."
-                image={newsCard7}
-                onReadMore={() => null}
-              />
-
-              <NewsCard
-                day="31"
-                month="Mar"
-                category="Magic Mushroom"
-                title="Dosing Guide"
-                author="TMR_Admin"
-                comments="0"
-                excerpt="A concise dosing guide to help readers understand safe and effective approaches for microdosing and therapeutic sessions."
-                image={newsCard8}
-                onReadMore={() => null}
-              />
+              {newsArticles.map((article) => (
+                <NewsCard
+                  key={article.id}
+                  day={article.day}
+                  month={article.month}
+                  category={article.category}
+                  title={article.title}
+                  author={article.author}
+                  comments={article.comments}
+                  excerpt={article.excerpt}
+                  image={article.image}
+                  onReadMore={() => navigate(`/news/${article.id}`)}
+                />
+              ))}
             </div>
          
         </section>

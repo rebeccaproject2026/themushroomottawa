@@ -17,7 +17,10 @@ export default function NewsCard({
 
   return (
     <article className="group overflow-hidden border border-[#EAEDF2] bg-white transition-shadow duration-500 hover:shadow-xl">
-      <div className="relative overflow-hidden h-72 sm:h-80">
+      <div 
+        className="relative overflow-hidden h-72 sm:h-80 cursor-pointer"
+        onClick={onReadMore}
+      >
         <img
           src={image}
           alt={title}
@@ -35,7 +38,10 @@ export default function NewsCard({
         <span className="absolute left-1/2 -top-3 transform -translate-x-1/2 flex items-center w-fit bg-[#003465] px-3 py-1 text-[11px] font-semibold uppercase text-white nav-lato">
           {category}
         </span>
-        <h2 className=" text-[19px] sm:text-[22px] font-medium text-[#333333]  nav-poppins leading-[1.4] text-center">
+        <h2 
+          className="text-[19px] sm:text-[22px] font-medium text-[#333333] nav-poppins leading-[1.4] text-center cursor-pointer hover:text-[#003465] transition-colors"
+          onClick={onReadMore}
+        >
           {title}
         </h2>
 

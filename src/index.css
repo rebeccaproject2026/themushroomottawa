@@ -106,3 +106,57 @@ body {
   );
   background-size: 1rem 1rem;
 }
+
+/* Fallback typography styles in case Tailwind Typography plugin is not enabled */
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose ul {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  list-style: disc outside;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+/* Ensure markers are visible and styled */
+.prose li::marker {
+  color: #003465;
+  font-size: 1em;
+}
+
+.prose h3{
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose hr {
+  border-color: #eaeaea;
+  margin: 1rem 0;
+}
+
+.link {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+.txt1 {
+  font-size: 17px;
+  color: #777777;
+}
+
+.ptag {
+  font-size: 13px;
+}

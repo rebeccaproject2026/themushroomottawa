@@ -7,6 +7,7 @@ import Contact from './pages/Contact'
 import About from './pages/About'
 import Faqs from './pages/Faqs'
 import News from './pages/News'
+import NewsDetail from './pages/NewsDetail'
 import MagicMushrooms from './pages/MagicMushrooms'
 import Microdosing from './pages/Microdosing'
 import MushroomEdibles from './pages/MushroomEdibles'
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
   {
     path: '/news',
     element: <News />
+  },
+  {
+    path: '/news/:id',
+    element: <NewsDetail />
   },
   {
     path: '/magic-mushrooms',
