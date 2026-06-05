@@ -3,6 +3,14 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import NewsCard from '../components/NewsCard';
 
+import newsCard1 from '../assets/news_card1.webp';
+import newsCard2 from '../assets/news_card2.webp';
+import newsCard3 from '../assets/news_card3.webp';
+import newsCard4 from '../assets/news_card4.jpg';
+import newsCard5 from '../assets/news_card5.webp';
+import newsCard6 from '../assets/news_card6.jpg';
+import newsCard7 from '../assets/news_card7.jpeg';
+import newsCard8 from '../assets/news_card8.jpg';
 
 export default function News() {
 
@@ -34,7 +42,7 @@ export default function News() {
                 author="TMR_Admin"
                 comments="0"
                 excerpt="Discover why Ottawa and Gatineau residents are embracing wellness, balance, microdosing, and fast magic mushroom delivery more than other Canadian cities."
-                image="./src/assets/news_card1.webp"
+                image={newsCard1}
                 onReadMore={() => null}
               />
 
@@ -46,7 +54,7 @@ export default function News() {
                 author="TMR_Admin"
                 comments="0"
                 excerpt="What is 4/20, how it started, and why Ottawa celebrates it with deeper meaning and culture."
-                image="./src/assets/news_card2.webp"
+                image={newsCard2}
                 onReadMore={() => null}
               />
 
@@ -58,7 +66,7 @@ export default function News() {
                 author="TMR_Admin"
                 comments="1"
                 excerpt="A trusted Ottawa community brand for magic mushrooms with fast delivery and a reputation for quality and care."
-                image="./src/assets/news_card3.webp"
+                image={newsCard3}
                 onReadMore={() => null}
               />
 
@@ -70,7 +78,7 @@ export default function News() {
                 author="TMR_Admin"
                 comments="2"
                 excerpt="Explore the latest edible creations and discover how mushroom-based treats are shaping Ottawa’s wellness and lifestyle culture."
-                image="./src/assets/news_card4.jpg"
+                image={newsCard4}
                 onReadMore={() => null}
               />
 
@@ -82,7 +90,7 @@ export default function News() {
                 author="TMR_Admin"
                 comments="0"
                 excerpt="Stay connected with the local community through wellness meetups, education sessions, and mushroom culture events in Ottawa."
-                image="./src/assets/news_card5.webp"
+                image={newsCard5}
                 onReadMore={() => null}
               />
 
@@ -94,7 +102,7 @@ export default function News() {
                 author="TMR_Admin"
                 comments="3"
                 excerpt="Get to know the growers, curators, and delivery team working behind the scenes to keep your mushroom experience exceptional."
-                image="./src/assets/news_card6.jpg"
+                image={newsCard6}
                 onReadMore={() => null}
               />
 
@@ -106,7 +114,7 @@ export default function News() {
                 author="TMR_Admin"
                 comments="0"
                 excerpt="Introduction: In recent years, the study of magic mushrooms and their potential therapeutic benefits has gained significant attention."
-                image="./src/assets/news_card7.jpeg"
+                image={newsCard7}
                 onReadMore={() => null}
               />
 
@@ -118,7 +126,7 @@ export default function News() {
                 author="TMR_Admin"
                 comments="0"
                 excerpt="A concise dosing guide to help readers understand safe and effective approaches for microdosing and therapeutic sessions."
-                image="./src/assets/news_card8.jpg"
+                image={newsCard8}
                 onReadMore={() => null}
               />
             </div>
