@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
 
@@ -49,6 +50,7 @@ export default function MagicMushrooms() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDisplayedCount(itemsPerPage);
   }, [itemsPerPage]);
 
@@ -109,6 +111,7 @@ export default function MagicMushrooms() {
   const topRated = magicMushrooms.slice(1, 4);
 
   // Apply items per page limit
+  // eslint-disable-next-line react-hooks/refs
   totalProductsRef.current = magicMushrooms.length;
   const displayedProducts = magicMushrooms.slice(0, displayedCount);
 
@@ -438,6 +441,7 @@ export default function MagicMushrooms() {
       </main>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

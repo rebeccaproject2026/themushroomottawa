@@ -13,6 +13,8 @@ import Microdosing from './pages/Microdosing'
 import MushroomEdibles from './pages/MushroomEdibles'
 import Cart from './pages/Cart'
 import Shop from './pages/Shop'
+import Ottawa from './pages/Ottawa'
+import AreaShop from './pages/AreaShop'
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +69,14 @@ export const router = createBrowserRouter([
   {
     path: '/mushroom-edibles',
     element: <MushroomEdibles />
+  },
+  {
+    path: '/ottawa',
+    element: <Ottawa />
+  },
+  {
+    path: '/area/:slug',
+    element: <AreaShop />
   },
   {
     path: '*',

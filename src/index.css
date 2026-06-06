@@ -110,6 +110,8 @@ body {
 /* Fallback typography styles in case Tailwind Typography plugin is not enabled */
 .prose p {
   margin-bottom: 1rem;
+  color: #777777;
+  font-size: 17px;
 }
 
 .prose ul {
@@ -136,10 +138,16 @@ body {
 
 .prose h1,
 .prose h2,
-.prose h3,
-.prose h4 {
+.prose h3 {
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
+}
+
+.prose h4 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .prose hr {

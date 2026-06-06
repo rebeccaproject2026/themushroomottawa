@@ -32,7 +32,7 @@ export default function RelatedProductCard({ product }) {
 
   return (
     <div
-      className="relative bg-white border border-gray-100 cursor-pointer transition-all duration-300 shadow hover:shadow-lg overflow-hidden"
+      className="relative bg-white border border-gray-100 cursor-pointer transition-all duration-300 shadow hover:shadow-lg overflow-hidden flex flex-col h-full"
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => { setIsCardHovered(false); setIsImageHovered(false); }}
       onClick={() => navigate(`/product/${product.id}`)}
@@ -157,7 +157,7 @@ export default function RelatedProductCard({ product }) {
       </div>
 
       {/* Info */}
-      <div className="p-4 flex flex-col gap-1">
+      <div className="p-4 flex flex-col gap-1 flex-1">
         <h3 className="text-sm font-medium text-[#333333] nav-poppins">{product.name}</h3>
         <p className="text-sm text-[#A5A5A5] nav-lato">{product.category}</p>
         <p className="text-sm font-semibold text-[#003465] mt-1 nav-lato">

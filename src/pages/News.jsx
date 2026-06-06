@@ -41,6 +41,7 @@ export default function News() {
                   excerpt={article.excerpt}
                   image={article.image}
                   onReadMore={() => navigate(`/news/${article.id}`)}
+                  onCommentClick={() => navigate(`/news/${article.id}#comments`)}
                 />
               ))}
             </div>

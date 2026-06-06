@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import Header from '../components/Header';
@@ -11,6 +11,7 @@ export default function NewsDetail() {
   const { id } = useParams();
   const currentId = parseInt(id);
   const navigate = useNavigate();
+  const location = useLocation();
   const [article, setArticle] = useState(null);
   const [prevArticle, setPrevArticle] = useState(null);
   const [nextArticle, setNextArticle] = useState(null);
@@ -26,6 +27,16 @@ export default function NewsDetail() {
       navigate('/news');
     }
   }, [currentId, navigate]);
+
+  // Scroll to anchor after article loads
+  useEffect(() => {
+    if (article && location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
+    }
+  }, [article, location.hash]);
 
   if (!article) return null;
 
@@ -75,13 +86,15 @@ export default function NewsDetail() {
 
           {/* Bottom Actions */}
           <div className="mt-4 flex flex-col items-start ">
-            <button
-              onClick={() => navigate('/shop')}
-              className="bg-[#003465] text-white px-12 py-2.5 cursor-pointer rounded-md font-semibold text-lg hover:bg-[#002447] transition-colors flex items-center gap-2 mb-8"
-            >
-              Explore Products
-              <Icon icon="mdi:arrow-right" className="w-5 h-5" />
-            </button>
+            {article.showShopButton && (
+              <button
+                onClick={() => navigate('/shop')}
+                className="bg-[#003465] text-white px-12 py-2.5 cursor-pointer rounded-md font-semibold text-lg hover:bg-[#002447] transition-colors flex items-center gap-2 mb-8"
+              >
+                Explore Products
+                <Icon icon="mdi:arrow-right" className="w-5 h-5" />
+              </button>
+            )}
 
             <div className="flex gap-3">
               <a href="#" className="w-10 h-10 rounded-full bg-[#3b5998] text-white flex items-center justify-center hover:opacity-80 transition-opacity">
@@ -147,7 +160,7 @@ export default function NewsDetail() {
           </div>
 
           {/* Comments Section */}
-          <div className="mt-12 mb-8">
+          <div id="comments" className="mt-12 mb-8">
             <h3 className="text-[22px] font-semibold text-[#242424] nav-poppins mb-2">Leave a Reply</h3>
             <p className="text-sm text-[#777777] nav-lato mb-6">
               Your email address will not be published. Required fields are marked *

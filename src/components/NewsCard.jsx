@@ -12,6 +12,7 @@ export default function NewsCard({
   comments,
   excerpt,
   onReadMore,
+  onCommentClick,
 }) {
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -78,7 +79,7 @@ export default function NewsCard({
               </div>
             </div>
             <div className="relative flex items-center ">
-              <Icon icon="bytesize:message" className="w-4.5 h-4.5" />
+              <Icon icon="bytesize:message" className="w-4.5 h-4.5 cursor-pointer hover:text-[#003465] transition-colors" onClick={onCommentClick} />
               <span className="absolute -top-1.5 -right-2 text-white bg-[#003465] rounded-full w-3.5 h-3.5 p-1 flex items-center justify-center text-[10px]">
                 {comments}
               </span>

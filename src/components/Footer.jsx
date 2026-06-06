@@ -1,4 +1,14 @@
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
+
+// Convert area name to URL slug: "ByWard Market" → "byward-market"
+function toSlug(area) {
+  return area
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
 
 const ottawaAreas = [
   "Ottawa", "Airport Uplands", "Barrhaven", "Beacon Hill", "Billings Bridge", "Blackburn Hamlet", "Blossom Park", "Bridlewood",
@@ -33,15 +43,18 @@ function AreaGrid({ areas }) {
     <div className="space-y-3 lg:space-y-4">
       {grid.map((row, ri) => (
         <div key={ri} className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-x-2 lg:gap-x-4 gap-y-2 lg:gap-y-1">
-          {row.map((area) => (
-            <a
-              key={area}
-              href="#"
-              className={`text-sm lg:text-base nav-lato transition-colors duration-200 text-white hover:text-yellow-300 leading-tight lg:leading-4`}
-            >
-              {area}
-            </a>
-          ))}
+          {row.map((area) => {
+            const href = area === "Ottawa" ? "/ottawa" : `/area/${toSlug(area)}`;
+            return (
+              <Link
+                key={area}
+                to={href}
+                className="text-sm lg:text-base nav-lato transition-colors duration-200 text-white hover:text-yellow-300 leading-tight lg:leading-4"
+              >
+                {area}
+              </Link>
+            );
+          })}
         </div>
       ))}
     </div>

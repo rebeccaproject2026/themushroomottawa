@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
 
@@ -439,6 +440,7 @@ export default function MushroomEdibles() {
       </main>
 
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
