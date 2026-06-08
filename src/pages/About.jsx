@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import aboutImage from "../assets/aboutimg.webp";
 import FaqSection from "../components/FaqSection";
 import CtaBanner from "../components/CtaBanner";
+import SEO from "../components/SEO";
 
 export default function About() {
   const featureCards = [
@@ -48,29 +49,42 @@ export default function About() {
 
   const aboutFaqs = [
     {
-      q: "What makes The Mushroom Ottawa different?",
-      a: "We focus on locally grown, premium mushrooms that are harvested fresh and delivered with minimal transit time for maximum flavor and potency.",
+      q: "Where do you deliver?",
+      a: "We currently offer local delivery throughout the greater Ottawa area and the National Capital Region. We also ship our grow kits and dried products Canada-wide.",
     },
     {
-      q: "How do you maintain mushroom quality?",
-      a: "Our crops are grown in a controlled environment, lab-tested for purity, and packed carefully so you receive consistent, high-quality mushrooms every time.",
+      q: "Are your mushrooms organic?",
+      a: "While we are not yet certified organic, we use 100% natural, sustainable practices and organic substrates without any synthetic chemicals or pesticides.",
     },
     {
-      q: "Is your packaging eco-friendly?",
-      a: "Yes. We use recyclable and compostable packaging whenever possible to reduce waste and support sustainable mushroom farming.",
+      q: "How long do fresh mushrooms last?",
+      a: "Stored properly in a paper bag in the refrigerator, our fresh gourmet mushrooms typically last between 7 to 10 days. Always avoid storing them in plastic, as they need to breathe.",
     },
     {
-      q: "Can I order from outside Ottawa?",
-      a: "We currently prioritize local delivery across Ottawa but we also offer shipping options for select products outside the area. Check the product pages for availability.",
+      q: "Do you offer supply local restaurants or offer wholesale?",
+      a: "Yes! We love partnering with local Ottawa chefs and restaurants. If you are looking for reliable, bulk gourmet mushrooms, please reach out via our contact page for wholesale pricing and delivery schedules.",
     },
     {
-      q: "Do you provide recipe or wellness guidance?",
-      a: "Absolutely. We love helping customers with recipe ideas, mushroom pairings, and wellness usage tips to make the most of every order.",
+      q: "Can I pick up my order in person?",
+      a: "Currently, we operate primarily as a delivery service to ensure peak freshness straight to your door. However, we occasionally do pop-ups at local Ottawa farmers' markets—subscribe to our newsletter for updates!",
+    },
+     {
+      q: "Are your grow kits suitable for beginners?",
+      a: "Absolutely. Our grow-at-home kits come fully colonized and include simple, step-by-step instructions. All you need is a spray bottle and a little patience to watch your own mushrooms fruit right on your kitchen counter.",
+    },
+      {
+      q: "What is the best way to cook gourment mushrooms?",
+      a: "For most varieties like Oyster or Lion's Mane, a dry pan sear followed by a generous amount of butter (or oil), garlic, and a pinch of salt yields incredible results. You can also check out our blog for specific recipes!",
     },
   ];
 
   return (
     <>
+      <SEO 
+        title="About Us – The Mushroom Ottawa"
+        description="Learn about The Mushroom Ottawa – our mission, team, and commitment to providing premium magic mushrooms and wellness products across Ottawa."
+        canonical="https://themushroomottawa.ca/about"
+      />
       <Header />
 
       <main className="">
@@ -221,7 +235,7 @@ export default function About() {
                 key={item.title}
                 className="flex md:flex-row flex-col items-center md:items-start gap-4 bg-white border border-[#777777]/30 py-5.5 px-6 rounded-lg shadow hover:shadow-lg transition duration-300"
               >
-                <div className="flex items-center justify-center mt-1 w-6 h-6 bg-[#5c8a5c] rounded-full shrink-0">
+                <div className="flex items-center justify-center mt-3 w-6 h-6 bg-[#5c8a5c] rounded-full shrink-0">
                   <Icon icon="el:ok" className="w-4 h-4 text-white" />
                 </div>
                 <div className="md:text-start text-center">

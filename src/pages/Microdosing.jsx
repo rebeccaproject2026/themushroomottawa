@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
+import SEO from "../components/SEO";
 
 export default function Microdosing() {
   const DEFAULT_MIN = 40;
@@ -114,7 +115,13 @@ export default function Microdosing() {
   const displayedProducts = microdosingProducts.slice(0, displayedCount);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
+    <>
+      <SEO 
+        title="Microdosing Capsules – Psilocybin Microdose Ottawa"
+        description="Explore our microdosing capsule collection. Precision-dosed psilocybin products for focus, creativity, and wellness. Fast delivery across Ottawa."
+        canonical="https://themushroomottawa.ca/microdosing"
+      />
+      <div className="min-h-screen bg-white flex flex-col font-sans">
       <Header />
 
       <main className="w-full max-w-375 mx-auto px-4 py-6">
@@ -440,6 +447,7 @@ export default function Microdosing() {
 
       <Footer />
       <ScrollToTop />
-    </div>
+      </div>
+    </>
   );
 }

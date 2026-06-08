@@ -50,12 +50,13 @@ export default function CartDrawer({ isOpen, onClose }) {
                 className="w-20 h-20 text-gray-300"
               />
               <p className="text-gray-500 text-sm">No products in the cart.</p>
-              <button
+              <Link
+                to="/shop"
                 onClick={onClose}
                 className="bg-[#003465] text-white text-sm font-semibold uppercase px-6 py-3 hover:bg-[#004a8f] transition cursor-pointer"
               >
                 Return to Shop
-              </button>
+              </Link>
             </div>
           ) : (
             <div className="flex flex-col">

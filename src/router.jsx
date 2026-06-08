@@ -15,6 +15,8 @@ import Cart from './pages/Cart'
 import Shop from './pages/Shop'
 import Ottawa from './pages/Ottawa'
 import AreaShop from './pages/AreaShop'
+import ReturnPolicy from './pages/ReturnPolicy'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 export const router = createBrowserRouter([
   {
@@ -77,6 +79,14 @@ export const router = createBrowserRouter([
   {
     path: '/area/:slug',
     element: <AreaShop />
+  },
+  {
+    path: '/return-policy',
+    element: <ReturnPolicy />
+  },
+  {
+    path: '/privacy-policy',
+    element: <PrivacyPolicy />
   },
   {
     path: '*',

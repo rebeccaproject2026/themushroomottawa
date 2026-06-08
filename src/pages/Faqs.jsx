@@ -2,6 +2,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import { useState } from "react";
+import SEO from "../components/SEO";
+
 import { Plus } from "lucide-react";
 import CtaBanner from "../components/CtaBanner";
 
@@ -12,15 +14,15 @@ const orderingFaqs = [
   },
   {
     q: "Do you offer free shipping or delivery?",
-    a: "We occasionally offer promotions that include free shipping or local delivery — check the product page or sign up for updates to receive offers.",
+    a: "Yes. We offer local delivery in Ottawa with a minimum order of $50. Orders below $50 are still eligible for delivery, with a small flat-rate fee applied to cover driver time and fuel.",
   },
   {
     q: "What happens if I'm not home during my local delivery?",
-    a: "If you're unavailable, our driver will follow the delivery instructions on your order or attempt to contact you. For local pickup options, please contact us to arrange a convenient time.",
+    a: "If you aren't home, we will carefully leave your package in a shaded, secure spot near your door. Because fresh mushrooms are temperature-sensitive, we highly recommend bringing them indoors and refrigerating them as soon as possible.",
   },
   {
     q: "Can I pick up my order in person?",
-    a: "Yes — local pickup may be available. Contact us to confirm pickup availability and to arrange a time.",
+    a: "Currently, our primary operation is delivery-based to ensure the highest quality control and efficiency. However, you can select 'Market Pickup' at checkout to grab your order from our booth at select Ottawa Farmers' Markets on weekends.",
   },
 ];
 
@@ -31,19 +33,19 @@ const productsFaqs = [
   },
   {
     q: "How long do fresh gourmet mushrooms last?",
-    a: "Fresh mushrooms typically keep for 5–10 days in the refrigerator when stored correctly. Shelf life depends on variety and handling — check them daily and use by the first sign of sliminess.",
+    a: "When stored correctly, our fresh mushrooms (like Blue Oysters and Lion's Mane) will typically last 7 to 10 days in the refrigerator. Hardier varieties like Shiitake can sometimes last up to 14 days.",
   },
   {
     q: "What is the best way to store fresh mushrooms?",
-    a: "Keep mushrooms in a paper bag in the refrigerator to allow airflow and avoid moisture buildup. Avoid sealed plastic bags which can trap moisture and accelerate spoilage.",
+    a: "Never store them in a sealed plastic bag. Mushrooms need to breathe. Keep them in the brown paper bag they arrive in, and place them in the main compartment of your fridge (avoid the crisper drawer, which can be too humid)",
   },
   {
     q: "Should I wash my mushrooms before cooking?",
-    a: "A quick rinse or brushing is fine; avoid soaking. Pat them dry before cooking to preserve texture and flavour.",
+    a: "Because our mushrooms are grown indoors in a clean environment on sterilized wood blocks, they are incredibly clean. We recommend simply brushing off any tiny specks of substrate with a dry towel. Do not soak them in water, as they act like sponges and will become soggy.",
   },
   {
     q: "What is the difference between medicinal tinctures and dried mushrooms?",
-    a: "Tinctures are alcohol-based extracts offering concentrated, fast-absorbing compounds. Dried mushrooms are whole or sliced and are commonly used for teas or to be ground into powders; effects and dosing differ between formats.",
+    a: "Our dual-extracted tinctures (like Reishi or Turkey Tail) use both alcohol and water to draw out both water-soluble (polysaccharides) and alcohol-soluble (triterpenes) beneficial compounds, making them highly bioavailable. Dried mushrooms are great for steeping in long-simmering teas or grinding into powders for cooking.",
   },
 ];
 
@@ -54,15 +56,15 @@ const growKitsFaqs = [
   },
   {
     q: "How long does it take for a grow kit to start growing?",
-    a: "Once exposed (slit made and humid conditions provided), most kits begin pinning within 7–14 days, with harvests following shortly after depending on strain and conditions.",
+    a: "Once you open the kit and begin misting, you will typically see 'pins' (baby mushrooms) forming within 7 to 14 days. Once pinning starts, the mushrooms grow incredibly fast and double in size daily!",
   },
   {
     q: "Can I get multiple harvests from one kit?",
-    a: "Yes, many kits will produce multiple flushes. After the first harvest, allow the block to rest and maintain humidity — subsequent flushes typically follow for a few weeks.",
+    a: "Yes! While the first 'flush' (harvest) is always the largest, most of our kits will produce a second and even a third flush. Just soak the block in cold water for a few hours after your first harvest, then resume misting daily.",
   },
   {
     q: "What do I do with the block when it stops producing?",
-    a: "When production ceases, compost the block or use it in your garden as a soil amendment; it makes an excellent addition to compost piles or can be used for myco-remediation projects.",
+    a: "The block is made of 100% natural wood and mycelium. When it's spent, remove the plastic bag and compost the block. It acts as an incredible fertilizer and soil builder for your garden!",
   },
 ];
 
@@ -73,7 +75,7 @@ const wholesaleFaqs = [
   },
   {
     q: "Do you host farm tours or mushroom cultivation workshops?",
-    a: "Yes, we occasionally host small farm tours and workshops focused on mushroom cultivation and sustainable growing. Reach out through the contact page to inquire about upcoming events and group bookings.",
+    a: "Because we operate a high-hygiene indoor farm to prevent contamination, we cannot offer regular farm tours at this time. However, we do host seasonal outdoor cultivation workshops (like log inoculation) during the summer in Ottawa. Sign up for our newsletter to get notified!",
   },
 ];
 
@@ -113,6 +115,11 @@ function Accordion({ items = [], startIndex = 1 }) {
 export default function Faqs() {
   return (
     <>
+      <SEO 
+        title="FAQs – Magic Mushrooms Ottawa"
+        description="Frequently asked questions about magic mushrooms, microdosing, delivery, and ordering from The Mushroom Ottawa."
+        canonical="https://themushroomottawa.ca/faqs"
+      />
       <Header />
 
       <main className="bg-[#f5f5f5]">

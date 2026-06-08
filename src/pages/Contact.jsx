@@ -2,6 +2,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import FaqSection from "../components/FaqSection";
+import SEO from "../components/SEO";
+
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 
@@ -12,23 +14,23 @@ const contactFaqs = [
   },
   {
     q: "Can I change or cancel my delivery order?",
-    a: "Please contact us as soon as possible. If your order hasn't been dispatched yet, we'll do our best to accommodate changes or cancellations.",
+    a: "Yes, provided your order has not yet been harvested or dispatched. Please contact us immediately using the form above with your Order Number if you need to make changes. Once out for delivery, orders cannot be cancelled.",
   },
   {
     q: "What should I do if my grow kit isn't pinning?",
-    a: "Ensure the kit is kept in a humid environment with indirect light and fresh air exchange. If issues persist, reach out and we'll walk you through troubleshooting steps.",
+    a: "Don't panic! Mushrooms operate on their own schedule. Ensure it's getting enough humidity and indirect light. If it has been more than 3 weeks with no activity, send us a message with a photo of your block, and we will gladly help troubleshoot.",
   },
   {
     q: "I received the wrong item. What do I do?",
-    a: "We're sorry about that! Please contact us with your order number and a photo of what you received and we'll make it right as quickly as possible.",
+    a: "We sincerely apologize for any mix-ups! Please reach out through the contact form with your order number and a brief description of what you received. We will arrange a replacement or refund right away.",
   },
   {
     q: "Do you offer wholesale pricing for restaurants?",
-    a: "Yes, we do offer wholesale pricing for qualifying businesses. Please reach out via the contact form with details about your business and requirements.",
+    a: "We absolutely do. We proudly supply fresh, gourmet fungi to several top-tier restaurants across the Ottawa and Gatineau area. Please select 'Wholesale & Restaurant Sales' in the contact form or email our sales team directly to get our fresh sheet.",
   },
   {
     q: "Can I come to the farm to buy mushrooms in person?",
-    a: "We operate primarily online, but local pickup may be available. Contact us to arrange a time and we'll do our best to accommodate you.",
+    a: "To protect our crops from outside contamination, our indoor farm is a closed facility and not open to the public. However, you can catch us at local Ottawa Farmers' Markets on weekends during the summer—follow our social media for location updates!",
   },
 ];
 
@@ -43,6 +45,11 @@ export default function Contact() {
 
   return (
     <>
+      <SEO 
+        title="Contact Us – The Mushroom Ottawa"
+        description="Get in touch with The Mushroom Ottawa. We are here to answer your questions about magic mushrooms, orders, delivery, and more."
+        canonical="https://themushroomottawa.ca/contact"
+      />
       <Header />
 
       <main className="bg-[#f5f5f5]">

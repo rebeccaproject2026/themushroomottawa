@@ -5,12 +5,19 @@ import NewsCard from '../components/NewsCard';
 
 import { useNavigate } from 'react-router-dom';
 import { newsArticles } from '../data/newsData';
+import SEO from '../components/SEO';
 
 export default function News() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <>
+      <SEO 
+        title="The Fungi Files – News & Articles"
+        description="Explore the latest news, research, and stories about magic mushrooms, microdosing, wellness, and Ottawa mushroom culture."
+        canonical="https://themushroomottawa.ca/news"
+      />
+      <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
@@ -51,6 +58,7 @@ export default function News() {
 
       <Footer />
       <ScrollToTop />
-    </div>
+      </div>
+    </>
   );
 }

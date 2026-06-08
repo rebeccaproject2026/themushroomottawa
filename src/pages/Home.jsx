@@ -6,10 +6,16 @@ import CategorySection from '../components/CategorySection'
 import ReviewsSection from '../components/ReviewsSection'
 import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
+import SEO from '../components/SEO'
 
 export default function Home() {
   return (
     <>
+      <SEO
+        canonical="/"
+        description="The Mushroom Ottawa offers fast, discreet magic mushroom delivery across Ottawa and Gatineau. Browse premium dried mushrooms, microdosing capsules, and edibles."
+        keywords="magic mushrooms Ottawa, psilocybin Ottawa, mushroom delivery Ottawa, microdosing Ottawa, buy mushrooms Ottawa"
+      />
       <Header />
       <Banner />
       <CommunitySection />

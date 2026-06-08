@@ -73,7 +73,7 @@ export default function SearchModal({ isOpen, onClose, isSticky }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search products..."
-            className="w-full pb-5 text-5xl text-black placeholder-[#333333] font-semibold focus:outline-none bg-transparent text-center"
+            className="w-full pb-5 text-2xl sm:text-5xl text-black placeholder-[#333333] font-semibold focus:outline-none bg-transparent text-center"
           />
           {query && (
             <button

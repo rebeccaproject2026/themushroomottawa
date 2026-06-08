@@ -111,17 +111,36 @@ body {
 .prose p {
   margin-bottom: 1rem;
   color: #777777;
-  font-size: 17px;
+  font-size: 15px;
+}
+
+@media (min-width: 640px) {
+  .prose p {
+    font-size: 17px;
+  }
 }
 
 .prose ul {
   margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
+  padding-left: 1.25rem;
   list-style: disc outside;
+}
+
+@media (min-width: 640px) {
+  .prose ul {
+    padding-left: 1.5rem;
+  }
 }
 
 .prose li {
   margin-bottom: 0.5rem;
+  font-size: 15px;
+}
+
+@media (min-width: 640px) {
+  .prose li {
+    font-size: 17px;
+  }
 }
 
 /* Ensure markers are visible and styled */
@@ -130,10 +149,23 @@ body {
   font-size: 1em;
 }
 
-.prose h3{
-  font-size: 26px;
+.prose h3 {
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .prose h3 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose h3 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
 }
 
 .prose h1,
@@ -144,15 +176,35 @@ body {
 }
 
 .prose h4 {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 640px) {
+  .prose h4 {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
 }
 
 .prose hr {
   border-color: #eaeaea;
   margin: 1rem 0;
+}
+
+/* Prevent any prose images from overflowing on mobile */
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent tables from overflowing on mobile */
+.prose table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .link {
@@ -161,8 +213,14 @@ body {
 }
 
 .txt1 {
-  font-size: 17px;
+  font-size: 15px;
   color: #777777;
+}
+
+@media (min-width: 640px) {
+  .txt1 {
+    font-size: 17px;
+  }
 }
 
 .ptag {

@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
+import SEO from "../components/SEO";
+
 
 export default function Ottawa() {
   const ITEMS_PER_PAGE = 8;
@@ -52,7 +54,13 @@ export default function Ottawa() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
+    <>
+      <SEO 
+        title="Premium Mushrooms in Ottawa – Fast Local Delivery"
+        description="Looking for magic mushrooms in Ottawa? The Mushroom Ottawa delivers premium psilocybin products fast and discreetly across all Ottawa neighbourhoods."
+        canonical="https://themushroomottawa.ca/ottawa"
+      />
+      <div className="min-h-screen bg-white flex flex-col font-sans">
       <Header />
 
       <main className="w-full max-w-375 mx-auto px-4 py-4">
@@ -149,7 +157,7 @@ export default function Ottawa() {
                   className="opacity-0 animate-[fadeInUp_0.4s_ease-out_forwards] h-full"
                   style={{ animationDelay: `${idx * 40}ms` }}
                 >
-                  <RelatedProductCard product={product} />
+                  <RelatedProductCard product={product} compactImage />
                 </div>
               ))}
             </div>
@@ -202,6 +210,7 @@ export default function Ottawa() {
 
       <Footer />
       <ScrollToTop />
-    </div>
+      </div>
+    </>
   );
 }

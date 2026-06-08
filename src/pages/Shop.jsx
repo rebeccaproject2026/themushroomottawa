@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
+import SEO from "../components/SEO";
 
 export default function Shop() {
   const DEFAULT_MIN = 10;
@@ -115,7 +116,14 @@ export default function Shop() {
   const displayedProducts = shopProducts.slice(0, displayedCount);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
+    <>
+      <SEO
+        title="Shop – Premium Magic Mushrooms"
+        description="Browse our full range of premium magic mushrooms, microdosing capsules, and edibles. Fast, discreet delivery across Ottawa and Gatineau."
+        keywords="buy magic mushrooms Ottawa, mushroom shop Ottawa, psilocybin products, microdosing capsules Ottawa"
+        canonical="/shop"
+      />
+      <div className="min-h-screen bg-white flex flex-col font-sans">
       <Header />
 
       <main className="w-full max-w-375 mx-auto px-4 py-6">
@@ -431,6 +439,7 @@ export default function Shop() {
 
       <Footer />
       <ScrollToTop />
-    </div>
+      </div>
+    </>
   );
 }

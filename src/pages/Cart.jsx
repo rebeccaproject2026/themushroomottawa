@@ -5,6 +5,7 @@ import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
+import SEO from "../components/SEO";
 
 export default function Cart() {
   const { cartItems, removeFromCart, updateQuantity, subtotal } = useCart();
@@ -18,6 +19,7 @@ export default function Cart() {
 
   return (
     <>
+      <SEO title="Shopping Cart" canonical="/cart" noindex={true} />
       <Header />
       <div className="bg-white min-h-screen py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
@@ -32,7 +34,7 @@ export default function Cart() {
                 <p>Before proceed to checkout you must add some products to your shopping cart.</p>
                 <p>You will find a lot of interesting products on our "Shop" page.</p>
               </div>
-              <Link to="/" className="bg-[#003465] text-white px-8 py-4 font-bold uppercase text-[13px] hover:bg-[#012444] transition nav-lato">
+              <Link to="/shop" className="bg-[#003465] text-white px-8 py-4 font-bold uppercase text-[13px] hover:bg-[#012444] transition nav-lato">
                 Return to Shop
               </Link>
             </div>

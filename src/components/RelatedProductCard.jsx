@@ -7,7 +7,7 @@ import { useCart } from "../context/CartContext";
 import toast from "react-hot-toast";
 import QuickViewModal from "./QuickViewModal";
 
-export default function RelatedProductCard({ product }) {
+export default function RelatedProductCard({ product, compactImage = false }) {
   const [isImageHovered, setIsImageHovered] = useState(false);
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [cartOverlay, setCartOverlay] = useState(false);
@@ -39,21 +39,21 @@ export default function RelatedProductCard({ product }) {
     >
       {/* Image */}
       <div
-        className="relative w-full aspect-square bg-white flex items-center justify-center overflow-hidden"
+        className={`relative w-full bg-white flex items-center justify-center overflow-hidden ${compactImage ? "aspect-[4/3]" : "aspect-square"}`}
         onMouseEnter={() => setIsImageHovered(true)}
         onMouseLeave={() => setIsImageHovered(false)}
       >
         <img
           src={product.image}
           alt={product.name}
-          className={`w-full h-full object-cover transition-all duration-700 absolute top-0 left-0 ${isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
+          className={`w-full h-full object-contain transition-all duration-700 absolute top-0 left-0 ${isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
             }`}
         />
         {product.hoverImage && (
           <img
             src={product.hoverImage}
             alt={product.name}
-            className={`w-full h-full object-cover transition-all duration-700 absolute top-0 left-0 ${isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
+            className={`w-full h-full object-contain transition-all duration-700 absolute top-0 left-0 ${isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
               }`}
           />
         )}

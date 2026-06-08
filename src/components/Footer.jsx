@@ -100,10 +100,10 @@ export default function Footer() {
             <span>779 Somerset St W, Ottawa, ON K1R 6R3</span>
           </a>
           <div className="mt-4 lg:mt-0 lg:ml-auto flex items-center gap-3 lg:gap-2 w-full lg:w-auto justify-center lg:justify-end">
-            <a href="#" className="p-2 lg:p-2 rounded-md transition border hover:text-yellow-300 group hover:scale-110 duration-300">
+            <a href="https://www.instagram.com/themushroomottawa" target="_blank" rel="noopener noreferrer" className="p-2 lg:p-2 rounded-md transition border hover:text-yellow-300 group hover:scale-110 duration-300">
               <Icon icon="mdi:instagram" className="w-5 h-5 lg:w-5 lg:h-5 text-white transition-transform duration-300 group-hover:scale-110 group-hover:text-yellow-300" />
             </a>
-            <a href="#" className="p-2 lg:p-2 rounded-md transition border hover:text-yellow-300 group hover:scale-110 duration-300">
+            <a href="https://www.reddit.com/user/ShroomExpress/?share_id=HXp6VzjmqQPzCzMI_ybWz&utm_content=1&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1/" target="_blank" rel="noopener noreferrer" className="p-2 lg:p-2 rounded-md transition border hover:text-yellow-300 group hover:scale-110 duration-300">
               <Icon icon="mdi:reddit" className="w-5 h-5 lg:w-5 lg:h-5 text-white transition-transform duration-300 group-hover:scale-110 group-hover:text-yellow-300" />
             </a>
           </div>
@@ -118,9 +118,9 @@ export default function Footer() {
         </div>
         <div className="inline-block mt-1 lg:mt-0 lg:inline">
           <span className="hidden lg:inline">{" "}</span>
-          <a href="#" className="underline hover:text-white text-white font-semibold transition">Privacy Policy</a>
+          <Link to="/privacy-policy" className="underline hover:text-white text-white font-semibold transition">Privacy Policy</Link>
           <span className="mx-2 lg:mx-1">|</span>
-          <a href="#" className="underline hover:text-white text-white font-semibold transition">Return Policy</a>
+          <Link to="/return-policy" className="underline hover:text-white text-white font-semibold transition">Return Policy</Link>
         </div>
       </div>
     </footer>

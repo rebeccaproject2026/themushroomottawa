@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
+import SEO from "../components/SEO";
 
 export default function MagicMushrooms() {
   const DEFAULT_MIN = 40;
@@ -116,7 +117,13 @@ export default function MagicMushrooms() {
   const displayedProducts = magicMushrooms.slice(0, displayedCount);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
+    <>
+      <SEO 
+        title="Magic Mushrooms – Buy Psilocybin Mushrooms in Ottawa"
+        description="Shop premium dried magic mushrooms in Ottawa. Multiple strains available with fast discreet delivery. African Transkei, Golden Teacher, and more."
+        canonical="https://themushroomottawa.ca/magic-mushrooms"
+      />
+      <div className="min-h-screen bg-white flex flex-col font-sans">
       <Header />
 
       <main className="w-full max-w-375 mx-auto px-4 py-6">
@@ -442,6 +449,7 @@ export default function MagicMushrooms() {
 
       <Footer />
       <ScrollToTop />
-    </div>
+      </div>
+    </>
   );
 }

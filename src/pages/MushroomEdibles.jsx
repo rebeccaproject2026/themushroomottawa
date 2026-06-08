@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
+import SEO from "../components/SEO";
 
 export default function MushroomEdibles() {
   const DEFAULT_MIN = 10;
@@ -115,7 +116,13 @@ export default function MushroomEdibles() {
   const displayedProducts = ediblesProducts.slice(0, displayedCount);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
+    <>
+      <SEO 
+        title="Mushroom Edibles – Chocolate Bars & More in Ottawa"
+        description="Shop our range of mushroom edibles including psilocybin chocolate bars, gummies, and infused treats. Discreet delivery across Ottawa and Gatineau."
+        canonical="https://themushroomottawa.ca/mushroom-edibles"
+      />
+      <div className="min-h-screen bg-white flex flex-col font-sans">
       <Header />
 
       <main className="w-full max-w-375 mx-auto px-4 py-6">
@@ -441,6 +448,7 @@ export default function MushroomEdibles() {
 
       <Footer />
       <ScrollToTop />
-    </div>
+      </div>
+    </>
   );
 }

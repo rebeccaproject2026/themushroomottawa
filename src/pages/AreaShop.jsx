@@ -6,6 +6,9 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import RelatedProductCard from "../components/RelatedProductCard";
 import { mushroomProducts } from "../data/mushrooms";
+import { areaDescriptions } from "../data/areaDescriptions";
+import SEO from "../components/SEO";
+import NotFound from "./NotFound";
 
 // Convert slug like "byward-market" → "ByWard Market"
 function slugToTitle(slug) {
@@ -15,9 +18,17 @@ function slugToTitle(slug) {
     .join(" ");
 }
 
+// Slugs that should show the 404 page
+const notFoundSlugs = ["tunneys-pasture", "morgans-grant"];
+
 export default function AreaShop() {
   const { slug } = useParams();
+
+  if (notFoundSlugs.includes(slug)) return <NotFound />;
+
   const areaName = slugToTitle(slug);
+  const description = areaDescriptions[slug] ??
+    `Looking for high-quality mushrooms in ${areaName}? The Mushroom Ottawa offers carefully sourced premium varieties trusted by wellness enthusiasts across the city. Whether you prefer convenient online ordering or quick local pickup, our ${areaName} shop provides fresh selections, expert guidance, and discreet service for customers throughout the region.`;
 
   const ITEMS_PER_PAGE = 8;
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,6 +79,12 @@ export default function AreaShop() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
+      <SEO
+        title={`Magic Mushrooms in ${areaName}`}
+        description={description}
+        keywords={`magic mushrooms ${areaName}, mushroom delivery ${areaName}, psilocybin ${areaName}`}
+        canonical={`/area/${slug}`}
+      />
       <Header />
 
       <main className="w-full max-w-375 mx-auto px-4 py-4">
@@ -128,9 +145,7 @@ export default function AreaShop() {
               <h1 className="text-[24px] font-semibold text-[#242424] nav-poppins mb-2">
                 Premium Mushrooms in {areaName}
               </h1>
-              <p className="text-[17px] text-[#777777] nav-lato">
-                Looking for high-quality mushrooms in {areaName}? The Mushroom Ottawa offers carefully sourced premium varieties trusted by wellness enthusiasts across the city. Whether you prefer convenient online ordering or quick local pickup, our {areaName} shop provides fresh selections, expert guidance, and discreet service for customers throughout the region.
-              </p>
+              <p className="text-[17px] text-[#777777] nav-lato">{description}</p>
             </div>
 
             {hasAnyFilter && (
@@ -159,7 +174,7 @@ export default function AreaShop() {
                   className="opacity-0 animate-[fadeInUp_0.4s_ease-out_forwards] h-full"
                   style={{ animationDelay: `${idx * 40}ms` }}
                 >
-                  <RelatedProductCard product={product} />
+                  <RelatedProductCard product={product} compactImage />
                 </div>
               ))}
             </div>

@@ -19,6 +19,7 @@ import Footer from "../components/Footer";
 import ProductTabs from "../components/ProductTabs";
 import RelatedProducts from "../components/RelatedProducts";
 import ScrollToTop from "../components/ScrollToTop";
+import SEO from "../components/SEO";
 import toast from "react-hot-toast";
 
 export default function ProductDetail() {
@@ -87,6 +88,14 @@ export default function ProductDetail() {
 
   return (
     <>
+      <SEO
+        title={product.name}
+        description={`Buy ${product.name} – ${product.category}. ${product.price ? `From $${product.price.toFixed(2)}.` : ''} Fast, discreet delivery across Ottawa and Gatineau.`}
+        keywords={`${product.name}, ${product.category} Ottawa, buy ${product.name} Ottawa`}
+        canonical={`/product/${product.id}`}
+        image={product.image}
+        type="product"
+      />
       <Header />
       <div className="bg-white overflow-hidden">
         <div className="mx-auto px-4 lg:px-6 py-6">

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url><loc>https://themushroomottawa.ca/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/shop</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/magic-mushrooms</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/microdosing</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/mushroom-edibles</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/ottawa</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news/1</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news/2</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news/3</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news/4</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news/5</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news/6</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news/7</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/news/8</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/about</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/contact</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/faqs</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/privacy-policy</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/return-policy</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+
+  <!-- Ottawa area pages -->
+  <url><loc>https://themushroomottawa.ca/area/barrhaven</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/kanata</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/nepean</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/orleans</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/centretown</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/westboro</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/hintonburg</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/the-glebe</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/sandy-hill</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/vanier</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/stittsville</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/downtown</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/byward-market</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/old-ottawa-south</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/kanata-lakes</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/riverside-south</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/findlay-creek</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/south-keys</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/alta-vista</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/manotick</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Quebec area pages -->
+  <url><loc>https://themushroomottawa.ca/area/gatineau</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/hull-sector</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/aylmer-sector</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/chelsea</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/cantley</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://themushroomottawa.ca/area/val-des-monts</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+
+</urlset>

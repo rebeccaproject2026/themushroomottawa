@@ -29,9 +29,9 @@ export default function FaqSection({
                     {faq.q}
                   </span>
                   {isOpen ? (
-                    <Plus className="w-6 h-6 text-gray-400 shrink-0 rotate-45" />
+                    <Plus className="w-6 h-6 text-gray-400 shrink-0 rotate-45 transition-transform duration-300" />
                   ) : (
-                    <Plus className="w-6 h-6 text-gray-400 shrink-0" />
+                    <Plus className="w-6 h-6 text-gray-400 shrink-0 transition-transform duration-300" />
                   )}
                 </button>
                 <div className={`overflow-hidden transition-all duration-600 ease-in-out ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
