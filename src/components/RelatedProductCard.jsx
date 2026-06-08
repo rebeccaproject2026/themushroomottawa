@@ -39,7 +39,7 @@ export default function RelatedProductCard({ product, compactImage = false }) {
     >
       {/* Image */}
       <div
-        className={`relative w-full bg-white flex items-center justify-center overflow-hidden ${compactImage ? "aspect-[4/3]" : "aspect-square"}`}
+        className={`relative w-full bg-white flex items-center justify-center overflow-hidden ${compactImage ? "aspect-4/3" : "aspect-square"}`}
         onMouseEnter={() => setIsImageHovered(true)}
         onMouseLeave={() => setIsImageHovered(false)}
       >
@@ -60,7 +60,7 @@ export default function RelatedProductCard({ product, compactImage = false }) {
 
         {/* Sold Out Badge */}
         {product.outOfStock && (
-          <div className="absolute top-3 left-3 z-40 bg-white w-[50px] h-[50px] rounded-full flex flex-col items-center justify-center shadow-md">
+          <div className="absolute top-3 left-3 z-40 bg-white w-12.5 h-12.5 rounded-full flex flex-col items-center justify-center shadow-md">
             <span className="text-[#003465] font-bold text-[11px] leading-tight nav-lato">SOLD</span>
             <span className="text-[#003465] font-bold text-[11px] leading-tight nav-lato">OUT</span>
           </div>

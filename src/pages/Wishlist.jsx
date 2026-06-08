@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import { useCart } from "../context/CartContext";
 import { Heart, X, Check } from "lucide-react";
+import SEO from "../components/SEO";
 
 function WishlistCard({ product, selected, onToggleSelect, onRemove }) {
   const navigate = useNavigate();
