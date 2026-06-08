@@ -31,7 +31,7 @@ function WishlistCard({ product, selected, onToggleSelect, onRemove }) {
 
       {/* Image */}
       <div
-        className="w-full h-56 flex items-center justify-center px-4 py-2 cursor-pointer overflow-hidden"
+        className="w-full h-40 sm:h-56 flex items-center justify-center px-4 py-2 cursor-pointer overflow-hidden"
         onClick={() => navigate(`/product/${product.id}`)}
       >
         <img
@@ -100,9 +100,9 @@ export default function Wishlist() {
 
       <main className="min-h-[60vh] max-w-375 mx-auto px-4 lg:px-3.75 py-8">
         {wishlist.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-5 py-16">
-            <Heart className="w-40 h-40 text-gray-200" strokeWidth={1.5} />
-            <h2 className="text-[40px] font-semibold text-[#242424] nav-poppins">This wishlist is empty.</h2>
+          <div className="flex flex-col items-center justify-center gap-5 py-16 px-2">
+            <Heart className="w-24 h-24 sm:w-40 sm:h-40 text-gray-200" strokeWidth={1.5} />
+            <h2 className="text-2xl sm:text-[40px] font-semibold text-[#242424] nav-poppins text-center">This wishlist is empty.</h2>
             <p className="text-sm text-[#777777] text-center nav-lato leading-relaxed">
               You don't have any products in the wishlist yet.<br />
               You will find a lot of interesting products on our "Shop" page.
