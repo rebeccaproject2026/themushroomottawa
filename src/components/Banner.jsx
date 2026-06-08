@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import cardBg from '../assets/cardbg.webp';
+import cardBg from '../assets/cardbg11.webp';
 import cardBg1 from '../assets/cardbg2.webp';
 
 export default function Banner() {
