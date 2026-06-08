@@ -1,95 +1,112 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+
+// Home is eagerly loaded as it's the main entry point
 import Home from './pages/Home'
-import NotFound from './pages/NotFound'
-import ProductDetail from './pages/ProductDetail'
-import Wishlist from './pages/Wishlist'
-import Contact from './pages/Contact'
-import About from './pages/About'
-import Faqs from './pages/Faqs'
-import News from './pages/News'
-import NewsDetail from './pages/NewsDetail'
-import MagicMushrooms from './pages/MagicMushrooms'
-import Microdosing from './pages/Microdosing'
-import MushroomEdibles from './pages/MushroomEdibles'
-import Cart from './pages/Cart'
-import Shop from './pages/Shop'
-import Ottawa from './pages/Ottawa'
-import AreaShop from './pages/AreaShop'
-import ReturnPolicy from './pages/ReturnPolicy'
-import PrivacyPolicy from './pages/PrivacyPolicy'
+
+// Lazy load all other pages
+const NotFound = lazy(() => import('./pages/NotFound'))
+const ProductDetail = lazy(() => import('./pages/ProductDetail'))
+const Wishlist = lazy(() => import('./pages/Wishlist'))
+const Contact = lazy(() => import('./pages/Contact'))
+const About = lazy(() => import('./pages/About'))
+const Faqs = lazy(() => import('./pages/Faqs'))
+const News = lazy(() => import('./pages/News'))
+const NewsDetail = lazy(() => import('./pages/NewsDetail'))
+const MagicMushrooms = lazy(() => import('./pages/MagicMushrooms'))
+const Microdosing = lazy(() => import('./pages/Microdosing'))
+const MushroomEdibles = lazy(() => import('./pages/MushroomEdibles'))
+const Cart = lazy(() => import('./pages/Cart'))
+const Shop = lazy(() => import('./pages/Shop'))
+const Ottawa = lazy(() => import('./pages/Ottawa'))
+const AreaShop = lazy(() => import('./pages/AreaShop'))
+const ReturnPolicy = lazy(() => import('./pages/ReturnPolicy'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+
+const LoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="w-10 h-10 border-4 border-gray-200 border-t-[#003465] rounded-full animate-spin"></div>
+  </div>
+)
+
+const withSuspense = (Component) => (
+  <Suspense fallback={<LoadingFallback />}>
+    <Component />
+  </Suspense>
+)
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-    errorElement: <NotFound />
+    errorElement: withSuspense(NotFound)
   },
   {
     path: '/shop',
-    element: <Shop />
+    element: withSuspense(Shop)
   },
   {
     path: '/cart',
-    element: <Cart />
+    element: withSuspense(Cart)
   },
   {
     path: '/product/:id',
-    element: <ProductDetail />
+    element: withSuspense(ProductDetail)
   },
   {
     path: '/wishlist',
-    element: <Wishlist />
+    element: withSuspense(Wishlist)
   },
   {
     path: '/contact',
-    element: <Contact />
+    element: withSuspense(Contact)
   },
   {
     path: '/about',
-    element: <About />
+    element: withSuspense(About)
   },
   {
     path: '/faqs',
-    element: <Faqs />
+    element: withSuspense(Faqs)
   },
   {
     path: '/news',
-    element: <News />
+    element: withSuspense(News)
   },
   {
     path: '/news/:id',
-    element: <NewsDetail />
+    element: withSuspense(NewsDetail)
   },
   {
     path: '/magic-mushrooms',
-    element: <MagicMushrooms />
+    element: withSuspense(MagicMushrooms)
   },
   {
     path: '/microdosing',
-    element: <Microdosing />
+    element: withSuspense(Microdosing)
   },
   {
     path: '/mushroom-edibles',
-    element: <MushroomEdibles />
+    element: withSuspense(MushroomEdibles)
   },
   {
     path: '/ottawa',
-    element: <Ottawa />
+    element: withSuspense(Ottawa)
   },
   {
     path: '/area/:slug',
-    element: <AreaShop />
+    element: withSuspense(AreaShop)
   },
   {
     path: '/return-policy',
-    element: <ReturnPolicy />
+    element: withSuspense(ReturnPolicy)
   },
   {
     path: '/privacy-policy',
-    element: <PrivacyPolicy />
+    element: withSuspense(PrivacyPolicy)
   },
   {
     path: '*',
-    element: <NotFound />
+    element: withSuspense(NotFound)
   }
 ])
