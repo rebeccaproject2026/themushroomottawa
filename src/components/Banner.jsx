@@ -25,7 +25,7 @@ export default function Banner() {
             </div>
 
 
-            <img src={cardBg} alt="20% OFF" className="w-50 sm:w-[45%] lg:w-[70%] h-auto sm:h-full object-contain absolute bottom-0 sm:bottom-auto right-0 sm:-right-8 lg:-right-16 sm:top-1" />
+            <img src={cardBg} alt="20% OFF" fetchPriority="high" loading="eager" className="w-50 sm:w-[45%] lg:w-[70%] h-auto sm:h-full object-contain absolute bottom-0 sm:bottom-auto right-0 sm:-right-8 lg:-right-16 sm:top-1" />
 
           </div>
 
@@ -47,7 +47,7 @@ export default function Banner() {
               </button>
             </div>
 
-            <img src={cardBg1} alt="FREE DELIVERY" className="w-37 sm:w-[40%] lg:w-[50%] h-auto object-contain absolute -bottom-3 sm:bottom-auto right-0 sm:right-0 lg:right-4 sm:top-2" />
+            <img src={cardBg1} alt="FREE DELIVERY" fetchPriority="high" loading="eager" className="w-37 sm:w-[40%] lg:w-[50%] h-auto object-contain absolute -bottom-3 sm:bottom-auto right-0 sm:right-0 lg:right-4 sm:top-2" />
 
           </div>
         </div>

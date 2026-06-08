@@ -64,6 +64,8 @@ export default function CommunitySection() {
               <img
                 src={storeFrontImg}
                 alt="The Mush Room Store Front"
+                fetchPriority="high"
+                loading="eager"
                 className="w-full h-96 xs:h-140 sm:h-170 lg:h-170 object-cover"
               />
               {/* Lab Tested Badge */}
