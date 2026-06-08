@@ -1,4 +1,4 @@
-import storeFrontImg from "../assets/sidecardbg.png";
+import storeFrontImg from "../assets/sidecardbg.webp";
 import { Icon } from "@iconify/react";
 
 export default function CommunitySection() {

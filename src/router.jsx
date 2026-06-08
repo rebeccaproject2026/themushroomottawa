@@ -1,10 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
-
-// Home is eagerly loaded as it's the main entry point
 import Home from './pages/Home'
 
-// Lazy load all other pages
 const NotFound = lazy(() => import('./pages/NotFound'))
 const ProductDetail = lazy(() => import('./pages/ProductDetail'))
 const Wishlist = lazy(() => import('./pages/Wishlist'))
