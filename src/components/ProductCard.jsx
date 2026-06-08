@@ -82,6 +82,7 @@ export default function ProductCard({ product }) {
             <div
               className={`absolute inset-0 bg-white/85 flex flex-col justify-center gap-3 transition-all duration-300 ease-in-out ${cartOverlay ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
                 }`}
+              onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={(e) => { e.stopPropagation(); setCartOverlay(false); }}

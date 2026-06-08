@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { useCart } from "../context/CartContext";
@@ -9,6 +9,7 @@ import SEO from "../components/SEO";
 
 export default function Cart() {
   const { cartItems, removeFromCart, updateQuantity, subtotal } = useCart();
+  const navigate = useNavigate();
   
   const freeShippingThreshold = 150;
   const freeShippingRemaining = Math.max(freeShippingThreshold - (subtotal || 0), 0);
@@ -175,7 +176,7 @@ export default function Cart() {
                       <span className="text-xl font-bold text-[#003465]">${total.toFixed(2)}</span>
                     </div>
                     
-                    <button className="w-full bg-[#003465] text-white font-bold uppercase text-[13px] py-4 hover:bg-[#012444] transition nav-lato mt-4">
+                    <button onClick={() => navigate('/checkout')} className="w-full bg-[#003465] text-white font-bold uppercase text-[13px] py-4 hover:bg-[#012444] transition nav-lato mt-4 cursor-pointer">
                       Proceed to Checkout
                     </button>
                   </div>

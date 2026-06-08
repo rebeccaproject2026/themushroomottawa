@@ -19,6 +19,7 @@ const Ottawa = lazy(() => import('./pages/Ottawa'))
 const AreaShop = lazy(() => import('./pages/AreaShop'))
 const ReturnPolicy = lazy(() => import('./pages/ReturnPolicy'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const Checkout = lazy(() => import('./pages/Checkout'))
 
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-white">
@@ -101,6 +102,10 @@ export const router = createBrowserRouter([
   {
     path: '/privacy-policy',
     element: withSuspense(PrivacyPolicy)
+  },
+  {
+    path: '/checkout',
+    element: withSuspense(Checkout)
   },
   {
     path: '*',
