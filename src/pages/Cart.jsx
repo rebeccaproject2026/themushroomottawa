@@ -21,7 +21,7 @@ export default function Cart() {
     <>
       <SEO title="Shopping Cart" canonical="/cart" noindex={true} />
       <Header />
-      <div className="bg-white min-h-screen py-10">
+      <main className="bg-white min-h-screen py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           
           {cartItems.length === 0 ? (
@@ -158,7 +158,7 @@ export default function Cart() {
             </>
           )}
         </div>
-      </div>
+      </main>
       <Footer />
       <ScrollToTop />
     </>

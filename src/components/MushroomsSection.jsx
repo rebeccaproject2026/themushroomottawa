@@ -87,6 +87,7 @@ export default function MushroomsSection() {
         <div className="relative group mb-12">
           {/* Left Arrow */}
           <button
+            aria-label="Previous"
             onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
             disabled={currentIndex === 0}
             className={`absolute left-0 top-1/2 -translate-y-1/2 translate-x-2 md:-translate-x-6 z-40 bg-white p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-100 md:opacity-0 ${currentIndex === 0
@@ -106,6 +107,7 @@ export default function MushroomsSection() {
 
           {/* Right Arrow */}
           <button
+            aria-label="Next"
             onClick={() => setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))}
             disabled={currentIndex >= maxIndex}
             className={`absolute right-0 top-1/2 -translate-y-1/2 -translate-x-2 md:translate-x-6 z-40 bg-white p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 opacity-100 md:opacity-0 ${currentIndex >= maxIndex

@@ -38,10 +38,11 @@ export default function LoginDrawer({ isOpen, onClose }) {
         <div className="flex-1 overflow-y-auto px-4 py-5 flex flex-col gap-5">
           {/* Username */}
           <div className="flex flex-col gap-1">
-            <label className="text-sm text-gray-700">
+            <label htmlFor="username" className="text-sm text-gray-700">
               Username or email address <span className="text-red-500">*</span>
             </label>
             <input
+              id="username"
               type="text"
               className="border-2 border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:border-[#003465] transition"
             />
@@ -49,16 +50,18 @@ export default function LoginDrawer({ isOpen, onClose }) {
 
           {/* Password */}
           <div className="flex flex-col gap-1">
-            <label className="text-sm text-gray-700">
+            <label htmlFor="password" className="text-sm text-gray-700">
               Password <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <input
+                id="password"
                 type={showPassword ? "text" : "password"}
                 className="w-full border-2 border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:border-[#003465] transition pr-10"
               />
               <button
                 type="button"
+                aria-label="Toggle password visibility"
                 onClick={() => setShowPassword((p) => !p)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition cursor-pointer"
               >

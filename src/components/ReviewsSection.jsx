@@ -171,6 +171,7 @@ export default function ReviewsSection() {
         <div className="relative group">
           {/* Left Arrow */}
           <button
+            aria-label="Previous review"
             onClick={handlePrev}
             className="absolute cursor-pointer -left-2 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition"
           >
@@ -197,6 +198,7 @@ export default function ReviewsSection() {
 
           {/* Right Arrow */}
           <button
+            aria-label="Next review"
             onClick={handleNext}
             className="absolute cursor-pointer -right-2 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition"
           >
@@ -208,6 +210,7 @@ export default function ReviewsSection() {
         <div className="flex justify-center gap-1.5 mt-6 lg:hidden">
           {Array.from({ length: maxIndex + 1 }).map((_, i) => (
             <button
+              aria-label={`Go to slide ${i + 1}`}
               key={i}
               onClick={() => { setCurrentIndex(i); startTimer(); }}
               className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${i === currentIndex ? "bg-[#003465] w-4" : "bg-gray-300 w-1.5"}`}

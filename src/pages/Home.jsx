@@ -17,11 +17,13 @@ export default function Home() {
         keywords="magic mushrooms Ottawa, psilocybin Ottawa, mushroom delivery Ottawa, microdosing Ottawa, buy mushrooms Ottawa"
       />
       <Header />
-      <Banner />
-      <CommunitySection />
-      <MushroomsSection />
-      <CategorySection />
-      <ReviewsSection />
+      <main>
+        <Banner />
+        <CommunitySection />
+        <MushroomsSection />
+        <CategorySection />
+        <ReviewsSection />
+      </main>
       <Footer />
       <ScrollToTop />
     </>

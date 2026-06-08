@@ -81,6 +81,7 @@ export default function RelatedProductCard({ product, compactImage = false }) {
           <p className="text-[15px] font-semibold text-[#333333]">Quantity:</p>
           <div className="relative w-full max-w-3xs">
             <select
+              aria-label="Select quantity"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
               className="w-full border-2 border-[#777777]/30 px-3 py-2 text-sm text-gray-500 focus:outline-none appearance-none pr-9 cursor-pointer"
@@ -113,6 +114,7 @@ export default function RelatedProductCard({ product, compactImage = false }) {
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          aria-label="Select options"
           data-tooltip-id={`rp-cart-${product.id}`}
           data-tooltip-content="select options"
           data-tooltip-place="left"
@@ -124,6 +126,7 @@ export default function RelatedProductCard({ product, compactImage = false }) {
         <Tooltip id={`rp-cart-${product.id}`} style={{ backgroundColor: "#1a1a1a", color: "#fff", fontSize: "13px", borderRadius: "4px" }} />
 
         <button
+          aria-label="Quick view"
           data-tooltip-id={`rp-search-${product.id}`}
           data-tooltip-content="Quick view"
           data-tooltip-place="left"
@@ -135,6 +138,7 @@ export default function RelatedProductCard({ product, compactImage = false }) {
         <Tooltip id={`rp-search-${product.id}`} style={{ backgroundColor: "#1a1a1a", color: "#fff", fontSize: "13px", borderRadius: "4px" }} />
 
         <button
+          aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           data-tooltip-id={`rp-wish-${product.id}`}
           data-tooltip-content={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           data-tooltip-place="left"

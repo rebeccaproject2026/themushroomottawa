@@ -97,7 +97,8 @@ export default function ProductDetail() {
         type="product"
       />
       <Header />
-      <div className="bg-white overflow-hidden">
+      <main>
+        <div className="bg-white overflow-hidden">
         <div className="mx-auto px-4 lg:px-6 py-6">
           {/* Main Content */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
@@ -421,7 +422,8 @@ export default function ProductDetail() {
       <div className="bg-white border-t border-gray-200 mt-6">
         <ProductTabs product={product} />
       </div>
-      <RelatedProducts currentProduct={product} />
+        <RelatedProducts currentProduct={product} />
+      </main>
       <Footer />
       <ScrollToTop />
 

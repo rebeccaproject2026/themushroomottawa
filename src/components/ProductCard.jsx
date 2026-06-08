@@ -84,6 +84,7 @@ export default function ProductCard({ product }) {
               <p className="text-base font-semibold text-gray-800 text-center">Quantity:</p>
               <div className="relative mx-auto w-[84%]">
                 <select
+                  aria-label="Select quantity"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                   className="w-full border-2 border-gray-300/80 px-4 py-2.5 text-sm text-gray-500/70 font-medium focus:outline-none cursor-pointer bg-white appearance-none pr-9"
@@ -112,6 +113,7 @@ export default function ProductCard({ product }) {
                 }`}
             >
               <button
+                aria-label="Quick view"
                 data-tooltip-id={`quickview-${product.id}`}
                 data-tooltip-content="Quick view"
                 data-tooltip-place="left"
@@ -125,6 +127,7 @@ export default function ProductCard({ product }) {
                 style={{ backgroundColor: "#1a1a1a", color: "#fff", fontSize: "14px", fontWeight: 500, borderRadius: "4px" }}
               />
               <button
+                aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 data-tooltip-id={`wishlist-${product.id}`}
                 data-tooltip-content={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 data-tooltip-place="left"
