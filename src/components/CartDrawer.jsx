@@ -131,9 +131,9 @@ export default function CartDrawer({ isOpen, onClose }) {
             <Link to="/cart" onClick={onClose} className="w-full text-center text-gray-700 text-[13px] nav-lato font-semibold uppercase bg-[#f7f7f7] transition cursor-pointer py-2.5 rounded-lg">
               View Cart
             </Link>
-            <button className="w-full bg-[#003465] text-white text-[13px] nav-lato font-semibold uppercase py-3 hover:bg-[#004a8f] transition cursor-pointer">
+            <Link to="/checkout" onClick={onClose} className="w-full block text-center bg-[#003465] text-white text-[13px] nav-lato font-semibold uppercase py-3 hover:bg-[#004a8f] transition cursor-pointer">
               Checkout
-            </button>
+            </Link>
             </div>
           </div>
         )}
