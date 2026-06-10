@@ -20,6 +20,7 @@ const AreaShop = lazy(() => import('./pages/AreaShop'))
 const ReturnPolicy = lazy(() => import('./pages/ReturnPolicy'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const Checkout = lazy(() => import('./pages/Checkout'))
+const AccountPage = lazy(() => import('./pages/AccountPage'))
 
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-white">
@@ -106,6 +107,14 @@ export const router = createBrowserRouter([
   {
     path: '/checkout',
     element: withSuspense(Checkout)
+  },
+  {
+    path: '/login',
+    element: withSuspense(AccountPage)
+  },
+  {
+    path: '/register',
+    element: <AccountPage defaultView="register" />
   },
   {
     path: '*',

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { X, Eye, EyeOff } from "lucide-react";
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginDrawer({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -98,7 +100,9 @@ export default function LoginDrawer({ isOpen, onClose }) {
           <div className="flex flex-col items-center gap-3">
             <Icon icon="uiw:user" className="w-15 h-15 text-gray-300/30" />
             <p className="text-sm text-[#242424] nav-lato font-semibold">No account yet?</p>
-            <button className="text-[13px] nav-lato font-semibold uppercase  border-b-2 border-gray-800 text-gray-800 hover:text-gray-500 hover:border-gray-500 transition cursor-pointer ">
+            <button
+                onClick={() => { onClose(); navigate('/register'); }}
+                className="text-[13px] nav-lato font-semibold uppercase border-b-2 border-gray-800 text-gray-800 hover:text-gray-500 hover:border-gray-500 transition cursor-pointer">
               Create an Account
             </button>
           </div>
