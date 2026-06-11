@@ -9,6 +9,7 @@ import SEO from "../components/SEO";
 
 function WishlistCard({ product, selected, onToggleSelect, onRemove }) {
   const navigate = useNavigate();
+  const [isImageHovered, setIsImageHovered] = useState(false);
 
   return (
     <div className="relative border border-gray-200 bg-white flex flex-col">
@@ -31,14 +32,27 @@ function WishlistCard({ product, selected, onToggleSelect, onRemove }) {
 
       {/* Image */}
       <div
-        className="w-full h-40 sm:h-56 flex items-center justify-center px-4 py-2 cursor-pointer overflow-hidden"
+        className="relative w-full h-52 sm:h-64 flex items-center justify-center px-4 py-2 cursor-pointer overflow-hidden"
+        onMouseEnter={() => setIsImageHovered(true)}
+        onMouseLeave={() => setIsImageHovered(false)}
         onClick={() => navigate(`/product/${product.id}`)}
       >
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+          className={`w-full h-full object-contain transition-all duration-700 absolute top-0 left-0 ${
+            isImageHovered && product.hoverImage ? "opacity-0 scale-95" : "opacity-100 scale-100"
+          }`}
         />
+        {product.hoverImage && (
+          <img
+            src={product.hoverImage}
+            alt={product.name}
+            className={`w-full h-full object-contain transition-all duration-700 absolute top-0 left-0 ${
+              isImageHovered ? "opacity-100 scale-110" : "opacity-0 scale-95"
+            }`}
+          />
+        )}
       </div>
 
       {/* Info */}
@@ -51,7 +65,7 @@ function WishlistCard({ product, selected, onToggleSelect, onRemove }) {
         </h3>
         <p className="text-[13px] text-[#A5A5A5] nav-lato">{product.category}</p>
         <p className="text-[13px] font-semibold text-[#003465] nav-lato mt-0.5">
-          ${product.price.toFixed(2)}{product.maxPrice ? ` – $${product.maxPrice.toFixed(2)}` : ""}
+          ${product.price.toFixed(2)}{product.maxPrice ? ` – ${product.maxPrice.toFixed(2)}` : ""}
         </p>
       </div>
     </div>

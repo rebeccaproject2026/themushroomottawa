@@ -21,6 +21,7 @@ const ReturnPolicy = lazy(() => import('./pages/ReturnPolicy'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const Checkout = lazy(() => import('./pages/Checkout'))
 const AccountPage = lazy(() => import('./pages/AccountPage'))
+const Dashboard = lazy(() => import('./pages/Dashboard'))
 
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-white">
@@ -115,6 +116,10 @@ export const router = createBrowserRouter([
   {
     path: '/register',
     element: <AccountPage defaultView="register" />
+  },
+  {
+    path: '/dashboard',
+    element: withSuspense(Dashboard)
   },
   {
     path: '*',
